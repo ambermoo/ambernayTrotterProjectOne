@@ -1,0 +1,29 @@
+@use './variables' as *;
+
+.text-image-container {
+    display: flex;
+
+    .slogan-bubble {
+        flex: 1 0 60%;
+    }
+
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.slogan-bubble {
+    background: $accent-color;
+    align-items: center;
+    border-color: $accent-color;
+    border-radius: 15px;
+    height: fit-content;
+    margin-left: 60px;
+
+    h2 {
+        color: $background-color;
+        padding: 15% 8%;
+    }
+}

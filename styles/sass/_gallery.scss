@@ -1,0 +1,32 @@
+@use './variables';
+
+.gallery {
+    background: url(../organic-project/assets/grass.jpg) no-repeat;
+    background-size: contain;
+    background-position-y: bottom;
+}
+
+.gallery-link-list {
+    ul{
+        display: flex;
+        justify-content: center;
+
+        li{
+            margin: 10px;
+        }
+    }
+    
+}
+
+.gallery-images {
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+            display: flex;
+            flex: 1 0 25%;
+            margin: 3px;
+        }
+    }
+}

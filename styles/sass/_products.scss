@@ -1,0 +1,25 @@
+@use './variables' as *;
+
+.section-heading-text{
+    text-align: center;
+}
+
+.product-gallery-container {
+    ul {
+        flex-direction: row;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    li {
+        flex-direction: column;
+        flex: 1 0 20%;
+        border: 1px solid rgb(246, 246, 246);
+        margin: 10px;
+    }
+}
+
+.old-price {
+    color: $accent-color;
+    text-decoration: line-through;
+}

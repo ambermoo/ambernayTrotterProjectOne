@@ -1,0 +1,64 @@
+@use './variables' as *;
+
+.nav-container {
+    background: $background-color;
+    box-shadow: 0px 2px 10px #adadad;
+    padding: 0; // overriding on from section styles
+    /* #region - absolute */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 10;
+    /* #endregion - absolute */
+}
+
+nav {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+
+    .logo-container {
+            display: flex;
+            width: 70px;
+            position: inherit; // inherits justify content from nav parent
+        }
+    ul{
+        display: flex;
+        align-items: center;
+
+        li {
+                padding: 0 20px;
+            }
+    }
+}
+
+a object{
+    width: 25px;
+}
+
+.main-header-container {
+    display: flex;
+    margin-top: 57px;
+    height: calc(100vh - 57px);
+    /* #region - background */
+    background: url(../organic-project/assets/header/background.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* #endregion - background */
+    align-items: center;
+}
+
+.text-image-container {
+    display: flex;
+
+    .image-container {
+        flex: 1 0 60%;
+    }
+
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,31 @@
+@use './variables' as *;
+
+.link-container {
+    display: flex;
+    background: $accent-color;
+    width: fit-content;
+    align-items: center;
+    border-color: $accent-color;
+    border-radius: 15px;
+    padding: 5px 10px;
+    margin: 20px 0;
+
+    a, button{
+        color: $background-color;
+    }
+
+    button {
+        /* #region - remove default styles */
+        background-color: transparent;
+        border-width: 0;
+        padding: 0;
+        /* #endregion - remove default styles */
+    }
+}
+.shop-now {
+    text-transform: uppercase;
+}
+
+.load-more {
+    margin: 50px auto;
+}

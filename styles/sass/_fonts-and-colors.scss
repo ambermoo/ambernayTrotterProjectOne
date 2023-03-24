@@ -1,0 +1,50 @@
+@use './variables' as *;
+
+/* #region - font families */
+h1,
+h2,
+h3,
+h4 {
+    font-family: $lora;
+}
+body, 
+p,
+a,
+button {
+    font-family: $barlow;
+}
+/* #endregion - font families */
+
+/* #region - font weights */
+h1, h2, h3, h4 {
+    font-weight: $lora-bold;
+}
+
+a,
+button {
+    font-weight: $lora-semi-bold;
+}
+
+// h2 {
+//     font-weight: $lora-medium;
+// }
+/* #endregion - font weights */
+
+/* #region - font-sizes */
+
+h1 { // Providing Tasty& Healthy
+    font-size: 1.4rem;
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+h4 {
+    font-size: 0.8rem;
+}
+
+a, p, button {
+    font-size: 0.8rem;
+}
+/* #endregion - font-sizes */

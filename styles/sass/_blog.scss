@@ -1,0 +1,25 @@
+@use './variables' as *;
+
+.blog {
+    background: $accent-color;
+
+    .section-heading-text {
+        color: $background-color;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+
+        li{
+            background: $background-color;
+            flex: 1 0 20%;
+            border: 1px solid rgb(246, 246, 246);
+            margin: 10px;
+            padding: 10px 10px 0 10px;
+        }
+    }
+}
+

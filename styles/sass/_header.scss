@@ -2,7 +2,7 @@
 
 .nav-container {
     background: $background-color;
-    box-shadow: 0px 2px 10px #adadad;
+    box-shadow: 0px 2px 10px $box-shadow;
     padding: 0; // overriding on from section styles
     /* #region - absolute */
     position: absolute;
@@ -18,23 +18,24 @@ nav {
         justify-content: space-around;
         padding: 10px 0;
 
-    .logo-container {
-            display: flex;
-            width: 70px;
-            position: inherit; // inherits justify content from nav parent
-        }
     ul{
         display: flex;
         align-items: center;
 
         li {
-                padding: 0 20px;
+            padding: 0 20px;
+
+                object {
+                    width: 1rem;
+                }
             }
     }
 }
 
-a object{
-    width: 25px;
+.logo-container { // both header and footer
+    display: flex;
+    width: 70px;
+    position: inherit; // inherits justify content from nav parent
 }
 
 .main-header-container {
@@ -42,7 +43,7 @@ a object{
     margin-top: 57px;
     height: calc(100vh - 57px);
     /* #region - background */
-    background: url(../organic-project/assets/header/background.png) no-repeat;
+    background: url("../organic-project/assets/header/background.png") no-repeat;
     background-size: cover;
     background-position: center;
     /* #endregion - background */

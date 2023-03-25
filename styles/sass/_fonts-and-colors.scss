@@ -1,13 +1,19 @@
 @use './variables' as *;
 
+body {
+    line-height: 1rem;
+}
+
 /* #region - font families */
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5{
     font-family: $lora;
 }
-body, 
+
+body,
 p,
 a,
 button {
@@ -20,31 +26,53 @@ h1, h2, h3, h4 {
     font-weight: $lora-bold;
 }
 
+h5,
 a,
 button {
     font-weight: $lora-semi-bold;
 }
 
-// h2 {
-//     font-weight: $lora-medium;
-// }
+.quick-links {
+    a {
+        font-weight: $lora-medium;
+    }
+}
 /* #endregion - font weights */
 
 /* #region - font-sizes */
 
 h1 { // Providing Tasty& Healthy
     font-size: 1.4rem;
+    line-height: 1.8rem;
 }
 
 h2 {
     font-size: 1rem;
+    line-height: 1.5rem;
 }
 
-h4 {
-    font-size: 0.8rem;
+h3 {
+    line-height: 1.5rem;
 }
 
-a, p, button {
+p, h4, h5, input, textarea {
     font-size: 0.8rem;
+    line-height: 1rem;
 }
+
+a { // a overridden in button
+    font-size: 0.8rem;
+    line-height: 1rem;
+}
+
 /* #endregion - font-sizes */
+
+input,
+textarea,
+input::placeholder, 
+textarea::placeholder {
+    font-family: $lora;
+    font-weight: $lora-medium;
+    font-size: 0.6rem;
+    color: grey;
+}

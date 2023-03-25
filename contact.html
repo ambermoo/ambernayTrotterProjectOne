@@ -5,35 +5,192 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- #region - fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Lora:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- #endregion - fonts -->
+    
     <!-- styles -->
     <link rel="stylesheet" href="./styles/styles.css">
+
     <title>Organic Contact</title>
 </head>
 
 <body>
     <header>
-        <div class="wrapper">
-            <nav>
-                <div class="logo-container">
-                    <img src="./organic-project/assets/logo.png" alt="organic logo">
-                </div>
+        <section class="nav-container">
+            <div class="wrapper">
+                <nav>
+                    <div class="logo-container">
+                        <img src="./organic-project/assets/logo.png" alt="organic logo">
+                    </div>
             
-                <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
-                    <li>
-                        <a href="" style="color:black">
-                            <object data="./organic-project/assets/icons/cart.svg" type="image/svg+xml">
-                                <!-- screen reader description -->
-                                <figcaption class="sr-only">shopping cart icon</figcaption>
-                            </object>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div><!-- wrapper -->
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                        <li>
+                            <a href="" style="color:black">
+                                <object data="./organic-project/assets/icons/cart.svg" type="image/svg+xml">
+                                    <!-- screen reader description -->
+                                    <figcaption class="sr-only">shopping cart icon</figcaption>
+                                </object>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div><!-- wrapper -->
+        </section>
+        <section class="contact-header">
+            <h1>Contact</h1>
+        </section>
+        
     </header>
+    <main>
+        <section>
+            <div class="wrapper">
+                <section class="contact-info-container">
+                    <ul class="contact-info">
+                        <li>
+                            <h4>Office Address</h4>
+                            <p>3812 Lena Lane City Jackson Mississippi</p>
+                        </li>
+                        <li>
+                            <h4>Phone Number</h4>
+                            <p>601-594-3504</p>
+                        </li>
+                        <li>
+                            <h4>Email</h4>
+                            <p>123@temporary-mail.net</p>
+                        </li><!-- contact info -->
+                    
+                    </ul>
+                    <div class="message-form">
+                        <span>
+                            <input type="text" placeholder="Your Full Name*">
+                            <input type="text" placeholder="Your Email Address*">
+                        </span>
+                        <span>
+                            <input type="text" placeholder="Phone Number">
+                            <input type="text" placeholder="You Website Link">
+                        </span>
+                        
+                        <input type="text" placeholder="Subject...">
+                        <textarea name="" id="" cols="25" rows="5" placeholder="Your message..."></textarea>
+                        <!-- button -->
+                        <div class="link-container">
+                            <a href="#">Send Message</a>
+                        </div>
+                    </div> <!-- message form -->
+                </section>
+                
+            </div> <!-- wrapper -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrapper">
+            <ul class="quick-links-container">
+                <li class="social footer-sections">
+                    <div class="logo-container">
+                        <img src="./organic-project/assets/logo.png" alt="organic logo">
+                    </div>
+                    <p>Affronting discretion as do is announcing. Now months esteem oppose nearer enable too six as do
+                        nearer is announcing.</p>
+                    <!-- #region - social logos -->
+                    <ul>
+                        <li>
+                            <a href="#"><object class="fb" data="./organic-project/assets/icons/facebook.svg"
+                                    type="image/svg+xml"></object></a>
+                        </li>
+                        <li>
+                            <a href="#"><object data="./organic-project/assets/icons/instagram.svg"
+                                    type="image/svg+xml"></object></a>
+                        </li>
+                        <li>
+                            <a href="#"><object data="./organic-project/assets/icons/twitter.svg"
+                                    type="image/svg+xml"></object></a>
+                        </li>
+                        <li><a href="#"><object data="./organic-project/assets/icons/youtube.svg"
+                                    type="image/svg+xml"></object></a>
+                        </li>
+                    </ul>
+                    <!-- #endregion - social logos -->
+    
+                </li><!-- social links -->
+                <!-- #region - quick-links -->
+                <li class="quick-links footer-sections">
+                    <h4>Quick Links</h4>
+                    <!-- #region - quick links list -->
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#products">Our Procuct</a></li>
+                        <li><a href="#blog">Our Blog</a></li>
+                        <li><a href="#contac">Contact Us</a></li>
+                        <li><a href="#">Become a Member</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                    </ul>
+                    <!-- #endregion - quick links list -->
+    
+                </li>
+                <!-- #endregion - quick-links -->
+    
+                <!-- #region - recent products -->
+                <li class="recent-products footer-sections">
+                    <h4>Recent Products</h4>
+                    <!-- #region - image containers -->
+                    <ul>
+                        <li>
+                            <div class="image-container">
+                                <img src="./organic-project/assets/product7.jpeg" alt="Fresh Vegetables">
+                                <div class="info-container">
+                                    <h5>Fresh Vegetables</h5>
+                                    <p class="price">$13</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="image-container">
+                                <img src="./organic-project/assets/product6.jpeg" alt="Fresh Fruit">
+                                <div class="info-container">
+                                    <h5>Fresh Fruit</h5>
+                                    <p class="price">$13</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="image-container">
+                                <img src="./organic-project/assets/product5.jpeg" alt="Fresh Beans">
+                                <div class="info-container">
+                                    <h5>Fresh Beans</h5>
+                                    <p class="price">$13</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- #endregion - image containers -->
+                </li>
+                <!-- #endregion - recent products -->
+    
+    
+                <li class="subscribe footer-sections">
+                    <h4>Subscribe</h4>
+                    <!-- #region - subscribe info -->
+                    <h4>Address:</h4>
+                    <p>5919 Trussville Crossings Pkwy, Birmingham AL 35235</p>
+                    <h4>Phone:</h4>
+                    <p>+8801688005654</p>
+                    <input type="email" placeholder="Enter Email...">
+                    <!-- #endregion - subscribe info -->
+                </li><!-- subscribe -->
+            </ul>
+            <section class="copyright">
+                <p>Copyright @ 2023. All Rights Reserved.</p>
+            </section><!-- copyright section -->
+        </div> <!-- wrapper -->
+    </footer>
 </body>
 
 </html>

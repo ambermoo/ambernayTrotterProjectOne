@@ -1,7 +1,7 @@
 @use './variables';
 
 .gallery {
-    background: url(../organic-project/assets/grass.jpg) no-repeat;
+    background: url("../organic-project/assets/grass.jpg") no-repeat;
     background-size: contain;
     background-position-y: bottom;
 }

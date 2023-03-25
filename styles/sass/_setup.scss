@@ -254,3 +254,11 @@ html {
     box-sizing: inherit;
 }
 /* #endregion - setup */
+
+/* #region - stops horizontal scroll bounce */
+html,
+body {
+    display: grid;
+    overflow-x: hidden;
+}
+/* #endregion - stops horizontal scroll bounce */

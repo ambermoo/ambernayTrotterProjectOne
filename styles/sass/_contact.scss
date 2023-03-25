@@ -1,0 +1,66 @@
+@use './variables' as *;
+
+.contact-header {
+    display: flex;
+    /* #region - background image */
+    background: url("../organic-project/assets/contact.jpg") no-repeat;
+    // overlay on image
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4); 
+    background-size: cover;
+    background-position: bottom;
+    margin-top: 57px;
+    height: 100%;
+    /* #endregion - background image */
+    align-items: center;
+    justify-content: center;
+    
+
+    h1 {
+        color: $background-color;
+    }
+}
+
+.contact-info-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10% 0;
+
+    .contact-info {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        flex: 0 1 45%;
+        
+        li {
+            border-left: 5px solid $accent-color;
+            box-shadow: 0px 0 6px $input-border;
+            padding: 2% 2% 2% 10%;
+        }
+    }
+
+    .message-form {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 45%;
+        box-shadow: 0px 0 6px $input-border;
+        margin-left: 25px;
+        padding: 3%;
+
+        span {
+            display: flex;
+        }
+
+        input, textarea {
+            border: 2px solid $input-border;
+            border-radius: 5px;
+            width: 100%;
+            margin: 6px;
+            padding: 2px;
+        }
+
+        .link-container {
+            margin: 15px auto;
+        }
+    }
+}
+

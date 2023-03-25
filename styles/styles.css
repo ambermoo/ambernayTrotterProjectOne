@@ -262,17 +262,30 @@ html {
 }
 
 /* #endregion - setup */
+/* #region - stops horizontal scroll bounce */
+html,
+body {
+  display: grid;
+  overflow-x: hidden;
+}
+
+/* #endregion - stops horizontal scroll bounce */
 /* #region - colors */
 /* #endregion - colors */
 /* #region - fonts */
 /* #endregion - fonts */
 /* #region - font-weights */
 /* #endregion - font-weights */
+body {
+  line-height: 1rem;
+}
+
 /* #region - font families */
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   font-family: "Lora", serif;
 }
 
@@ -289,30 +302,77 @@ h1, h2, h3, h4 {
   font-weight: 700;
 }
 
+h5,
 a,
 button {
   font-weight: 600;
+}
+
+.quick-links a {
+  font-weight: 500;
 }
 
 /* #endregion - font weights */
 /* #region - font-sizes */
 h1 {
   font-size: 1.4rem;
+  line-height: 1.8rem;
 }
 
 h2 {
   font-size: 1rem;
+  line-height: 1.5rem;
 }
 
-h4 {
-  font-size: 0.8rem;
+h3 {
+  line-height: 1.5rem;
 }
 
-a, p, button {
+p, h4, h5, input, textarea {
   font-size: 0.8rem;
+  line-height: 1rem;
+}
+
+a {
+  font-size: 0.8rem;
+  line-height: 1rem;
 }
 
 /* #endregion - font-sizes */
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  font-family: "Lora", serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  color: grey;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+  font-family: "Lora", serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  color: grey;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  font-family: "Lora", serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  color: grey;
+}
+input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+  font-family: "Lora", serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  color: grey;
+}
+input,
+textarea,
+input::placeholder,
+textarea::placeholder {
+  font-family: "Lora", serif;
+  font-weight: 500;
+  font-size: 0.6rem;
+  color: grey;
+}
+
 .link-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -325,12 +385,13 @@ a, p, button {
       -ms-flex-align: center;
           align-items: center;
   border-color: #207200;
-  border-radius: 15px;
-  padding: 5px 10px;
+  border-radius: 20px;
+  padding: 6px 15px;
   margin: 20px 0;
 }
 .link-container a, .link-container button {
   color: #fff;
+  font-size: 0.6rem;
 }
 .link-container button {
   /* #region - remove default styles */
@@ -370,13 +431,6 @@ nav {
       justify-content: space-around;
   padding: 10px 0;
 }
-nav .logo-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 70px;
-  position: inherit;
-}
 nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -388,9 +442,16 @@ nav ul {
 nav ul li {
   padding: 0 20px;
 }
+nav ul li object {
+  width: 1rem;
+}
 
-a object {
-  width: 25px;
+.logo-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 70px;
+  position: inherit;
 }
 
 .main-header-container {
@@ -400,7 +461,7 @@ a object {
   margin-top: 57px;
   height: calc(100vh - 57px);
   /* #region - background */
-  background: url(../organic-project/assets/header/background.png) no-repeat;
+  background: url("../organic-project/assets/header/background.png") no-repeat;
   background-size: cover;
   background-position: center;
   /* #endregion - background */
@@ -439,8 +500,8 @@ a object {
 }
 .text-image-container .slogan-bubble {
   -webkit-box-flex: 1;
-      -ms-flex: 1 0 60%;
-          flex: 1 0 60%;
+      -ms-flex: 1 0 50%;
+          flex: 1 0 50%;
 }
 .text-image-container .text-container {
   display: -webkit-box;
@@ -505,7 +566,7 @@ a object {
 }
 
 .gallery {
-  background: url(../organic-project/assets/grass.jpg) no-repeat;
+  background: url("../organic-project/assets/grass.jpg") no-repeat;
   background-size: contain;
   background-position-y: bottom;
 }
@@ -566,6 +627,230 @@ a object {
   padding: 10px 10px 0 10px;
 }
 
+footer {
+  background: url("../organic-project/assets/cow.png") no-repeat;
+  background-position-y: bottom;
+  background-position-x: center;
+}
+
+.quick-links-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer-sections {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 20%;
+          flex: 1 1 20%;
+  margin: 10px;
+}
+
+.recent-products h5, .recent-products p {
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 0.8rem;
+  margin: 2px;
+}
+
+.social ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+.social ul li {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background: #207200;
+  /* #region - round div */
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  /* #endregion - round div */
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.social ul li .fb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 10px;
+}
+.social ul li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 15px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.quick-links ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+/* #region - recent products */
+.recent-products ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.recent-products ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.recent-products ul li .image-container {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 30%;
+          flex: 0 1 30%;
+  min-width: 30%;
+  margin: 5px;
+}
+.recent-products ul li .info-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 2px;
+}
+
+/* #endregion - recent products */
+.copyright {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.contact-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* #region - background image */
+  background: url("../organic-project/assets/contact.jpg") no-repeat;
+  -webkit-box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+          box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  background-size: cover;
+  background-position: bottom;
+  margin-top: 57px;
+  height: 100%;
+  /* #endregion - background image */
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.contact-header h1 {
+  color: #fff;
+}
+
+.contact-info-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10% 0;
+}
+.contact-info-container .contact-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 45%;
+          flex: 0 1 45%;
+}
+.contact-info-container .contact-info li {
+  border-left: 5px solid #207200;
+  -webkit-box-shadow: 0px 0 6px #dbdbdb;
+          box-shadow: 0px 0 6px #dbdbdb;
+  padding: 2% 2% 2% 10%;
+}
+.contact-info-container .message-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 45%;
+          flex: 1 1 45%;
+  -webkit-box-shadow: 0px 0 6px #dbdbdb;
+          box-shadow: 0px 0 6px #dbdbdb;
+  margin-left: 25px;
+  padding: 3%;
+}
+.contact-info-container .message-form span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.contact-info-container .message-form input, .contact-info-container .message-form textarea {
+  border: 2px solid #dbdbdb;
+  border-radius: 5px;
+  width: 100%;
+  margin: 6px;
+  padding: 2px;
+}
+.contact-info-container .message-form .link-container {
+  margin: 15px auto;
+}
+
 /* #region - reset default styles */
 html {
   font-size: 125%;
@@ -587,19 +872,22 @@ h2,
 h3,
 h4,
 h5,
+h6,
 p {
-  margin: 5px;
+  margin: 6px 0;
 }
 
 img {
   max-width: 100%;
   width: 100%;
   height: auto;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
 /* #endregion - reset default styles */
 section {
-  padding: 70px 0 0 0;
+  padding: 4% 0 4% 0;
 }
 
 .wrapper {

@@ -10,6 +10,8 @@
     ul{
         display: flex;
         justify-content: center;
+        // for responsive
+        flex-wrap: wrap; 
 
         li{
             margin: 10px;
@@ -26,6 +28,7 @@
         li {
             display: flex;
             flex: 1 0 25%;
+            min-width: 150px;
             margin: 3px;
         }
     }

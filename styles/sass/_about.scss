@@ -3,18 +3,17 @@
 .text-image-container {
     display: flex;
 
-    .slogan-bubble {
-        flex: 1 0 50%;
-    }
-
     .text-container {
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
+        flex-flow: column wrap;
+        max-height: 308px;
         justify-content: center;
     }
 }
 
 .slogan-bubble {
+    flex: 1 0 50%;
     background: $accent-color;
     align-items: center;
     border-color: $accent-color;

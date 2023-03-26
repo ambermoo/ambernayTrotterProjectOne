@@ -401,6 +401,11 @@ textarea::placeholder {
   /* #endregion - remove default styles */
 }
 
+.link-container:hover {
+  -webkit-box-shadow: 0 0 10px 6px #dbdbdb;
+          box-shadow: 0 0 10px 6px #dbdbdb;
+}
+
 .shop-now {
   text-transform: uppercase;
 }
@@ -441,6 +446,9 @@ nav ul {
 }
 nav ul li {
   padding: 0 20px;
+}
+nav ul li a:hover, nav ul li object:hover {
+  opacity: 0.4;
 }
 nav ul li object {
   width: 1rem;
@@ -498,25 +506,24 @@ nav ul li object {
   display: -ms-flexbox;
   display: flex;
 }
-.text-image-container .slogan-bubble {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 50%;
-          flex: 1 0 50%;
-}
 .text-image-container .text-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  max-height: 308px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
 .slogan-bubble {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 50%;
+          flex: 1 0 50%;
   background: #207200;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -557,7 +564,11 @@ nav ul li object {
       -ms-flex: 1 0 20%;
           flex: 1 0 20%;
   border: 1px solid rgb(246, 246, 246);
+  min-width: 140px;
   margin: 10px;
+}
+.product-gallery-container li .text-container {
+  padding: 8px 8px 0 8px;
 }
 
 .old-price {
@@ -578,6 +589,8 @@ nav ul li object {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .gallery-link-list ul li {
   margin: 10px;
@@ -597,6 +610,7 @@ nav ul li object {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 25%;
           flex: 1 0 25%;
+  min-width: 150px;
   margin: 3px;
 }
 
@@ -623,6 +637,7 @@ nav ul li object {
       -ms-flex: 1 0 20%;
           flex: 1 0 20%;
   border: 1px solid rgb(246, 246, 246);
+  min-width: 160px;
   margin: 10px;
   padding: 10px 10px 0 10px;
 }
@@ -637,6 +652,8 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .footer-sections {
@@ -650,7 +667,8 @@ footer {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 20%;
           flex: 1 1 20%;
-  margin: 10px;
+  min-width: 115px;
+  margin: 20px;
 }
 
 .recent-products h5, .recent-products p {

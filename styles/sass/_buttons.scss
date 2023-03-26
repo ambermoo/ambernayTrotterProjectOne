@@ -24,6 +24,12 @@
         /* #endregion - remove default styles */
     }
 }
+
+.link-container:hover {
+    // ( h-offset v-offset blur spread color)
+    box-shadow: 0 0 10px 6px $input-border;
+}
+
 .shop-now {
     text-transform: uppercase;
 }

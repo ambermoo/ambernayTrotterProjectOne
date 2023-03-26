@@ -25,10 +25,14 @@ nav {
         li {
             padding: 0 20px;
 
-                object {
-                    width: 1rem;
-                }
+            a:hover, object:hover {
+                opacity: 0.4;
             }
+
+            object {
+                width: 1rem;
+            }
+        }
     }
 }
 

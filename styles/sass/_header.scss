@@ -25,13 +25,23 @@ nav {
         li {
             padding: 0 20px;
 
-            a:hover, object:hover {
-                opacity: 0.4;
-            }
-
             object {
                 width: 1rem;
             }
+
+            a, object {
+                transition: all 0.5s;
+                
+            }
+
+            a:hover, object:hover {
+                /* scale not working on a because not enough room */
+            /* though it is working on object... ? */
+                transform: scale(2);
+                opacity: 0.4;
+            }
+
+            
         }
     }
 }

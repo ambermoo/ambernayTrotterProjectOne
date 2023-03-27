@@ -5,24 +5,73 @@
 
     .text-container {
         display: flex;
+        position: relative;
         // flex-direction: column;
         flex-flow: column wrap;
-        max-height: 308px;
+        min-width: 181px;
         justify-content: center;
+    }
+
+        .slogan-bubble-large{
+            flex: 1 0 50%;
+
+            h2 {
+                font-size: $slogan-font-size;
+                line-height: $slogan-line-height;
+            }
+        }
+
+        .heading-slogan {
+            display: flex;
+            justify-content: space-between;
+
+            .headings {
+            display: flex;
+            flex-direction: column;
+            }
+        }
+
+        .paragraphs {
+            display: flex;
+            flex-wrap: wrap;
+            min-width: 225px;
+            max-width: 45%;
+            margin-top: calc(-4vw);
     }
 }
 
-.slogan-bubble {
-    flex: 1 0 50%;
+.slogan-bubble-large, .slogan-bubble-small {
+    position: relative;
     background: $accent-color;
-    align-items: center;
     border-color: $accent-color;
     border-radius: 15px;
+    align-items: center;
     height: fit-content;
-    margin-left: 60px;
+    margin-left: 1vw;
+}
+
+.slogan-bubble-small {
+    display: none;
+    width: calc($slogan-font-size + $slogan-line-height);
+    height: calc($slogan-font-size + $slogan-line-height);
+    min-width: 85px;
+    min-height: 85px;
+    width: 18vw;
+    height: 18vw;
+    border-radius: 50%;
+    padding: calc($slogan-font-size + $slogan-line-height);
+    justify-content: center;
+    align-self: center;
 
     h2 {
-        color: $background-color;
-        padding: 15% 8%;
+        font-size: 1.2rem;
+        line-height: 1.4rem;
     }
+}
+
+.slogan-bubble-large, .slogan-bubble-small {
+    h2 {
+            color: $background-color;
+            padding: 10%;
+        }
 }

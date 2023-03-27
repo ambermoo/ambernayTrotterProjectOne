@@ -1,0 +1,37 @@
+@use './variables' as *;
+
+@media (max-width: 950px){
+    .text-image-container{
+        .paragraphs {
+            margin-top: calc(30px - 4vw);
+        }
+    }
+}
+
+@media (max-width: 850px) {
+    .text-image-container{
+        
+            .headings {
+                flex: 0 1 50%;
+            }
+        
+            .paragraphs {
+                max-width: 100%;
+                align-self: center;
+        }
+    }
+}
+
+@media (max-width: 730px) {
+    .text-image-container {
+
+        .slogan-bubble-large {
+            display: none;
+        }
+        
+        .slogan-bubble-small {
+            display: flex;
+            margin-left: 0.5vw;
+        }
+    }
+}

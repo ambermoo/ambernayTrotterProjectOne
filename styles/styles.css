@@ -276,6 +276,8 @@ body {
 /* #endregion - fonts */
 /* #region - font-weights */
 /* #endregion - font-weights */
+/* #region - font-sizes and lin-heights */
+/* #endregion - font-sizes */
 body {
   line-height: 1rem;
 }
@@ -325,6 +327,7 @@ h2 {
 }
 
 h3 {
+  font-size: 1.2rem;
   line-height: 1.5rem;
 }
 
@@ -447,11 +450,19 @@ nav ul {
 nav ul li {
   padding: 0 20px;
 }
-nav ul li a:hover, nav ul li object:hover {
-  opacity: 0.4;
-}
 nav ul li object {
   width: 1rem;
+}
+nav ul li a, nav ul li object {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+nav ul li a:hover, nav ul li object:hover {
+  /* scale not working on a because not enough room */
+  /* though it is working on object... ? */
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  opacity: 0.4;
 }
 
 .logo-container {
@@ -510,34 +521,91 @@ nav ul li object {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
-  max-height: 308px;
+  min-width: 181px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
-
-.slogan-bubble {
+.text-image-container .slogan-bubble-large {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 50%;
           flex: 1 0 50%;
+}
+.text-image-container .slogan-bubble-large h2 {
+  font-size: 1.8vw;
+  line-height: 2.5vw;
+}
+.text-image-container .heading-slogan {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.text-image-container .heading-slogan .headings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.text-image-container .paragraphs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  min-width: 225px;
+  max-width: 45%;
+  margin-top: -4vw;
+}
+
+.slogan-bubble-large, .slogan-bubble-small {
+  position: relative;
   background: #207200;
+  border-color: #207200;
+  border-radius: 15px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-color: #207200;
-  border-radius: 15px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  margin-left: 60px;
+  margin-left: 1vw;
 }
-.slogan-bubble h2 {
+
+.slogan-bubble-small {
+  display: none;
+  width: 4.3vw;
+  height: 4.3vw;
+  min-width: 85px;
+  min-height: 85px;
+  width: 18vw;
+  height: 18vw;
+  border-radius: 50%;
+  padding: 4.3vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+.slogan-bubble-small h2 {
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+}
+
+.slogan-bubble-large h2, .slogan-bubble-small h2 {
   color: #fff;
-  padding: 15% 8%;
+  padding: 10%;
 }
 
 .section-heading-text {
@@ -869,6 +937,34 @@ footer {
   margin: 15px auto;
 }
 
+@media (max-width: 950px) {
+  .text-image-container .paragraphs {
+    margin-top: calc(30px - 4vw);
+  }
+}
+@media (max-width: 850px) {
+  .text-image-container .headings {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 50%;
+            flex: 0 1 50%;
+  }
+  .text-image-container .paragraphs {
+    max-width: 100%;
+    -ms-flex-item-align: center;
+        align-self: center;
+  }
+}
+@media (max-width: 730px) {
+  .text-image-container .slogan-bubble-large {
+    display: none;
+  }
+  .text-image-container .slogan-bubble-small {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 0.5vw;
+  }
+}
 /* #region - reset default styles */
 html {
   font-size: 125%;

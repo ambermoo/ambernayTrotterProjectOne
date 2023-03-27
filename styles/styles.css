@@ -632,15 +632,22 @@ nav ul li a:hover, nav ul li object:hover {
       -ms-flex: 1 0 20%;
           flex: 1 0 20%;
   border: 1px solid rgb(246, 246, 246);
-  min-width: 140px;
-  margin: 10px;
+  min-width: 135px;
+  margin: 20px 10px;
 }
-.product-gallery-container li .text-container {
-  padding: 8px 8px 0 8px;
+.product-gallery-container li .text-container .info-container {
+  padding: 8px 8px 25px 8px;
+}
+.product-gallery-container li .text-container .link-container.product-link {
+  position: absolute;
+  margin: -13px 0;
+}
+
+.price {
+  color: #207200;
 }
 
 .old-price {
-  color: #207200;
   text-decoration: line-through;
 }
 

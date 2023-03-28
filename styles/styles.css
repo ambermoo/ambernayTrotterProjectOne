@@ -973,11 +973,17 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.contact-info-container .message-form span input {
+  width: 100%;
 }
 .contact-info-container .message-form input, .contact-info-container .message-form textarea {
   border: 2px solid #dbdbdb;
   border-radius: 5px;
-  width: 100%;
+  width: auto;
   margin: 6px;
   padding: 2px;
 }
@@ -1042,6 +1048,11 @@ footer {
     margin-left: 0.5vw;
   }
   /* #endregion - about section */
+}
+@media (max-width: 650px) {
+  .contact-info-container .message-form span {
+    display: grid;
+  }
 }
 /* #region - reset default styles */
 html {

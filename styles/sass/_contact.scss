@@ -60,12 +60,17 @@
 
         span {
             display: flex;
+            justify-content: space-between;
+
+            input {
+                width: 100%;
+            }
         }
 
         input, textarea {
             border: 2px solid $input-border;
             border-radius: 5px;
-            width: 100%;
+            width: auto;
             margin: 6px;
             padding: 2px;
         }

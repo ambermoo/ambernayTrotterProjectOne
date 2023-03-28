@@ -14,7 +14,6 @@
             display: block;
         }
     }
-    
 }
 
 @media (max-width: 950px){
@@ -70,6 +69,12 @@
                 margin-left: 0.5vw;
             }
         }
-    /* #endregion - about section */
-    
+    /* #endregion - about section */ 
+}
+
+@media (max-width: 650px) {
+    .contact-info-container .message-form span {
+
+        display: grid;
+    }
 }

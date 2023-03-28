@@ -1,9 +1,8 @@
 @use './variables' as *;
 
-@media (max-width: 1290px) {
+@media (max-width: 1110px) {
     .contact-info-container {
         flex-direction: column;
-        height: calc(( $contact-sections-max-height * 2 ) + 60px);
     }
 }
  

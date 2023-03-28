@@ -25,24 +25,25 @@
 
 .contact-info-container {
     display: flex;
+    column-gap: 30px;
     justify-content: space-between;
     align-content: space-between;
     padding: 10% 0;
     
 
     .contact-info, .message-form {
-        max-height: 285px;
+        max-height: auto;
         margin-top: 30px;
     }
 
     .contact-info {
         display: flex;
-        flex-shrink: 1;
+        flex: 0 1 50%;
         justify-content: space-between;
         flex-direction: column;
         justify-content: space-between;
         min-height: 250px;
-        min-width: 285px;
+        min-width: 200px;
         
         li {
             border-left: 5px solid $accent-color;
@@ -53,6 +54,7 @@
 
     .message-form {
         display: flex;
+        flex: 1 1 50%;
         flex-direction: column;
         box-shadow: 0px 0 6px $input-border;
         min-width: 315px;

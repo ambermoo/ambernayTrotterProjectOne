@@ -58,7 +58,8 @@ nav {
     .hamburgers {
         width: 30px;
         height: 4px;
-        background-color: $accent-color;
+        background-image: linear-gradient($accent-color, $light-accent-color, $accent-color);
+        // background-color: $accent-color;
         margin: 5px 0;
     }
 }
@@ -74,6 +75,28 @@ nav {
     background-position: center;
     /* #endregion - background */
     align-items: center;
+
+    /* #region - splash images */
+    .head-splashes.b-1 {
+        // display: none;
+        position: absolute;
+        background: url("../organic-project/assets/header/b-1.png") no-repeat;
+        background-size: contain;
+        height: 30%;
+        width: 30%;
+        top: 2%;
+        left: -1%;
+    }
+
+    .head-splashes.b-2 {
+        position: absolute;
+        background: url("../organic-project/assets/header/b-2.png") no-repeat;
+        background-size: contain;
+        height: 30%;
+        width: 30%;
+    }
+
+    /* #endregion - splash images */
 }
 
 .text-image-container {

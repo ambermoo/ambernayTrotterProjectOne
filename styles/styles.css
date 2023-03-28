@@ -278,6 +278,8 @@ body {
 /* #endregion - font-weights */
 /* #region - font-sizes and lin-heights */
 /* #endregion - font-sizes */
+/* #region - max height & widths */
+/* #endregion - max height & widths */
 body {
   line-height: 1rem;
 }
@@ -481,7 +483,8 @@ nav ul li a:hover, nav ul li object:hover {
 .hamburger-menu .hamburgers {
   width: 30px;
   height: 4px;
-  background-color: #207200;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#207200), color-stop(rgba(32, 114, 1, 0.6)), to(#207200));
+  background-image: linear-gradient(#207200, rgba(32, 114, 1, 0.6), #207200);
   margin: 5px 0;
 }
 
@@ -500,6 +503,24 @@ nav ul li a:hover, nav ul li object:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  /* #region - splash images */
+  /* #endregion - splash images */
+}
+.main-header-container .head-splashes.b-1 {
+  position: absolute;
+  background: url("../organic-project/assets/header/b-1.png") no-repeat;
+  background-size: contain;
+  height: 30%;
+  width: 30%;
+  top: 2%;
+  left: -1%;
+}
+.main-header-container .head-splashes.b-2 {
+  position: absolute;
+  background: url("../organic-project/assets/header/b-2.png") no-repeat;
+  background-size: contain;
+  height: 30%;
+  width: 30%;
 }
 
 .text-image-container {
@@ -877,8 +898,10 @@ footer {
   display: flex;
   /* #region - background image */
   background: url("../organic-project/assets/contact.jpg") no-repeat;
+  /* #region - overlay on heading image */
   -webkit-box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
           box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  /* #endregion - overlay on heading image */
   background-size: cover;
   background-position: bottom;
   margin-top: 57px;
@@ -902,12 +925,20 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
   padding: 10% 0;
+}
+.contact-info-container .contact-info, .contact-info-container .message-form {
+  max-height: 285px;
+  margin-top: 30px;
 }
 .contact-info-container .contact-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -915,9 +946,9 @@ footer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 45%;
-          flex: 0 1 45%;
+  justify-content: space-between;
+  min-height: 250px;
+  min-width: 285px;
 }
 .contact-info-container .contact-info li {
   border-left: 5px solid #207200;
@@ -933,12 +964,9 @@ footer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 45%;
-          flex: 1 1 45%;
   -webkit-box-shadow: 0px 0 6px #dbdbdb;
           box-shadow: 0px 0 6px #dbdbdb;
-  margin-left: 25px;
+  min-width: 315px;
   padding: 3%;
 }
 .contact-info-container .message-form span {
@@ -957,12 +985,18 @@ footer {
   margin: 15px auto;
 }
 
+@media (max-width: 1290px) {
+  .contact-info-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 630px;
+  }
+}
 @media (max-width: 1080px) {
-  .head-splashes.b-1 {
-    position: absolute;
-    background: url("../organic-project/assets/header/b-1.png");
-    height: 50px;
-    width: 50px;
+  .main-header-container .head-splashes.b-1 {
+    display: block;
   }
 }
 @media (max-width: 950px) {

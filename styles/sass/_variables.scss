@@ -2,6 +2,7 @@
 $background-color: #fff;
 $main-text-color: #1a2428;
 $accent-color: #207200;
+$light-accent-color: rgba(32, 114, 1, 0.6);
 $box-shadow: #adadad;
 $input-border:#dbdbdb;
 /* #endregion - colors */
@@ -24,4 +25,10 @@ $slogan-font-size: 1.8vw;
 $slogan-line-height: 2.5vw;
 /* #endregion - font-sizes */
 
+/* #region - max height & widths */
 $heading-nav-height: 57px;
+$contact-sections-max-height: 285px;
+$contact-info-min-width: 220px;
+$message-form-min-width: 315px;
+/* #endregion - max height & widths */
+

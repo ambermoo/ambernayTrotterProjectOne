@@ -1,12 +1,20 @@
 @use './variables' as *;
 
-@media (max-width: 1080px) {
-    .head-splashes.b-1 {
-        position: absolute;
-        background: url("../organic-project/assets/header/b-1.png");
-        height: 50px;
-        width: 50px;
+@media (max-width: 1290px) {
+    .contact-info-container {
+        flex-direction: column;
+        height: calc(( $contact-sections-max-height * 2 ) + 60px);
     }
+}
+ 
+@media (max-width: 1080px) {
+    .main-header-container {
+        
+        .head-splashes.b-1 {
+            display: block;
+        }
+    }
+    
 }
 
 @media (max-width: 950px){

@@ -3,6 +3,7 @@
 .nav-container {
     background: $background-color;
     box-shadow: 0px 2px 10px $box-shadow;
+    min-height: $heading-nav-height;
     padding: 0; // overriding on from section styles
     /* #region - absolute */
     position: absolute;
@@ -40,8 +41,6 @@ nav {
                 transform: scale(2);
                 opacity: 0.4;
             }
-
-            
         }
     }
 }
@@ -52,10 +51,23 @@ nav {
     position: inherit; // inherits justify content from nav parent
 }
 
+/* #region - hamburger menu */
+.hamburger-menu {
+    display: none;
+
+    .hamburgers {
+        width: 30px;
+        height: 4px;
+        background-color: $accent-color;
+        margin: 5px 0;
+    }
+}
+/* #endregion - hamburger menu */
+
 .main-header-container {
     display: flex;
-    margin-top: 57px;
-    height: calc(100vh - 57px);
+    margin-top: $heading-nav-height;
+    height: calc(100vh - $heading-nav-height);
     /* #region - background */
     background: url("../organic-project/assets/header/background.png") no-repeat;
     background-size: cover;
@@ -77,3 +89,4 @@ nav {
         justify-content: center;
     }
 }
+

@@ -421,6 +421,7 @@ textarea::placeholder {
   background: #fff;
   -webkit-box-shadow: 0px 2px 10px #adadad;
           box-shadow: 0px 2px 10px #adadad;
+  min-height: 57px;
   padding: 0;
   /* #region - absolute */
   position: absolute;
@@ -473,6 +474,18 @@ nav ul li a:hover, nav ul li object:hover {
   position: inherit;
 }
 
+/* #region - hamburger menu */
+.hamburger-menu {
+  display: none;
+}
+.hamburger-menu .hamburgers {
+  width: 30px;
+  height: 4px;
+  background-color: #207200;
+  margin: 5px 0;
+}
+
+/* #endregion - hamburger menu */
 .main-header-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -944,6 +957,14 @@ footer {
   margin: 15px auto;
 }
 
+@media (max-width: 1080px) {
+  .head-splashes.b-1 {
+    position: absolute;
+    background: url("../organic-project/assets/header/b-1.png");
+    height: 50px;
+    width: 50px;
+  }
+}
 @media (max-width: 950px) {
   .text-image-container .paragraphs {
     margin-top: calc(30px - 4vw);
@@ -962,6 +983,21 @@ footer {
   }
 }
 @media (max-width: 730px) {
+  /* #region - header nav */
+  .nav-container nav {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 10px;
+  }
+  .nav-container nav ul {
+    display: none;
+  }
+  .nav-container nav .hamburger-menu {
+    display: block;
+  }
+  /* #endregion - header nav */
+  /* #region - about section */
   .text-image-container .slogan-bubble-large {
     display: none;
   }
@@ -971,6 +1007,7 @@ footer {
     display: flex;
     margin-left: 0.5vw;
   }
+  /* #endregion - about section */
 }
 /* #region - reset default styles */
 html {

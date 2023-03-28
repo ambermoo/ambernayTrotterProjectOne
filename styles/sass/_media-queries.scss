@@ -1,5 +1,14 @@
 @use './variables' as *;
 
+@media (max-width: 1080px) {
+    .head-splashes.b-1 {
+        position: absolute;
+        background: url("../organic-project/assets/header/b-1.png");
+        height: 50px;
+        width: 50px;
+    }
+}
+
 @media (max-width: 950px){
     .text-image-container{
         .paragraphs {
@@ -23,15 +32,36 @@
 }
 
 @media (max-width: 730px) {
-    .text-image-container {
+    /* #region - header nav */
+    .nav-container {
+        nav {
+            justify-content: space-between;
+            padding: 10px;
 
-        .slogan-bubble-large {
-            display: none;
+            ul {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: block;
+            }
         }
         
-        .slogan-bubble-small {
-            display: flex;
-            margin-left: 0.5vw;
-        }
     }
+    /* #endregion - header nav */
+
+    /* #region - about section */
+    .text-image-container {
+    
+            .slogan-bubble-large {
+                display: none;
+            }
+    
+            .slogan-bubble-small {
+                display: flex;
+                margin-left: 0.5vw;
+            }
+        }
+    /* #endregion - about section */
+    
 }

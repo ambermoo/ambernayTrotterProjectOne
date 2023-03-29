@@ -546,6 +546,10 @@ nav ul li a:hover, nav ul li object:hover {
           justify-content: center;
 }
 
+* {
+  border: solid red 2px;
+}
+
 .text-image-container {
   display: -webkit-box;
   display: -ms-flexbox;

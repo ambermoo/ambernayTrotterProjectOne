@@ -1,7 +1,5 @@
 @use './variables' as *;
 
-* { border: solid red 2px };
-
 .text-image-container {
     display: flex;
 
@@ -34,8 +32,6 @@
         }
 
         .paragraphs {
-            display: flex;
-            flex-wrap: wrap;
             min-width: 225px;
             max-width: 45%;
             margin-top: calc(-4vw);

@@ -99,17 +99,22 @@ nav {
     /* #endregion - splash images */
 }
 
-.text-image-container {
-    display: flex;
+.heading-image-container {
+    position: relative;
+    width: 100%;
+    float: left;
+    height: 50vh;
 
     .image-container {
-        flex: 1 0 60%;
+        position: relative;
+        width: 60%;
+        float: right;
     }
 
-    .text-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    .link-container {
+        position: absolute;
+        bottom: 0;
     }
 }
+
 

@@ -1,10 +1,4 @@
 @use './variables' as *;
-
-@media (max-width: 1110px) {
-    .contact-info-container {
-        flex-direction: column;
-    }
-}
  
 @media (max-width: 1080px) {
     .main-header-container {
@@ -71,9 +65,22 @@
     /* #endregion - about section */ 
 }
 
-@media (max-width: 650px) {
-    .contact-info-container .message-form span {
+@media (max-width: 660px) {
+    .contact-info-container {
 
-        display: grid;
-    }
+        .contact-info, .message-form {
+            min-width: 170px;
+        }
+
+        .message-form{
+            span {
+                display: block;
+
+                input {
+                    width: -webkit-fill-available;
+                    width: -moz-available;
+                }
+            }
+        }
+    } 
 }

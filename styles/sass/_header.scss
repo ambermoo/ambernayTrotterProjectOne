@@ -78,7 +78,7 @@ nav {
 
     /* #region - splash images */
     .head-splashes.b-1 {
-        // display: none;
+        display: none;
         position: absolute;
         background: url("../organic-project/assets/header/b-1.png") no-repeat;
         background-size: contain;
@@ -89,11 +89,14 @@ nav {
     }
 
     .head-splashes.b-2 {
+        display: none;
         position: absolute;
         background: url("../organic-project/assets/header/b-2.png") no-repeat;
         background-size: contain;
         height: 30%;
         width: 30%;
+        right: 0;
+        bottom: 15%;
     }
 
     /* #endregion - splash images */

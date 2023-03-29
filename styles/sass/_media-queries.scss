@@ -53,6 +53,12 @@
     /* #endregion - header nav */
 
     /* #region - main heading */
+    .main-header-container {
+
+        .head-splashes.b-2 {
+            display: block;
+        }
+    }
     .heading-image-container {
         display: flex;
         flex-direction: column;

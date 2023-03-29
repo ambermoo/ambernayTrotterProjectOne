@@ -1,5 +1,15 @@
 @use './variables' as *;
 
+// changes color of logo and splash images
+header,
+footer {
+
+    .head-splashes,
+    .logo-container {
+        filter: brightness(16%) saturate(27) hue-rotate(-12deg);
+    }
+}
+
 body {
     line-height: 1rem;
 }

@@ -26,20 +26,8 @@ nav {
         li {
             padding: 0 20px;
 
-            object {
+            .cart-icon {
                 width: 1rem;
-            }
-
-            a, object {
-                transition: all 0.5s;
-                
-            }
-
-            a:hover, object:hover {
-                /* scale not working on a because not enough room */
-            /* though it is working on object... ? */
-                transform: scale(2);
-                opacity: 0.4;
             }
         }
     }
@@ -60,6 +48,7 @@ nav {
         height: 4px;
         background-image: linear-gradient($accent-color, $light-accent-color, $accent-color);
         // background-color: $accent-color;
+        border-radius: 100px;
         margin: 5px 0;
     }
 }

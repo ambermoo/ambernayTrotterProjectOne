@@ -1,3 +1,13 @@
+/* #region - colors */
+/* #endregion - colors */
+/* #region - fonts */
+/* #endregion - fonts */
+/* #region - font-weights */
+/* #endregion - font-weights */
+/* #region - font-sizes and lin-heights */
+/* #endregion - font-sizes */
+/* #region - max height & widths */
+/* #endregion - max height & widths */
 /* #region - setup */
 html {
   line-height: 1.15;
@@ -270,16 +280,6 @@ body {
 }
 
 /* #endregion - stops horizontal scroll bounce */
-/* #region - colors */
-/* #endregion - colors */
-/* #region - fonts */
-/* #endregion - fonts */
-/* #region - font-weights */
-/* #endregion - font-weights */
-/* #region - font-sizes and lin-heights */
-/* #endregion - font-sizes */
-/* #region - max height & widths */
-/* #endregion - max height & widths */
 header .head-splashes,
 header .logo-container,
 footer .head-splashes,
@@ -414,11 +414,6 @@ textarea::placeholder {
   /* #endregion - remove default styles */
 }
 
-.link-container:hover {
-  -webkit-box-shadow: 0 0 10px 6px #dbdbdb;
-          box-shadow: 0 0 10px 6px #dbdbdb;
-}
-
 .shop-now {
   text-transform: uppercase;
 }
@@ -427,6 +422,54 @@ textarea::placeholder {
   margin: 50px auto;
 }
 
+/* #region - interactive and default styles */
+header li a:hover,
+header li a:focus,
+footer li a:hover,
+footer li a:focus {
+  color: #207200;
+  font-weight: bold;
+}
+header li a .cart-icon:hover,
+footer li a .cart-icon:hover {
+  opacity: 0.5;
+}
+
+.link-container:hover, .link-container:active, .link-container:focus-within {
+  -webkit-box-shadow: 0 0 6px 3px rgba(32, 114, 1, 0.6);
+          box-shadow: 0 0 6px 3px rgba(32, 114, 1, 0.6);
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+a:hover,
+a:focus,
+button:active,
+button:focus {
+  outline: none;
+}
+
+/* #region - forms */
+label {
+  display: none;
+}
+
+input,
+textarea {
+  border: 2px solid #dbdbdb;
+  border-radius: 5px;
+  width: auto;
+  margin: 6px;
+  padding: 2px;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid #207200;
+}
+
+/* #endregion - forms */
+/* #endregion - interactive and default styles */
 .nav-container {
   background: #fff;
   -webkit-box-shadow: 0px 2px 10px #adadad;
@@ -461,19 +504,8 @@ nav ul {
 nav ul li {
   padding: 0 20px;
 }
-nav ul li object {
+nav ul li .cart-icon {
   width: 1rem;
-}
-nav ul li a, nav ul li object {
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-}
-nav ul li a:hover, nav ul li object:hover {
-  /* scale not working on a because not enough room */
-  /* though it is working on object... ? */
-  -webkit-transform: scale(2);
-          transform: scale(2);
-  opacity: 0.4;
 }
 
 .logo-container {
@@ -493,6 +525,7 @@ nav ul li a:hover, nav ul li object:hover {
   height: 4px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#207200), color-stop(rgba(32, 114, 1, 0.6)), to(#207200));
   background-image: linear-gradient(#207200, rgba(32, 114, 1, 0.6), #207200);
+  border-radius: 100px;
   margin: 5px 0;
 }
 
@@ -985,13 +1018,6 @@ footer {
 }
 .contact-info-container .message-form span input {
   width: 100%;
-}
-.contact-info-container .message-form input, .contact-info-container .message-form textarea {
-  border: 2px solid #dbdbdb;
-  border-radius: 5px;
-  width: auto;
-  margin: 6px;
-  padding: 2px;
 }
 .contact-info-container .message-form .link-container {
   margin: 15px auto;

@@ -447,9 +447,10 @@ footer .nav-containerfocus-visible ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  position: absolute;
-  top: 65px;
-  left: 88px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 15px;
 }
 header .nav-container:active ul li,
 header .nav-container:focus-within ul li,
@@ -457,7 +458,7 @@ header .nav-containerfocus-visible ul li,
 footer .nav-container:active ul li,
 footer .nav-container:focus-within ul li,
 footer .nav-containerfocus-visible ul li {
-  padding: 5px;
+  padding: 5%;
 }
 header li a:not(.social-link, .image-container):hover,
 header li a:not(.social-link, .image-container):focus,
@@ -590,19 +591,27 @@ nav ul li .cart-icon {
   width: 1rem;
 }
 
-.logo-container {
+.logo-hamburger-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  /* #region - hamburger menu */
+  /* #endregion - hamburger menu */
+}
+.logo-hamburger-container .logo-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 70px;
   position: inherit;
 }
-
-/* #region - hamburger menu */
-.hamburger-menu-icon {
+.logo-hamburger-container .hamburger-menu-icon {
   display: none;
 }
-.hamburger-menu-icon .hamburgers {
+.logo-hamburger-container .hamburger-menu-icon .hamburgers {
   width: 30px;
   height: 4px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#207200), color-stop(rgba(32, 114, 1, 0.6)), to(#207200));
@@ -611,7 +620,6 @@ nav ul li .cart-icon {
   margin: 5px 0;
 }
 
-/* #endregion - hamburger menu */
 .main-header-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -662,7 +670,7 @@ nav ul li .cart-icon {
   float: right;
 }
 .heading-image-container .link-container {
-  position: absolute;
+  position: relative;
   bottom: 0;
 }
 
@@ -1143,6 +1151,10 @@ footer {
     pointer-events: none;
   }
   .nav-container nav {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -1157,6 +1169,32 @@ footer {
     pointer-events: auto;
   }
   /* #endregion - header nav */
+  /* #region - about section */
+  .text-image-container .slogan-bubble-large {
+    display: none;
+  }
+  .text-image-container .slogan-bubble-small {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 0.5vw;
+  }
+  /* #endregion - about section */
+}
+@media (max-width: 660px) {
+  .contact-info-container .contact-info, .contact-info-container .message-form {
+    min-width: 170px;
+  }
+  .contact-info-container .message-form span {
+    display: block;
+  }
+  .contact-info-container .message-form span input {
+    width: -webkit-fill-available;
+    width: -moz-available;
+  }
+}
+/* #region - horizontal mobile */
+@media (max-width: 730px) and (min-height: 650px) {
   /* #region - main heading */
   .main-header-container .head-splashes.b-2 {
     display: block;
@@ -1171,7 +1209,9 @@ footer {
             flex-direction: column;
     height: 75vh;
   }
-  .heading-image-container .image-container, .heading-image-container h1, .heading-image-container p {
+  .heading-image-container .image-container,
+  .heading-image-container h1,
+  .heading-image-container p {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1199,30 +1239,13 @@ footer {
             order: 1;
   }
   /* #endregion - main heading */
-  /* #region - about section */
-  .text-image-container .slogan-bubble-large {
-    display: none;
-  }
-  .text-image-container .slogan-bubble-small {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-left: 0.5vw;
-  }
-  /* #endregion - about section */
 }
-@media (max-width: 660px) {
-  .contact-info-container .contact-info, .contact-info-container .message-form {
-    min-width: 170px;
-  }
-  .contact-info-container .message-form span {
-    display: block;
-  }
-  .contact-info-container .message-form span input {
-    width: -webkit-fill-available;
-    width: -moz-available;
+@media (max-height: 500px) {
+  .heading-image-container .image-container {
+    width: 33%;
   }
 }
+/* #endregion - horizontal mobile */
 /* #region - reset default styles */
 html {
   font-size: 125%;

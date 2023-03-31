@@ -49,12 +49,11 @@ footer {
 
         ul {
             display: flex;
-                position: absolute;
-                top: 65px;
-                left: 88px;
+            justify-content: space-between;
+            margin-top: 15px;
 
             li {
-                padding: 5px;
+                padding: 5%;
             }
         }
     }

@@ -44,6 +44,7 @@
         pointer-events: none;
 
         nav {
+            flex-direction: column;
             justify-content: space-between;
             padding: 10px;
 
@@ -59,46 +60,6 @@
         }
     }
     /* #endregion - header nav */
-
-    /* #region - main heading */
-    .main-header-container {
-
-        .head-splashes.b-2 {
-            display: block;
-        }
-    }
-    .heading-image-container {
-        display: flex;
-        flex-direction: column;
-        height: 75vh;
-
-        .image-container, h1, p {
-            display: flex;
-        }
-
-        .image-container {
-            // second
-            order: 0;
-            width: 100%;
-        }
-
-        .link-container {
-            // fourth
-            order: 2;
-            position: relative;
-        }
-
-        h1 {
-            // first
-            order: -1;
-        }
-
-        p{
-            // third
-            order: 1;
-        }
-    }
-    /* #endregion - main heading */
 
     /* #region - about section */
     .text-image-container {
@@ -135,3 +96,58 @@
         }
     } 
 }
+
+/* #region - horizontal mobile */
+@media(max-width: 730px) and (min-height: 650px) {
+
+    /* #region - main heading */
+    .main-header-container {
+
+        .head-splashes.b-2 {
+            display: block;
+        }
+    }
+
+    .heading-image-container {
+        display: flex;
+        flex-direction: column;
+        height: 75vh;
+
+        .image-container,
+        h1,
+        p {
+            display: flex;
+        }
+
+        .image-container {
+            // second
+            order: 0;
+            width: 100%;
+        }
+
+        .link-container {
+            // fourth
+            order: 2;
+            position: relative;
+        }
+
+        h1 {
+            // first
+            order: -1;
+        }
+
+        p {
+            // third
+            order: 1;
+        }
+    }
+
+    /* #endregion - main heading */
+}
+
+@media(max-height: 500px) {
+    .heading-image-container .image-container {
+        width: 33%;
+    }
+}
+/* #endregion - horizontal mobile */

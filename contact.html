@@ -36,11 +36,11 @@
                     <!-- #endregion - hamburger menu -->
             
                     <ul>
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./index.html#blog">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="./index.html" tabindex="0">Home</a></li>
+                        <li><a href="#blog" tabindex="0">Blog</a></li>
+                        <li><a href="./contact.html" tabindex="0">Contact</a></li>
                         <li>
-                            <a href="" style="color:black">
+                            <a href="#" tabindex="0">
                                 <object class="cart-icon" data="./organic-project/assets/icons/cart.svg" type="image/svg+xml">
                                     <!-- screen reader description -->
                                     <figcaption class="sr-only">shopping cart icon</figcaption>
@@ -79,25 +79,25 @@
                     <div class="message-form">
                         <span>
                             <label class="sr-only" for="name">Your Name</label>
-                            <input type="text" name="full-name" inputmode="text" placeholder="Your Full Name*">
+                            <input type="text" name="full-name" inputmode="text" placeholder="Your Full Name*" tabindex="0">
 
                             <label class="sr-only" for="email">You Email</label>
-                            <input type="text" name="email" inputmode="email" autocomplete="email" placeholder="Your Email Address*">
+                            <input type="text" name="email" inputmode="email" autocomplete="email" placeholder="Your Email Address*" tabindex="0">
                         </span>
                         <span>
                             <label class="sr-only" for="phone-number">Your Phone Number</label>
-                            <input type="text" name="phone-number" inputmode="tel" placeholder="Phone Number">
+                            <input type="text" name="phone-number" inputmode="tel" placeholder="Phone Number" tabindex="0">
 
                             <label class="sr-only" for="website-link">Your Website Link</label>
-                            <input type="text" name="website-link" inputmode="url" placeholder="Your Website Link">
+                            <input type="text" name="website-link" inputmode="url" placeholder="Your Website Link" tabindex="0">
                         </span>
                         <label class="sr-only" for="subject">subject</label>
-                        <input type="text" name="subject" inputmode="text" placeholder="Subject...">
+                        <input type="text" name="subject" inputmode="text" placeholder="Subject..." tabindex="0">
 
                         <label class="sr-only" for="message">Your Message</label>
-                        <textarea name="message" id="" cols="25" rows="5" inputmode="text" placeholder="Your message..."></textarea>
+                        <textarea name="message" id="" cols="25" rows="5" inputmode="text" placeholder="Your message..." tabindex="0"></textarea>
                         <!-- button -->
-                        <div class="link-container">
+                        <div class="link-container" tabindex="0">
                             <a href="#">Send Message</a>
                         </div>
                     </div> <!-- message form -->
@@ -118,20 +118,28 @@
                     <!-- #region - social logos -->
                     <ul>
                         <li class="social-link-item">
-                            <a href="#" class="social-link"><object class="fb" data="./organic-project/assets/icons/facebook.svg"
-                                    type="image/svg+xml"></object></a>
+                            <a href="#" class="social-link" tabindex="0">
+                                <object class="fb" data="./organic-project/assets/icons/facebook.svg" type="image/svg+xml">
+                                </object>
+                            </a>
                         </li>
                         <li class="social-link-item">
-                            <a href="#" class="social-link"><object data="./organic-project/assets/icons/instagram.svg"
-                                    type="image/svg+xml"></object></a>
+                            <a href="#" class="social-link" tabindex="0">
+                                <object data="./organic-project/assets/icons/instagram.svg" type="image/svg+xml">
+                                </object>
+                            </a>
                         </li>
                         <li class="social-link-item">
-                            <a href="#" class="social-link"><object data="./organic-project/assets/icons/twitter.svg"
-                                    type="image/svg+xml"></object></a>
+                            <a href="#" class="social-link" tabindex="0">
+                                <object data="./organic-project/assets/icons/twitter.svg" type="image/svg+xml">
+                                </object>
+                            </a>
                         </li>
                         <li class="social-link-item">
-                            <a href="#" class="social-link"><object data="./organic-project/assets/icons/youtube.svg"
-                                    type="image/svg+xml"></object></a>
+                            <a href="#" class="social-link" tabindex="0">
+                                <object data="./organic-project/assets/icons/youtube.svg" type="image/svg+xml">
+                                </object>
+                            </a>
                         </li>
                     </ul>
                     <!-- #endregion - social logos -->
@@ -142,12 +150,12 @@
                     <h4>Quick Links</h4>
                     <!-- #region - quick links list -->
                     <ul>
-                        <li><a href="./index.html#about">About Us</a></li>
-                        <li><a href="./index.html#products">Our Procuct</a></li>
-                        <li><a href="./index.html#blog">Our Blog</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="#">Become a Member</a></li>
-                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#about" tabindex="0">About Us</a></li>
+                        <li><a href="#product" tabindex="0">Our Procuct</a></li>
+                        <li><a href="#blog" tabindex="0">Our Blog</a></li>
+                        <li><a href="./contact.html" tabindex="0">Contact Us</a></li>
+                        <li><a href="#" tabindex="0">Become a Member</a></li>
+                        <li><a href="#" tabindex="0">Case Studies</a></li>
                     </ul>
                     <!-- #endregion - quick links list -->
     
@@ -159,7 +167,7 @@
                     <h4>Recent Products</h4>
                     <!-- #region - image containers -->
                     <ul>
-                        <li class="recent-link-container">
+                        <li class="recent-link-container" tabindex="0">
                             <a href="#" class="image-container">
                                 <img src="./organic-project/assets/product7.jpeg" alt="Fresh Vegetables">
                                 <div class="info-container">
@@ -168,7 +176,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="recent-link-container">
+                        <li class="recent-link-container" tabindex="0">
                             <a href="#" class="image-container">
                                 <img src="./organic-project/assets/product6.jpeg" alt="Fresh Fruit">
                                 <div class="info-container">
@@ -177,7 +185,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="recent-link-container">
+                        <li class="recent-link-container" tabindex="0">
                             <a href="#" class="image-container">
                                 <img src="./organic-project/assets/product5.jpeg" alt="Fresh Beans">
                                 <div class="info-container">
@@ -199,7 +207,7 @@
                     <h4>Phone:</h4>
                     <p>+8801688005654</p>
                     <label for="email" class="sr-only">Email</label>
-                    <input type="email" name="email" inputmode="email" autocomplete="email" placeholder="Enter Email...">
+                    <input type="email" name="email" inputmode="email" autocomplete="email" placeholder="Enter Email..." tabindex="0">
                     <!-- #endregion - subscribe info -->
                 </li><!-- subscribe -->
             </ul>

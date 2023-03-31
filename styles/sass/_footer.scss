@@ -21,6 +21,16 @@ footer {
 
 .recent-products {
 
+    .recent-link-container {
+        .image-container {
+            min-width: 50%;
+            img{
+                flex: 1 0 auto;
+            }
+            
+        }
+    }
+
     h5, p {
         font-size: 0.6rem;
         font-weight: $lora-bold;

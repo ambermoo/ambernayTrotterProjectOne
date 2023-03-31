@@ -428,14 +428,22 @@ footer .nav-container {
   -webkit-transition: height 2s;
   transition: height 2s;
 }
-header .nav-container:active, header .nav-container:focus-within,
+header .nav-container:active,
+header .nav-container:focus-within,
+header .nav-containerfocus-visible,
 footer .nav-container:active,
-footer .nav-container:focus-within {
-  height: 100px;
+footer .nav-container:focus-within,
+footer .nav-containerfocus-visible {
+  height: 114px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255, 255, 255, 0.7)));
+  background: linear-gradient(#fff, rgba(255, 255, 255, 0.7));
 }
-header .nav-container:active ul, header .nav-container:focus-within ul,
+header .nav-container:active ul,
+header .nav-container:focus-within ul,
+header .nav-containerfocus-visible ul,
 footer .nav-container:active ul,
-footer .nav-container:focus-within ul {
+footer .nav-container:focus-within ul,
+footer .nav-containerfocus-visible ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -444,16 +452,23 @@ footer .nav-container:focus-within ul {
 }
 header li a:not(.social-link, .image-container):hover,
 header li a:not(.social-link, .image-container):focus,
+header li a:not(.social-link, .image-container):focus-within,
+header li a:not(.social-link, .image-container):focus-visible,
 footer li a:not(.social-link, .image-container):hover,
-footer li a:not(.social-link, .image-container):focus {
+footer li a:not(.social-link, .image-container):focus,
+footer li a:not(.social-link, .image-container):focus-within,
+footer li a:not(.social-link, .image-container):focus-visible {
   display: block;
   color: #207200;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
-header li a .cart-icon:hover, header li a .cart-icon:focus,
+header li a .cart-icon:hover,
+header li a .cart-icon:focus,
+header li a .cart-icon:focus-visible,
 footer li a .cart-icon:hover,
-footer li a .cart-icon:focus {
+footer li a .cart-icon:focus,
+footer li a .cart-icon:focus-visible {
   opacity: 0.5;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
@@ -467,9 +482,12 @@ footer li a .cart-icon:focus {
 .link-container:hover,
 .link-container:active,
 .link-container:focus-within,
+.link-container:focus-visible,
 .social-link-item:hover,
 .social-link-item:focus-within,
+.social-link-item:focus-visible,
 .social-link-item:active {
+  outline: none;
   -webkit-box-shadow: 0 0 2px 1px #dbdbdb;
           box-shadow: 0 0 2px 1px #dbdbdb;
   -webkit-transform: scale(1.2);
@@ -479,8 +497,10 @@ footer li a .cart-icon:focus {
 .recent-link-container:hover,
 .recent-link-container:active,
 .recent-link-container:focus-within,
+.recent-link-container:focus-visible,
 .hamburger-menu-icon:hover,
-.hamburger-menu-icon:focus {
+.hamburger-menu-icon:focus,
+.hamburger-menu-icon:focus-visible {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
   outline: none;
@@ -488,12 +508,13 @@ footer li a .cart-icon:focus {
 
 a:hover,
 a:focus,
+a:focus-visible,
 button:active,
 button:focus {
   outline: none;
 }
 
-.quick-links a:hover, .quick-links a:focus {
+.quick-links a:hover, .quick-links a:focus, .quick-links a:focus-visible {
   -webkit-transform-origin: left;
           transform-origin: left;
 }
@@ -513,7 +534,9 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
   border: none;
   outline: 2px solid #207200;
 }
@@ -863,6 +886,14 @@ footer {
   margin: 20px;
 }
 
+.recent-products .recent-link-container .image-container {
+  min-width: 50%;
+}
+.recent-products .recent-link-container .image-container img {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
 .recent-products h5, .recent-products p {
   font-size: 0.6rem;
   font-weight: 700;

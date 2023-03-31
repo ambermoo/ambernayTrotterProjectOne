@@ -41,11 +41,11 @@ footer {
         transition: height 2s;
     }
 
-    .nav-container:active, .nav-container:focus-within {
-        // height: $heading-nav-height*2;
-        height: 100px;
-        // background: linear-gradient($background-color,rgba(255, 255, 255, 0.7));
-
+    .nav-container:active, 
+    .nav-container:focus-within, 
+    .nav-containerfocus-visible {
+        height: $heading-nav-height*2;
+        background: linear-gradient($background-color,rgba(255, 255, 255, 0.7));
 
         ul {
             display: flex;
@@ -57,14 +57,18 @@ footer {
     li {
 
         a:not(.social-link, .image-container):hover,
-        a:not(.social-link, .image-container):focus {
+        a:not(.social-link, .image-container):focus,
+        a:not(.social-link, .image-container):focus-within,
+        a:not(.social-link, .image-container):focus-visible {
             display: block;
             color: $accent-color;
             transform: scale(1.2);
         }
 
         a {
-            .cart-icon:hover, .cart-icon:focus {
+            .cart-icon:hover, 
+            .cart-icon:focus, 
+            .cart-icon:focus-visible {
                 opacity: 0.5;
                 transform: scale(1.2);
             }
@@ -79,9 +83,12 @@ footer {
 .link-container:hover, 
 .link-container:active, 
 .link-container:focus-within,
+.link-container:focus-visible,
 .social-link-item:hover,
 .social-link-item:focus-within,
+.social-link-item:focus-visible,
 .social-link-item:active {
+    outline: none;
     // ( h-offset v-offset blur spread color)
     box-shadow: 0 0 2px 1px $input-border;
     transform: scale(1.2);
@@ -90,21 +97,24 @@ footer {
 .recent-link-container:hover,
 .recent-link-container:active,
 .recent-link-container:focus-within,
+.recent-link-container:focus-visible,
 .hamburger-menu-icon:hover,
-.hamburger-menu-icon:focus {
+.hamburger-menu-icon:focus,
+.hamburger-menu-icon:focus-visible {
     transform: scale(1.2);
     outline: none;
 }
 
 a:hover,
 a:focus,
+a:focus-visible,
 button:active,
 button:focus {
     outline: none;
 }
 
 .quick-links {
-    a:hover, a:focus {
+    a:hover, a:focus, a:focus-visible {
         transform-origin: left;
     }
 }
@@ -124,7 +134,9 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
     border: none;
     outline: 2px solid $accent-color;
 }

@@ -51,9 +51,10 @@ footer {
             display: flex;
             justify-content: space-between;
             margin-top: 15px;
+            column-gap: 5%;
 
             li {
-                padding: 5%;
+                padding: 0;
             }
         }
     }

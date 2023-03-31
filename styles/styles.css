@@ -451,6 +451,9 @@ footer .nav-containerfocus-visible ul {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 15px;
+  -webkit-column-gap: 5%;
+     -moz-column-gap: 5%;
+          column-gap: 5%;
 }
 header .nav-container:active ul li,
 header .nav-container:focus-within ul li,
@@ -458,7 +461,7 @@ header .nav-containerfocus-visible ul li,
 footer .nav-container:active ul li,
 footer .nav-container:focus-within ul li,
 footer .nav-containerfocus-visible ul li {
-  padding: 5%;
+  padding: 0;
 }
 header li a:not(.social-link, .image-container):hover,
 header li a:not(.social-link, .image-container):focus,
@@ -1158,7 +1161,6 @@ footer {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    padding: 10px;
   }
   .nav-container nav ul {
     display: none;

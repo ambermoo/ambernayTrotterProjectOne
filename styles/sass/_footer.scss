@@ -32,27 +32,27 @@ footer {
 .social {
     ul{ 
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
 
         li {
             display: inline-flex;
             background: $accent-color;
             /* #region - round div */
             border-radius: 50%;
-            height: 25px;
-            width: 25px;
+            height: 30px;
+            width: 30px;
             /* #endregion - round div */
             justify-content: center;
             align-items: center;
 
             .fb {
                 display: flex;
-                width: 10px;
+                width: 12px;
             }
 
             a {
                 display: flex;
-                width: 15px;
+                width: 18px;
                 justify-content: center;
             }
         }

@@ -36,17 +36,25 @@
 
 @media (max-width: 730px) {
     /* #region - header nav */
+
     .nav-container {
+        // none on nav and auto on child elements
+        // will allow nav to be manipulated when interacting with children
+        // https: //stackoverflow.com/questions/8114657/how-to-style-the-parent-element-when-hovering-a-child-element#:~:text=8-,Answers,-Sorted%20by%3A 
+        pointer-events: none;
+
         nav {
             justify-content: space-between;
             padding: 10px;
 
             ul {
                 display: none;
+                pointer-events: auto;
             }
             
-            .hamburger-menu {
+            .hamburger-menu-icon {
                 display: block;
+                pointer-events: auto;
             }
         }
     }

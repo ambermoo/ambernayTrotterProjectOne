@@ -423,23 +423,67 @@ textarea::placeholder {
 }
 
 /* #region - interactive and default styles */
-header li a:hover,
-header li a:focus,
-footer li a:hover,
-footer li a:focus {
-  color: #207200;
-  font-weight: bold;
+header .nav-container,
+footer .nav-container {
+  -webkit-transition: height 2s;
+  transition: height 2s;
 }
-header li a .cart-icon:hover,
-footer li a .cart-icon:hover {
+header .nav-container:active, header .nav-container:focus-within,
+footer .nav-container:active,
+footer .nav-container:focus-within {
+  height: 100px;
+}
+header .nav-container:active ul, header .nav-container:focus-within ul,
+footer .nav-container:active ul,
+footer .nav-container:focus-within ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 70px;
+}
+header li a:not(.social-link, .image-container):hover,
+header li a:not(.social-link, .image-container):focus,
+footer li a:not(.social-link, .image-container):hover,
+footer li a:not(.social-link, .image-container):focus {
+  display: block;
+  color: #207200;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+header li a .cart-icon:hover, header li a .cart-icon:focus,
+footer li a .cart-icon:hover,
+footer li a .cart-icon:focus {
   opacity: 0.5;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
-.link-container:hover, .link-container:active, .link-container:focus-within {
-  -webkit-box-shadow: 0 0 6px 3px rgba(32, 114, 1, 0.6);
-          box-shadow: 0 0 6px 3px rgba(32, 114, 1, 0.6);
-  -webkit-transform: scale(1);
-          transform: scale(1);
+.link-container, a, .cart-icon {
+  -webkit-transition: all ease;
+  transition: all ease;
+}
+
+.link-container:hover,
+.link-container:active,
+.link-container:focus-within,
+.social-link-item:hover,
+.social-link-item:focus-within,
+.social-link-item:active {
+  -webkit-box-shadow: 0 0 2px 1px #dbdbdb;
+          box-shadow: 0 0 2px 1px #dbdbdb;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.recent-link-container:hover,
+.recent-link-container:active,
+.recent-link-container:focus-within,
+.hamburger-menu-icon:hover,
+.hamburger-menu-icon:focus {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  outline: none;
 }
 
 a:hover,
@@ -447,6 +491,11 @@ a:focus,
 button:active,
 button:focus {
   outline: none;
+}
+
+.quick-links a:hover, .quick-links a:focus {
+  -webkit-transform-origin: left;
+          transform-origin: left;
 }
 
 /* #region - forms */
@@ -465,6 +514,7 @@ textarea {
 
 input:focus,
 textarea:focus {
+  border: none;
   outline: 2px solid #207200;
 }
 
@@ -517,10 +567,10 @@ nav ul li .cart-icon {
 }
 
 /* #region - hamburger menu */
-.hamburger-menu {
+.hamburger-menu-icon {
   display: none;
 }
-.hamburger-menu .hamburgers {
+.hamburger-menu-icon .hamburgers {
   width: 30px;
   height: 4px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#207200), color-stop(rgba(32, 114, 1, 0.6)), to(#207200));
@@ -824,9 +874,9 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .social ul li {
   display: -webkit-inline-box;
@@ -835,8 +885,8 @@ footer {
   background: #207200;
   /* #region - round div */
   border-radius: 50%;
-  height: 25px;
-  width: 25px;
+  height: 30px;
+  width: 30px;
   /* #endregion - round div */
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -849,13 +899,13 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 10px;
+  width: 12px;
 }
 .social ul li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 15px;
+  width: 18px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -1049,6 +1099,9 @@ footer {
 }
 @media (max-width: 730px) {
   /* #region - header nav */
+  .nav-container {
+    pointer-events: none;
+  }
   .nav-container nav {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
@@ -1057,9 +1110,11 @@ footer {
   }
   .nav-container nav ul {
     display: none;
+    pointer-events: auto;
   }
-  .nav-container nav .hamburger-menu {
+  .nav-container nav .hamburger-menu-icon {
     display: block;
+    pointer-events: auto;
   }
   /* #endregion - header nav */
   /* #region - main heading */

@@ -27,7 +27,6 @@ footer {
             img{
                 flex: 1 0 auto;
             }
-            
         }
     }
 
@@ -40,6 +39,11 @@ footer {
 }
 
 .social {
+
+    .logo-container {
+        width: 50%;
+    }
+    
     ul{ 
         display: flex;
         justify-content: space-between;

@@ -58,6 +58,26 @@
             }
         }
     }
+
+        .nav-container:active,
+        .nav-container:focus-within,
+        .nav-container:focus-visible {
+            height: $heading-nav-height*2;
+            background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));
+    
+            ul {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 18px;
+                column-gap: 5%;
+    
+                li {
+                    padding: 0;
+                }
+            }
+        }
+
+
     /* #endregion - header nav */
 
     /* #region - about section */

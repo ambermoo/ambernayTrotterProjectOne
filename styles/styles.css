@@ -428,49 +428,12 @@ footer .nav-container {
   -webkit-transition: height 2s;
   transition: height 2s;
 }
-header .nav-container:active,
-header .nav-container:focus-within,
-header .nav-containerfocus-visible,
-footer .nav-container:active,
-footer .nav-container:focus-within,
-footer .nav-containerfocus-visible {
-  height: 114px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255, 255, 255, 0.7)));
-  background: linear-gradient(#fff, rgba(255, 255, 255, 0.7));
-}
-header .nav-container:active ul,
-header .nav-container:focus-within ul,
-header .nav-containerfocus-visible ul,
-footer .nav-container:active ul,
-footer .nav-container:focus-within ul,
-footer .nav-containerfocus-visible ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-top: 18px;
-  -webkit-column-gap: 5%;
-     -moz-column-gap: 5%;
-          column-gap: 5%;
-}
-header .nav-container:active ul li,
-header .nav-container:focus-within ul li,
-header .nav-containerfocus-visible ul li,
-footer .nav-container:active ul li,
-footer .nav-container:focus-within ul li,
-footer .nav-containerfocus-visible ul li {
-  padding: 0;
-}
 header li a:not(.social-link, .image-container):hover,
 header li a:not(.social-link, .image-container):focus,
 header li a:not(.social-link, .image-container):focus-within,
-header li a:not(.social-link, .image-container):focus-visible,
 footer li a:not(.social-link, .image-container):hover,
 footer li a:not(.social-link, .image-container):focus,
-footer li a:not(.social-link, .image-container):focus-within,
-footer li a:not(.social-link, .image-container):focus-visible {
+footer li a:not(.social-link, .image-container):focus-within {
   display: block;
   color: #207200;
   -webkit-transform: scale(1.2);
@@ -478,10 +441,8 @@ footer li a:not(.social-link, .image-container):focus-visible {
 }
 header li a .cart-icon:hover,
 header li a .cart-icon:focus,
-header li a .cart-icon:focus-visible,
 footer li a .cart-icon:hover,
-footer li a .cart-icon:focus,
-footer li a .cart-icon:focus-visible {
+footer li a .cart-icon:focus {
   opacity: 0.5;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
@@ -495,10 +456,8 @@ footer li a .cart-icon:focus-visible {
 .link-container:hover,
 .link-container:active,
 .link-container:focus-within,
-.link-container:focus-visible,
 .social-link-item:hover,
 .social-link-item:focus-within,
-.social-link-item:focus-visible,
 .social-link-item:active {
   outline: none;
   -webkit-box-shadow: 0 0 2px 1px #dbdbdb;
@@ -510,10 +469,8 @@ footer li a .cart-icon:focus-visible {
 .recent-link-container:hover,
 .recent-link-container:active,
 .recent-link-container:focus-within,
-.recent-link-container:focus-visible,
 .hamburger-menu-icon:hover,
-.hamburger-menu-icon:focus,
-.hamburger-menu-icon:focus-visible {
+.hamburger-menu-icon:focus {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
   outline: none;
@@ -521,13 +478,12 @@ footer li a .cart-icon:focus-visible {
 
 a:hover,
 a:focus,
-a:focus-visible,
 button:active,
 button:focus {
   outline: none;
 }
 
-.quick-links a:hover, .quick-links a:focus, .quick-links a:focus-visible, .quick-links a:focus-within {
+.quick-links a:hover, .quick-links a:focus, .quick-links a:focus-within {
   -webkit-transform-origin: left;
           transform-origin: left;
 }
@@ -547,9 +503,7 @@ textarea {
 }
 
 input:focus,
-input:focus-visible,
-textarea:focus,
-textarea:focus-visible {
+textarea:focus {
   border: none;
   outline: 2px solid #207200;
 }
@@ -921,6 +875,9 @@ footer {
   margin: 2px;
 }
 
+.social .logo-container {
+  width: 50%;
+}
 .social ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1169,6 +1126,32 @@ footer {
   .nav-container nav .hamburger-menu-icon {
     display: block;
     pointer-events: auto;
+  }
+  .nav-container:active,
+  .nav-container:focus-within,
+  .nav-container:focus-visible {
+    height: 114px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255, 255, 255, 0.7)));
+    background: linear-gradient(#fff, rgba(255, 255, 255, 0.7));
+  }
+  .nav-container:active ul,
+  .nav-container:focus-within ul,
+  .nav-container:focus-visible ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-top: 18px;
+    -webkit-column-gap: 5%;
+       -moz-column-gap: 5%;
+            column-gap: 5%;
+  }
+  .nav-container:active ul li,
+  .nav-container:focus-within ul li,
+  .nav-container:focus-visible ul li {
+    padding: 0;
   }
   /* #endregion - header nav */
   /* #region - about section */

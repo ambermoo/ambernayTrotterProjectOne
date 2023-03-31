@@ -448,7 +448,16 @@ footer .nav-containerfocus-visible ul {
   display: -ms-flexbox;
   display: flex;
   position: absolute;
-  top: 70px;
+  top: 65px;
+  left: 88px;
+}
+header .nav-container:active ul li,
+header .nav-container:focus-within ul li,
+header .nav-containerfocus-visible ul li,
+footer .nav-container:active ul li,
+footer .nav-container:focus-within ul li,
+footer .nav-containerfocus-visible ul li {
+  padding: 5px;
 }
 header li a:not(.social-link, .image-container):hover,
 header li a:not(.social-link, .image-container):focus,
@@ -514,7 +523,7 @@ button:focus {
   outline: none;
 }
 
-.quick-links a:hover, .quick-links a:focus, .quick-links a:focus-visible {
+.quick-links a:hover, .quick-links a:focus, .quick-links a:focus-visible, .quick-links a:focus-within {
   -webkit-transform-origin: left;
           transform-origin: left;
 }

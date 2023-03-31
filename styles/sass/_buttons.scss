@@ -49,8 +49,13 @@ footer {
 
         ul {
             display: flex;
-            position: absolute;
-            top: 70px;
+                position: absolute;
+                top: 65px;
+                left: 88px;
+
+            li {
+                padding: 5px;
+            }
         }
     }
 
@@ -114,7 +119,7 @@ button:focus {
 }
 
 .quick-links {
-    a:hover, a:focus, a:focus-visible {
+    a:hover, a:focus, a:focus-visible, a:focus-within {
         transform-origin: left;
     }
 }

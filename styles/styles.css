@@ -907,9 +907,9 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 12px;
+  width: 15px;
 }
-.social ul li a {
+.social ul li object {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

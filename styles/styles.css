@@ -556,7 +556,6 @@ nav ul li .cart-icon {
       -ms-flex-pack: justify;
           justify-content: space-between;
   /* #region - hamburger menu */
-  /* #endregion - hamburger menu */
 }
 .logo-hamburger-container .logo-container {
   display: -webkit-box;
@@ -568,7 +567,8 @@ nav ul li .cart-icon {
 .logo-hamburger-container .hamburger-menu-icon {
   display: none;
 }
-.logo-hamburger-container .hamburger-menu-icon .hamburgers {
+
+.lines {
   width: 30px;
   height: 4px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#207200), color-stop(rgba(32, 114, 1, 0.6)), to(#207200));
@@ -577,6 +577,7 @@ nav ul li .cart-icon {
   margin: 5px 0;
 }
 
+/* #endregion - hamburger menu */
 .main-header-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1107,9 +1108,20 @@ footer {
 }
 @media (max-width: 730px) {
   /* #region - header nav */
-  .nav-container {
-    pointer-events: none;
-    -webkit-transition: height 2s ease;
+  .nav-container ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-top: 18px;
+    -webkit-column-gap: 5%;
+       -moz-column-gap: 5%;
+            column-gap: 5%;
+  }
+  .nav-container ul li {
+    padding: 0;
   }
   .nav-container nav {
     -webkit-box-orient: vertical;
@@ -1122,35 +1134,22 @@ footer {
   }
   .nav-container nav ul {
     display: none;
-    pointer-events: auto;
   }
   .nav-container nav .hamburger-menu-icon {
     display: block;
-    pointer-events: auto;
   }
-  .nav-container:active,
-  .nav-container:focus-within {
+  .increase-height {
     height: 114px;
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255, 255, 255, 0.7)));
     background: linear-gradient(#fff, rgba(255, 255, 255, 0.7));
   }
-  .nav-container:active ul,
-  .nav-container:focus-within ul {
+  .increase-height .makeVisible {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    margin-top: 18px;
-    -webkit-column-gap: 5%;
-       -moz-column-gap: 5%;
-            column-gap: 5%;
   }
-  .nav-container:active ul li,
-  .nav-container:focus-within ul li {
-    padding: 0;
-  }
+  /* #region - for css hamburger */
+  /* #endregion - for css hamburger */
   /* #endregion - header nav */
   /* #region - about section */
   .text-image-container .slogan-bubble-large {
@@ -1229,6 +1228,44 @@ footer {
   }
 }
 /* #endregion - horizontal mobile */
+/* #region - points modal */
+.pointsPopup {
+  display: none;
+  position: absolute;
+  background: #fff;
+  border: 2px solid #207200;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10%;
+  height: 75vh;
+  width: 50%;
+  z-index: 10;
+}
+.pointsPopup .pointsPopup-text {
+  color: green;
+}
+.pointsPopup .x-div-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.pointsPopup .x-div-container .lines.a {
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.pointsPopup .x-div-container .lines.b {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* #endregion - points modal */
 /* #region - reset default styles */
 html {
   font-size: 125%;
@@ -1273,3 +1310,11 @@ section {
   width: 50%;
   margin: 0 auto;
 }
+
+/* #region - to disable scroll */
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* #endregion - to disable scroll */

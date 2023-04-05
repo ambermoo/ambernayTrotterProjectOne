@@ -10,6 +10,7 @@
 @use './footer';
 @use './contact';
 @use './media-queries';
+@use './js-elements';
 
 /* #region - reset default styles */
 html {
@@ -53,3 +54,10 @@ section{ // (overridden on nav-container)
     width: 50%;
     margin: 0 auto;
 }
+
+/* #region - to disable scroll */
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+/* #endregion - to disable scroll */

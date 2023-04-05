@@ -42,7 +42,8 @@
         // will allow nav to be manipulated when interacting with children
         // https: //stackoverflow.com/questions/8114657/how-to-style-the-parent-element-when-hovering-a-child-element#:~:text=8-,Answers,-Sorted%20by%3A 
         pointer-events: none;
-
+        
+        }
         nav {
             flex-direction: column;
             justify-content: space-between;
@@ -59,25 +60,22 @@
         }
     }
 
-        .nav-container:active,
-        .nav-container:focus-within,
-        .nav-container:focus-visible {
-            height: $heading-nav-height*2;
-            background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));
-    
-            ul {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 18px;
-                column-gap: 5%;
-    
-                li {
-                    padding: 0;
-                }
+    .nav-container:active,
+    .nav-container:focus-within {
+        height: $heading-nav-height*2;
+        background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+            column-gap: 5%;
+
+            li {
+                padding: 0;
             }
         }
-
-
+    }
     /* #endregion - header nav */
 
     /* #region - about section */

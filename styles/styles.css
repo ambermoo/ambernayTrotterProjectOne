@@ -1109,6 +1109,7 @@ footer {
   /* #region - header nav */
   .nav-container {
     pointer-events: none;
+    -webkit-transition: height 2s ease;
   }
   .nav-container nav {
     -webkit-box-orient: vertical;
@@ -1128,15 +1129,13 @@ footer {
     pointer-events: auto;
   }
   .nav-container:active,
-  .nav-container:focus-within,
-  .nav-container:focus-visible {
+  .nav-container:focus-within {
     height: 114px;
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255, 255, 255, 0.7)));
     background: linear-gradient(#fff, rgba(255, 255, 255, 0.7));
   }
   .nav-container:active ul,
-  .nav-container:focus-within ul,
-  .nav-container:focus-visible ul {
+  .nav-container:focus-within ul {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1149,8 +1148,7 @@ footer {
             column-gap: 5%;
   }
   .nav-container:active ul li,
-  .nav-container:focus-within ul li,
-  .nav-container:focus-visible ul li {
+  .nav-container:focus-within ul li {
     padding: 0;
   }
   /* #endregion - header nav */

@@ -66,19 +66,11 @@
             
             .hamburger-menu-icon {
                 display: block;
+                align-self: center;
                 // pointer-events: auto;
             }
         }
     }
-    .increase-height {
-        height: $heading-nav-height*2;
-        background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));
-
-        .makeVisible {
-            display: flex;
-        }
-    }
-
     /* #region - for css hamburger */
     // .nav-container:active,
     // .nav-container:focus-within {

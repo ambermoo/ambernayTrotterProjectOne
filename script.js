@@ -1,64 +1,57 @@
-// Jquery allows the scroll listener to run only once
+// Jquery $(window) allows the scroll listener to run only once
 // https://stackoverflow.com/questions/32134451/call-function-on-scroll-only-once#:~:text=Try%20using%20.-,one,-()%3A
 
-/* #region - points popup */
-const pointsPopup = document.querySelector('.pointsPopup');
-const html = document.querySelector('html');
-const body = document.querySelector('body');
+// #region - points popup //
+    const pointsPopup = document.querySelector('.points-popup');
+    const html = document.querySelector('html');
+    const body = document.querySelector('body');
 
 // pop-up on scroll
-$(window).one('scroll', function () {
-    // window.ScrollY prevents popup glitch when returning from contact page
-    if (window.scrollY < 15) {
-        pointsPopup.style.display = 'flex';
-        // lock screen
-        html.classList.add("stop-scrolling");
-        body.classList.add("stop-scrolling");
+    $(window).one('scroll', function () {
+        // window.ScrollY prevents popup glitch when returning from contact page
+        if (window.scrollY < 25) {
+            pointsPopup.classList.toggle('make-visible');
+            // lock screen (main styles.scss)
+            html.classList.toggle("stop-scrolling");
+            body.classList.toggle("stop-scrolling");
+        }   
+    });
+
+    // close event
+    const xDiv = document.querySelector('.x-div-container');
+
+    const close = () => {
+        pointsPopup.classList.toggle('make-visible');
+        pointsPopup.classList.toggle('make-invisible');
+        // enable scroll (main styles.scss)
+        html.classList.toggle("stop-scrolling");
+        body.classList.toggle("stop-scrolling");
     }
-    
-});
 
-// close event
-const xDiv = document.querySelector('.x-div-container');
+    // listens only if element exists (contact)
+    if (xDiv) xDiv.addEventListener('click', close);
 
-const close = () => {
-    pointsPopup.style.display = 'none';
-    // enable scroll
-    html.classList.remove("stop-scrolling");
-    body.classList.remove("stop-scrolling");
-}
+// #endregion - points popup //
 
-// listens only if element exists (conact)
-if (xDiv) xDiv.addEventListener('click', close);
+// #region - hamburger focus //
+    const hamburger = document.querySelector('.hamburger-menu-icon');
+    const nav = document.querySelector('.nav-container');
+    const navLinks = document.querySelector('nav>ul');
 
-/* #endregion - points popup */
+    const toggleHamburger = () => {
+        const burgerLines = document.querySelectorAll('.hamburger-menu-icon .lines');
 
-/* #region - hamburger focus */
-const hamburger = document.querySelector('.hamburger-menu-icon');
-const nav = document.querySelector('.nav-container');
-const navLinks = document.querySelector('nav>ul');
+        /* #region - add burger-line styles */
+        burgerLines[0].classList.toggle('a');
+        burgerLines[1].classList.toggle('b');
+        burgerLines[2].classList.toggle('make-invisible');
+        /* #endregion - add burger-line styles */
 
-// adds attribute to hamburger menu on load
-hamburger.addEventListener('load', hamburger.setAttribute('is_active', 'false'));
-
-const toggleMenu = () => {
-    
-    const hamburgerState = hamburger.getAttribute('is_active');
-    
-    if (hamburgerState === 'false') {
-        hamburger.setAttribute('is_active', 'true');
-        // found in _media-queries
-        nav.classList.add('increase-height');
-        navLinks.classList.add('makeVisible');
-    }else {
-        hamburger.setAttribute('is_active', 'false');
-        // found in _media-queries
-        nav.classList.remove('increase-height');
-        navLinks.classList.remove('makeVisible');
+        nav.classList.toggle('increase-height');
+        navLinks.classList.toggle('make-visible');
     }
-}
 
-hamburger.addEventListener('click', toggleMenu)
+    hamburger.addEventListener('click', toggleHamburger);
 
-/* #endregion - hamburger focus */
+// #endregion - hamburger focus //
 

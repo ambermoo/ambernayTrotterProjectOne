@@ -1,60 +1,120 @@
 @use './variables' as *;
 
 /* #region - points modal */
-.pointsPopup {
+.points-popup {
     display: none;
     position: absolute;
-    background: $background-color;
-    border: 2px solid $accent-color;
+    background: rgb(240, 255, 240);
+    border: 10px solid $accent-color;
+    border-radius: 20px;
     flex-direction: column;
+    justify-content: space-between;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    padding: 10%;
+    padding: 10% 5% 5% 5%;
     height: 75vh;
     width: 50%;
+    min-width: 200px;
     z-index: 10;
 
-    .pointsPopup-text {
+    .points-popup-text {
         color: green;
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-family: barlow;
     }
 
     .x-div-container {
         position: absolute;
         top: 15px;
         right: 15px;
-
-        .lines.a {
-            position: absolute;
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-        
-        .lines.b {
-            -webkit-transform: rotate(-45deg);
-            -moz-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-        }
     }
+}
+// also used for hamburger icon when changes to X
+.lines.a {
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.lines.b {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 /* #endregion - points modal */
 
-
-    // .x-div-container {
-
-    //     div:before {
-    //             -webkit-transform: rotate(45deg);
-    //             -moz-transform: rotate(45deg);
-    //             transform: rotate(45deg);
-    //             left: 2px;
-    //         }
+/* #region - reward card */
+.reward-card-container {
         
-    //         div:after {
-    //             -webkit-transform: rotate(-45deg);
-    //             -moz-transform: rotate(-45deg);
-    //             transform: rotate(-45deg);
-    //             right: 2px;
-    //         }
-    // }
+    display: grid;
+    justify-content: center;
+    aspect-ratio: 3/2;
+
+    .reward-card {
+        display: grid;
+        grid-template-areas:
+            'top-line top-line'
+            'mid-line mid-line'
+            'rectangle short-top'
+            'rectangle short-bottom';
+        border: solid 5px black;
+        border-radius: 20px;
+        width: 170px;
+        height: 110px;
+
+        .long-lines,
+        .short-lines {
+            background: black;
+            height: 5px;
+        }
+
+        .long-lines {
+            width: 100%;
+        }
+
+        .long-lines.top {
+            grid-area: top-line;
+            align-self: center;
+        }
+
+        .long-lines.mid {
+            grid-area: mid-line;
+            align-self: center;
+        }
+
+        .short-lines.top {
+            grid-area: short-top;
+            width: 85%;
+            align-self: center;
+        }
+
+        .short-lines.bottom {
+            grid-area: short-bottom;
+            width: 65%;
+            align-self: self-start;
+        }
+
+        .rectangle {
+            grid-area: rectangle;
+            border: solid 5px black;
+            border-radius: 10px;
+            align-self: baseline;
+            height: 50%;
+            width: 80%;
+            margin: 7px;
+        }
+    }
+}
+
+/* #endregion - reward card */
+
+.increase-height {
+    height: $heading-nav-height*2;
+    background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));
+}

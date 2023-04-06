@@ -1137,16 +1137,8 @@ footer {
   }
   .nav-container nav .hamburger-menu-icon {
     display: block;
-  }
-  .increase-height {
-    height: 114px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255, 255, 255, 0.7)));
-    background: linear-gradient(#fff, rgba(255, 255, 255, 0.7));
-  }
-  .increase-height .makeVisible {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    -ms-flex-item-align: center;
+        align-self: center;
   }
   /* #region - for css hamburger */
   /* #endregion - for css hamburger */
@@ -1229,43 +1221,113 @@ footer {
 }
 /* #endregion - horizontal mobile */
 /* #region - points modal */
-.pointsPopup {
+.points-popup {
   display: none;
   position: absolute;
-  background: #fff;
-  border: 2px solid #207200;
+  background: rgb(240, 255, 240);
+  border: 10px solid #207200;
+  border-radius: 20px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  padding: 10%;
+  padding: 10% 5% 5% 5%;
   height: 75vh;
   width: 50%;
+  min-width: 200px;
   z-index: 10;
 }
-.pointsPopup .pointsPopup-text {
+.points-popup .points-popup-text {
   color: green;
+  font-size: 1.5rem;
 }
-.pointsPopup .x-div-container {
+.points-popup h3 {
+  font-family: barlow;
+}
+.points-popup .x-div-container {
   position: absolute;
   top: 15px;
   right: 15px;
 }
-.pointsPopup .x-div-container .lines.a {
+
+.lines.a {
   position: absolute;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.pointsPopup .x-div-container .lines.b {
+
+.lines.b {
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 
 /* #endregion - points modal */
+/* #region - reward card */
+.reward-card-container {
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  aspect-ratio: 3/2;
+}
+.reward-card-container .reward-card {
+  display: grid;
+  grid-template-areas: "top-line top-line" "mid-line mid-line" "rectangle short-top" "rectangle short-bottom";
+  border: solid 5px black;
+  border-radius: 20px;
+  width: 170px;
+  height: 110px;
+}
+.reward-card-container .reward-card .long-lines,
+.reward-card-container .reward-card .short-lines {
+  background: black;
+  height: 5px;
+}
+.reward-card-container .reward-card .long-lines {
+  width: 100%;
+}
+.reward-card-container .reward-card .long-lines.top {
+  grid-area: top-line;
+  align-self: center;
+}
+.reward-card-container .reward-card .long-lines.mid {
+  grid-area: mid-line;
+  align-self: center;
+}
+.reward-card-container .reward-card .short-lines.top {
+  grid-area: short-top;
+  width: 85%;
+  align-self: center;
+}
+.reward-card-container .reward-card .short-lines.bottom {
+  grid-area: short-bottom;
+  width: 65%;
+  align-self: self-start;
+}
+.reward-card-container .reward-card .rectangle {
+  grid-area: rectangle;
+  border: solid 5px black;
+  border-radius: 10px;
+  align-self: baseline;
+  height: 50%;
+  width: 80%;
+  margin: 7px;
+}
+
+/* #endregion - reward card */
+.increase-height {
+  height: 114px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(rgba(255, 255, 255, 0.7)));
+  background: linear-gradient(#fff, rgba(255, 255, 255, 0.7));
+}
+
 /* #region - reset default styles */
 html {
   font-size: 125%;
@@ -1318,3 +1380,12 @@ section {
 }
 
 /* #endregion - to disable scroll */
+.make-invisible {
+  display: none !important;
+}
+
+.make-visible {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}

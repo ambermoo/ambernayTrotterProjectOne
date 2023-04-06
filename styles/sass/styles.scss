@@ -61,3 +61,11 @@ section{ // (overridden on nav-container)
     overflow: hidden;
 }
 /* #endregion - to disable scroll */
+
+.make-invisible {
+    display: none !important;
+}
+
+.make-visible {
+    display: flex !important;
+}

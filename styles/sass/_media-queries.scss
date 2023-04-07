@@ -165,8 +165,36 @@
             order: 1;
         }
     }
-
     /* #endregion - main heading */
+}
+
+@media (max-width: 700px) {
+    /* #region - pop-up */
+    body .points-popup {
+        align-items: center;
+        row-gap: 5%;
+        height: -webkit-fill-available;
+        margin-bottom: 55px;
+
+        .text-and-card {
+            display: flex;
+            justify-content: space-around;
+            row-gap: 15%;
+            flex-direction: column;
+
+            .points-text-container {
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .reward-card-container {
+                justify-content: center;
+            }
+        }
+    }
+    /* #endregion - pop-up */
 }
 
 @media(max-height: 500px) {

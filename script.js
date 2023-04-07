@@ -5,11 +5,18 @@
     const pointsPopup = document.querySelector('.points-popup');
     const html = document.querySelector('html');
     const body = document.querySelector('body');
+    const mainHeading = document.querySelector('.heading-image-container');
 
+    window.addEventListener('load', () => {
+        console.log(window.scrollY);
+        // window.scroll(0, 0);
+    });
 // pop-up on scroll
     $(window).one('scroll', function () {
-        // window.ScrollY prevents popup glitch when returning from contact page
-        if (window.scrollY < 25) {
+        
+        // checking window.ScrollY prevents popup glitch when returning from contact to blog section page
+        if (window.scrollY < 100) {
+            mainHeading.classList.toggle('make-invisible');
             pointsPopup.classList.toggle('make-visible');
             // lock screen (main styles.scss)
             html.classList.toggle("stop-scrolling");
@@ -21,8 +28,8 @@
     const xDiv = document.querySelector('.x-div-container');
 
     const close = () => {
+        mainHeading.classList.toggle('make-invisible');
         pointsPopup.classList.toggle('make-visible');
-        pointsPopup.classList.toggle('make-invisible');
         // enable scroll (main styles.scss)
         html.classList.toggle("stop-scrolling");
         body.classList.toggle("stop-scrolling");

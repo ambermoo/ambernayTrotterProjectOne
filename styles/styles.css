@@ -1220,9 +1220,7 @@ footer {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    row-gap: 5%;
-    height: -webkit-fill-available;
-    margin-bottom: 55px;
+    height: 70vh;
   }
   body .points-popup .text-and-card {
     display: -webkit-box;
@@ -1274,11 +1272,12 @@ footer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  row-gap: 5%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   top: 20%;
-  padding: 5% 5% 2% 5%;
+  padding: 4% 5% 2% 5%;
   width: 50%;
   min-width: 200px;
   height: 60vh;
@@ -1294,7 +1293,13 @@ footer {
 .points-popup h2, .points-popup .points-popup-text {
   font-size: 1.5rem;
 }
+.points-popup h2 {
+  margin-top: 20px;
+}
 .points-popup .points-text-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-column-gap: 5%;
      -moz-column-gap: 5%;
           column-gap: 5%;
@@ -1346,8 +1351,8 @@ footer {
   grid-template-areas: "top-line top-line" "mid-line mid-line" "rectangle short-top" "rectangle short-bottom";
   border: solid 5px black;
   border-radius: 20px;
-  width: 9rem;
-  height: 6rem;
+  width: calc(12vw + 5rem);
+  aspect-ratio: 3/2;
 }
 .reward-card-container .reward-card .long-lines,
 .reward-card-container .reward-card .short-lines {

@@ -172,9 +172,7 @@
     /* #region - pop-up */
     body .points-popup {
         align-items: center;
-        row-gap: 5%;
-        height: -webkit-fill-available;
-        margin-bottom: 55px;
+        height: 70vh;
 
         .text-and-card {
             display: flex;

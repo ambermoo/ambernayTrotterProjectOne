@@ -8,9 +8,10 @@
     border: 10px solid $accent-color;
     border-radius: 20px;
     flex-direction: column;
+    row-gap: 5%;
     justify-content: space-between;
     top: 20%;
-    padding: 5% 5% 2% 5%;
+    padding: 4% 5% 2% 5%;
     width: 50%;
     min-width: 200px;
     height: 60vh;
@@ -25,7 +26,12 @@
         font-size: 1.5rem;
     }
 
+    h2 {
+        margin-top: 20px;
+    }
+
     .points-text-container {
+        display: flex;
         column-gap: 5%;
         flex-direction: column;
 
@@ -77,8 +83,8 @@
             'rectangle short-bottom';
         border: solid 5px black;
         border-radius: 20px;
-        width: 9rem;
-        height: 6rem;
+        width: calc(12vw + 5rem);
+        aspect-ratio: 3/2;
 
         .long-lines,
         .short-lines {

@@ -7,10 +7,6 @@
     const body = document.querySelector('body');
     const mainHeading = document.querySelector('.heading-image-container');
 
-    window.addEventListener('load', () => {
-        console.log(window.scrollY);
-        // window.scroll(0, 0);
-    });
 // pop-up on scroll
     $(window).one('scroll', function () {
         

@@ -11,10 +11,10 @@
     row-gap: 5%;
     justify-content: space-between;
     top: 20%;
-    padding: 4% 5% 2% 5%;
+    padding: 2% 5%;
     width: 50%;
     min-width: 200px;
-    height: 60vh;
+    height: 63vh;
     z-index: 10;
 
     .text-and-card {
@@ -32,8 +32,8 @@
 
     .points-text-container {
         display: flex;
-        column-gap: 5%;
-        flex-direction: column;
+        flex-wrap: wrap;
+        padding-right: 4%;
 
         .points-popup-text {
             color: green;
@@ -72,7 +72,6 @@
         
     display: grid;
     justify-content: end;
-    flex: 1 1 75%;
 
     .reward-card {
         display: grid;
@@ -81,9 +80,10 @@
             'mid-line mid-line'
             'rectangle short-top'
             'rectangle short-bottom';
+        background: $background-color;
         border: solid 5px black;
         border-radius: 20px;
-        width: calc(12vw + 5rem);
+        width: calc(20vmin + 3rem);
         aspect-ratio: 3/2;
 
         .long-lines,
@@ -132,6 +132,7 @@
 
 /* #endregion - reward card */
 
+// nav for hamburger
 .increase-height {
     height: $heading-nav-height*2;
     background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));

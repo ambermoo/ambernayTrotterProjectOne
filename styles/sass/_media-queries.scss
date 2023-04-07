@@ -176,8 +176,6 @@
 
         .text-and-card {
             display: flex;
-            justify-content: space-around;
-            row-gap: 15%;
             flex-direction: column;
 
             .points-text-container {
@@ -189,6 +187,7 @@
 
             .reward-card-container {
                 justify-content: center;
+                margin-top: 10%;
             }
         }
     }

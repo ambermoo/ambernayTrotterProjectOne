@@ -57,4 +57,3 @@
     hamburger.addEventListener('click', toggleHamburger);
 
 // #endregion - hamburger focus //
-

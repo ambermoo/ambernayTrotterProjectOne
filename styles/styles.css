@@ -411,6 +411,7 @@ textarea::placeholder {
   background-color: transparent;
   border-width: 0;
   padding: 0;
+  color: #fff;
   /* #endregion - remove default styles */
 }
 

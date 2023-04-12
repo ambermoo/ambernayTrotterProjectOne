@@ -517,13 +517,13 @@ textarea:focus {
           box-shadow: 0px 2px 10px #adadad;
   min-height: 57px;
   padding: 0;
-  /* #region - absolute */
-  position: absolute;
+  /* #region - fixed heading */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   z-index: 10;
-  /* #endregion - absolute */
+  /* #endregion - fixed heading */
 }
 
 nav {

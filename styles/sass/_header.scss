@@ -5,13 +5,13 @@
     box-shadow: 0px 2px 10px $box-shadow;
     min-height: $heading-nav-height;
     padding: 0; // overriding on from section styles
-    /* #region - absolute */
-    position: absolute;
+    /* #region - fixed heading */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     z-index: 10;
-    /* #endregion - absolute */
+    /* #endregion - fixed heading */
 }
 
 nav {

@@ -38,60 +38,65 @@
     /* #region - header nav */
 
     .nav-container {
+        
+            ul {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 18px;
+                column-gap: 5%;
+        
+                li {
+                    padding: 0;
+                }
+            }
         // none on nav and auto on child elements
         // will allow nav to be manipulated when interacting with children
         // https: //stackoverflow.com/questions/8114657/how-to-style-the-parent-element-when-hovering-a-child-element#:~:text=8-,Answers,-Sorted%20by%3A 
-        pointer-events: none;
-
+        
+        // pointer-events: none;
+        
         nav {
             flex-direction: column;
             justify-content: space-between;
 
             ul {
                 display: none;
-                pointer-events: auto;
+                // pointer-events: auto;
             }
             
             .hamburger-menu-icon {
                 display: block;
-                pointer-events: auto;
+                align-self: center;
+                // pointer-events: auto;
             }
         }
     }
+    /* #region - for css hamburger */
+    // .nav-container:active,
+    // .nav-container:focus-within {
+    //     height: $heading-nav-height*2;
+    //     background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));
 
-        .nav-container:active,
-        .nav-container:focus-within,
-        .nav-container:focus-visible {
-            height: $heading-nav-height*2;
-            background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));
+    //     ul {
+    //         display: flex;
+    //     }
+    // }
+    /* #endregion - for css hamburger */
     
-            ul {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 18px;
-                column-gap: 5%;
-    
-                li {
-                    padding: 0;
-                }
-            }
-        }
-
-
     /* #endregion - header nav */
 
     /* #region - about section */
     .text-image-container {
     
-            .slogan-bubble-large {
-                display: none;
-            }
-    
-            .slogan-bubble-small {
-                display: flex;
-                margin-left: 0.5vw;
-            }
+        .slogan-bubble-large {
+            display: none;
         }
+
+        .slogan-bubble-small {
+            display: flex;
+            margin-left: 0.5vw;
+        }
+    }
     /* #endregion - about section */ 
 }
 
@@ -160,8 +165,33 @@
             order: 1;
         }
     }
-
     /* #endregion - main heading */
+}
+
+@media (max-width: 700px) {
+    /* #region - pop-up */
+    body .points-popup {
+        align-items: center;
+        height: 70vh;
+
+        .text-and-card {
+            display: flex;
+            flex-direction: column;
+
+            .points-text-container {
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .reward-card-container {
+                justify-content: center;
+                margin-top: 10%;
+            }
+        }
+    }
+    /* #endregion - pop-up */
 }
 
 @media(max-height: 500px) {

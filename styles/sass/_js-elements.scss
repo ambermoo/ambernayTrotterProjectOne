@@ -1,0 +1,139 @@
+@use './variables' as *;
+
+/* #region - points modal */
+.points-popup {
+    display: none;
+    position: absolute;
+    background: rgb(240, 255, 240);
+    border: 10px solid $accent-color;
+    border-radius: 20px;
+    flex-direction: column;
+    row-gap: 5%;
+    justify-content: space-between;
+    top: 20%;
+    padding: 2% 5%;
+    width: 50%;
+    min-width: 200px;
+    height: 63vh;
+    z-index: 10;
+
+    .text-and-card {
+        display: flex;  
+        justify-content: space-around;
+    }
+
+    h2, .points-popup-text {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        margin-top: 20px;
+    }
+
+    .points-text-container {
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 4%;
+
+        .points-popup-text {
+            color: green;
+            font-family: barlow;
+            flex: 0 1 25%;
+        }
+    }
+
+    .x-div-container {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    .link-container button {
+        font-size: 1.2rem;
+    }
+}
+// also used for hamburger icon when changes to X
+.lines.a {
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.lines.b {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+/* #endregion - points modal */
+
+/* #region - reward card */
+.reward-card-container {
+        
+    display: grid;
+    justify-content: end;
+
+    .reward-card {
+        display: grid;
+        grid-template-areas:
+            'top-line top-line'
+            'mid-line mid-line'
+            'rectangle short-top'
+            'rectangle short-bottom';
+        background: $background-color;
+        border: solid 5px black;
+        border-radius: 20px;
+        width: calc(20vmin + 3rem);
+        aspect-ratio: 3/2;
+
+        .long-lines,
+        .short-lines {
+            background: black;
+            height: 5px;
+        }
+
+        .long-lines {
+            width: 100%;
+        }
+
+        .long-lines.top {
+            grid-area: top-line;
+            align-self: center;
+        }
+
+        .long-lines.mid {
+            grid-area: mid-line;
+            align-self: center;
+        }
+
+        .short-lines.top {
+            grid-area: short-top;
+            width: 85%;
+            align-self: center;
+        }
+
+        .short-lines.bottom {
+            grid-area: short-bottom;
+            width: 65%;
+            align-self: self-start;
+        }
+
+        .rectangle {
+            grid-area: rectangle;
+            border: solid 5px black;
+            border-radius: 10px;
+            align-self: baseline;
+            height: 50%;
+            width: 80%;
+            margin: 7px;
+        }
+    }
+}
+
+/* #endregion - reward card */
+
+// nav for hamburger
+.increase-height {
+    height: $heading-nav-height*2;
+    background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));
+}

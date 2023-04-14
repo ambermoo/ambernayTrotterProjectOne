@@ -39,7 +39,7 @@
 
     .nav-container {
         
-            ul {
+            ul > *:not(:last-child) {
                 display: flex;
                 justify-content: space-between;
                 margin-top: 18px;
@@ -47,6 +47,16 @@
         
                 li {
                     padding: 0;
+                }
+            }
+
+            li:last-child {
+                position: absolute;
+                top: 3vh;
+                right: 2vw;
+
+                .total-cost {
+                    display: none;
                 }
             }
         // none on nav and auto on child elements
@@ -70,6 +80,12 @@
                 // pointer-events: auto;
             }
         }
+    }
+
+    .cart-drop-down {
+        // centers horizontally
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     /* #region - for css hamburger */
     // .nav-container:active,

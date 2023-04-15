@@ -1,7 +1,7 @@
 @use './variables' as *;
 
 /* #region - cart items in nav */
-nav ul .cart-info-heading{
+.cart-info-heading{
     display: flex;
     column-gap: 5px;
 
@@ -42,6 +42,7 @@ nav ul .cart-info-heading{
 
 /* #region - cart drop-down */
 .cart-dropdown {
+    display: none;
     position: fixed;
     top: $heading-nav-height;
     right: 20px;

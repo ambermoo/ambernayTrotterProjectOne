@@ -38,8 +38,8 @@
     /* #region - header nav */
 
     .nav-container {
-        
-            ul > *:not(:last-child) {
+            // all nav links except cart icon
+            ul {
                 display: flex;
                 justify-content: space-between;
                 margin-top: 18px;
@@ -49,11 +49,11 @@
                     padding: 0;
                 }
             }
-
-            li:last-child {
+            .cart-info-heading {
+                display: flex !important;
                 position: absolute;
                 top: 3vh;
-                right: 2vw;
+                right: 3vw;
 
                 .total-cost {
                     display: none;
@@ -71,6 +71,7 @@
 
             ul {
                 display: none;
+                justify-content: space-between;
                 // pointer-events: auto;
             }
             
@@ -80,12 +81,6 @@
                 // pointer-events: auto;
             }
         }
-    }
-
-    .cart-drop-down {
-        // centers horizontally
-        left: 50%;
-        transform: translate(-50%, -50%);
     }
     /* #region - for css hamburger */
     // .nav-container:active,
@@ -117,6 +112,11 @@
 }
 
 @media (max-width: 660px) {
+    .cart-dropdown {
+        // centers horizontally
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
 
     .contact-info-container {
 

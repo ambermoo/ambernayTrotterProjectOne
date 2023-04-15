@@ -67,6 +67,10 @@ section{ // (overridden on nav-container)
     display: none !important;
 }
 
-.make-visible {
+.make-flex {
     display: flex !important;
+}
+
+.make-block {
+    display: block !important;
 }

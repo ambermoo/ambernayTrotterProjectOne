@@ -1571,8 +1571,12 @@ section {
   display: none !important;
 }
 
-.make-visible {
+.make-flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
+}
+
+.make-block {
+  display: block !important;
 }

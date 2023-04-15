@@ -13,7 +13,7 @@
         // checking window.ScrollY prevents popup glitch when returning from contact to blog section page
         if (window.scrollY < 100) {
             mainHeading.classList.toggle('make-invisible');
-            pointsPopup.classList.toggle('make-visible');
+            pointsPopup.classList.toggle('make-flex');
             // lock screen (main styles.scss)
             html.classList.toggle("stop-scrolling");
             body.classList.toggle("stop-scrolling");
@@ -25,7 +25,7 @@
 
     const close = () => {
         mainHeading.classList.toggle('make-invisible');
-        pointsPopup.classList.toggle('make-visible');
+        pointsPopup.classList.toggle('make-flex');
         // enable scroll (main styles.scss)
         html.classList.toggle("stop-scrolling");
         body.classList.toggle("stop-scrolling");
@@ -51,10 +51,41 @@
         /* #endregion - add burger-line styles */
 
         nav.classList.toggle('increase-height');
-        navLinks.classList.toggle('make-visible');
+        navLinks.classList.toggle('make-flex');
     }
 
     hamburger.addEventListener('click', toggleHamburger);
 
 // #endregion - hamburger focus //
 
+// #region - cart
+    // #region - cart dropdown
+    const cartIcon = document.querySelector('.cart-info-heading');
+    const cartDropdown = document.querySelector('.cart-dropdown');
+
+    const showCart = () => {
+        cartDropdown.classList.toggle('make-block');
+        console.log(cartDropdown);
+    }
+    cartIcon.addEventListener('click', showCart);
+    // #endregion - cart dropdown
+
+    // #region - cart counter
+    const cartCounter = document.querySelector('.item-num > p');
+    let cartItemTotal = parseInt(0);
+    cartCounter.textContent = cartItemTotal;
+    console.log(typeof(cartCounter.textContent));
+
+    // get product buttons
+    const productButtons = document.querySelectorAll('.product-link > button');
+
+    // forEach has built in parameters (element, index, array etc...)
+    productButtons.forEach((button, index) => {
+        button.onclick = (e) => {
+            cartItemTotal += 1;
+            cartCounter.textContent = cartItemTotal;
+            console.log(cartItemTotal,"You clicked button number " + index);
+        }
+    });
+    // #endregion - cart counter
+// #endregion - cart

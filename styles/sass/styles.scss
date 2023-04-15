@@ -3,6 +3,7 @@
 @use './fonts-and-colors';
 @use './buttons';
 @use './header';
+@use './cart';
 @use './about';
 @use './products';
 @use './gallery';
@@ -66,6 +67,10 @@ section{ // (overridden on nav-container)
     display: none !important;
 }
 
-.make-visible {
+.make-flex {
     display: flex !important;
+}
+
+.make-block {
+    display: block !important;
 }

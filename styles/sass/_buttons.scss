@@ -46,7 +46,6 @@ footer {
         a:not(.social-link, .image-container):hover,
         a:not(.social-link, .image-container):focus,
         a:not(.social-link, .image-container):focus-within{
-            display: block;
             color: $accent-color;
             transform: scale(1.2);
         }

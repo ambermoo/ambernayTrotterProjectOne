@@ -38,7 +38,7 @@
     /* #region - header nav */
 
     .nav-container {
-        
+            // all nav links except cart icon
             ul {
                 display: flex;
                 justify-content: space-between;
@@ -47,6 +47,16 @@
         
                 li {
                     padding: 0;
+                }
+            }
+            .cart-info-heading {
+                display: flex !important;
+                position: absolute;
+                top: 3vh;
+                right: 3vw;
+
+                .total-cost {
+                    display: none;
                 }
             }
         // none on nav and auto on child elements
@@ -61,6 +71,7 @@
 
             ul {
                 display: none;
+                justify-content: space-between;
                 // pointer-events: auto;
             }
             
@@ -101,6 +112,11 @@
 }
 
 @media (max-width: 660px) {
+    .cart-dropdown {
+        // centers horizontally
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
 
     .contact-info-container {
 

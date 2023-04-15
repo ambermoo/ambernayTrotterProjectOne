@@ -40,18 +40,44 @@
                         <li><a href="./index.html" tabindex="0">Home</a></li>
                         <li><a href="#blog" tabindex="0">Blog</a></li>
                         <li><a href="./contact.html" tabindex="0">Contact</a></li>
-                        <li>
-                            <a href="#" tabindex="0">
-                                <object class="cart-icon" tabindex="-1" data="./organic-project/assets/icons/cart.svg" type="image/svg+xml">
-                                    <!-- screen reader description -->
-                                    <figcaption class="sr-only">shopping cart icon</figcaption>
-                                </object>
-                            </a>
-                        </li>
                     </ul>
+                    <div class="cart-info-heading">
+                        <a href="#" class="cart-link" tabindex="0">
+                            <object class="cart-icon" tabindex="-1" data="./organic-project/assets/icons/cart.svg" type="image/svg+xml">
+                                <!-- screen reader description -->
+                                <figcaption class="sr-only">shopping cart icon</figcaption>
+                            </object>
+                    
+                            <div class="item-num">
+                                <p>0</p>
+                            </div>
+                        </a>
+                        <span class="cart-basic-info">
+                            <div class="total-cost">
+                                <p>$0.00</p>
+                            </div>
+                        </span>
+                    </div>
                 </nav>
             </div>
         </section>
+<!-- cart -->
+        <section class="cart-dropdown">
+            <div>
+                <p class="empty-cart-message">Cart is empty</p>
+                <ul></ul>
+                <div class="total-checkout">
+                    <span class="subtotal">
+                        <p>Subtotal:</p>
+                        <p>$0.00</p>
+                    </span>
+                    <span class="link-container">
+                        <button>Checkout</button>
+                    </span>
+                </div>
+            </div>
+        </section>
+<!-- cart -->
         <section class="main-header-container">
 
             <!-- #region - splash images -->

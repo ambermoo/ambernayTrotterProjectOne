@@ -124,7 +124,7 @@ const displayItems = (stock) => {
 
                   <!-- Cart Button -->
                   <div class="link-container product-link">
-                    <button tabindex="0">Add To Cart</button>
+                    <button tabindex="0" data-index="${item.id}">Add To Cart</button>
                   </div>
                 </div>
 

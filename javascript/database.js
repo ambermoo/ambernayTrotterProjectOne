@@ -1,3 +1,23 @@
+import app from "./firebase-config.js";
+
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue,
+} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+const myDatabase = getDatabase(app);
+const dbRef = ref(myDatabase);
+
+// creating a function to add to database
+
+const addToDatabase = (key, value) => {
+  const customRef = ref(myDatabase, key);
+  set(customRef, value);
+};
+
+// DATA SECTION
 const cheapPrice = () => parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
 const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 
@@ -68,6 +88,48 @@ export const totalInventory = [
   },
 ];
 
-// console.log(cheapPrice());
-// console.log(expPrice());
-// console.log(cheapPrice());
+// adding the inventory to database
+// addToDatabase("inventory", totalInventory);
+
+// Importing data from Firebase
+onValue(dbRef, function (snapshot) {
+  const ourData = snapshot.val();
+  // storing the data in inventory variable
+  const inventory = ourData.inventory;
+  displayItems(inventory);
+});
+
+// Function to Display the items on the page
+
+const displayItems = (stock) => {
+  const productGallery = document.querySelector(".inventory");
+  productGallery.innerHTML = "";
+
+  stock.forEach((item) => {
+    const newListItem = document.createElement("li");
+    newListItem.innerHTML = `
+    <img
+                  src= ${item.src}
+                  alt="Image of ${item.productName}"
+                />
+                <div class="text-container">
+                  <div class="info-container">
+                    <h4>${item.productName}</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <p class="price">$${item.price}</p>
+                    
+                  </div>
+
+                  <!-- Cart Button -->
+                  <div class="link-container product-link">
+                    <button tabindex="0">Add To Cart</button>
+                  </div>
+                </div>
+
+    `;
+    console.log(item);
+    productGallery.appendChild(newListItem);
+  });
+};

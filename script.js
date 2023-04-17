@@ -85,13 +85,13 @@ const cartCounter = document.querySelector('.item-num > p');
         }
     });
     // figure out where to put this
-    if (cartCounter.textContent > 0) {
+    // if (cartCounter.textContent > 0) {
 
-        const emptyCartMessage = document.querySelector('.empty-cart-message');
+    //     const emptyCartMessage = document.querySelector('.empty-cart-message');
 
-        console.log(emptyCartMessage);
+    //     console.log(emptyCartMessage);
 
-        emptyCartMessage.classList.toggle('make-invisible');
-    }
+    //     emptyCartMessage.classList.toggle('make-invisible');
+    // }
     // #endregion - cart counter
 // #endregion - cart

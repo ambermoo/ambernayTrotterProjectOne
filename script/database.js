@@ -89,12 +89,13 @@ export const totalInventory = [
   },
 ];
 
-const cart = ["cart is empty"];
+const cart = ["cart is empty", 23, 66, 66git];
 // adding the inventory to database
 // addToDatabase("inventory", totalInventory);
 
 // adding cart to data
 addToDatabase("cart", cart);
+console.log(cart);
 
 // Importing data from Firebase
 onValue(dbRef, function (snapshot) {

@@ -3,6 +3,7 @@
 @use './fonts-and-colors';
 @use './buttons';
 @use './header';
+@use './cart';
 @use './about';
 @use './products';
 @use './gallery';
@@ -10,6 +11,7 @@
 @use './footer';
 @use './contact';
 @use './media-queries';
+@use './js-elements';
 
 /* #region - reset default styles */
 html {
@@ -52,4 +54,23 @@ section{ // (overridden on nav-container)
     max-width: 1080px;
     width: 50%;
     margin: 0 auto;
+}
+
+/* #region - to disable scroll */
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+/* #endregion - to disable scroll */
+
+.make-invisible {
+    display: none !important;
+}
+
+.make-flex {
+    display: flex !important;
+}
+
+.make-block {
+    display: block !important;
 }

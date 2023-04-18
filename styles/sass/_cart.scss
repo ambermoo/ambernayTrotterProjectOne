@@ -1,0 +1,129 @@
+@use './variables' as *;
+
+/* #region - cart items in nav */
+.cart-info-heading{
+    display: flex;
+    column-gap: 25px;
+
+    .cart-link {
+        display: flex;
+    }
+
+    .cart-icon {
+        width: 1rem;
+        align-self: center;
+    }
+
+    .item-num {
+        display: flex;
+        background: $accent-color;
+        border-radius: 5px;
+        width: fit-content;
+        height: 1rem;
+        padding: 5px;
+        align-items: center;
+
+        p {
+            font-size: 0.7rem;
+            color: $background-color;
+        }
+    }
+
+    .cart-basic-info {
+        display: contents;
+
+        p {
+            font-weight: $barlow-semi-bold;
+            color: $main-text-color;
+        }
+    }
+}
+/* #endregion - cart items in nav */
+
+/* #region - cart drop-down */
+.cart-dropdown {
+    display: none;
+    position: fixed;
+    top: $heading-nav-height;
+    right: 20px;
+    background: $background-color;
+    box-shadow: 0 0 20px 0px $box-shadow;
+    width: 35vw;
+    min-width: 300px;
+    height: fit-content;
+    padding: 0;
+    z-index: 9; // one less than heading
+
+    .empty-cart-message {
+        // display: flex;
+        display: none;
+        justify-content: center;
+        padding: 7%;
+    }
+    // only when items are in cart
+    .full-cart {
+        display: flex;
+        height: 100px;
+        border-top: $box-shadow solid 1px;
+        justify-content: space-around;
+        align-items: center;
+
+        .arrows {
+            display: flex;
+            height: 1rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-x {
+            display: flex;
+            align-self: center;
+        }
+
+        .product-image {
+            background: $box-shadow;
+            height:70px;
+            width: 70px;
+        }
+
+        .cart-dropdown-info-container{
+            display: flex;
+            height: 70px;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+
+    .total-checkout {
+        display: flex;
+        background: $accent-color;
+        height: fit-content;
+        width: inherit;
+        padding: 2px 10px;
+        justify-content: space-between;
+
+        .subtotal {
+            display: flex;
+            column-gap: 5px;
+            align-items: center;
+        }
+
+        p {
+            color: $background-color;
+        }
+
+        .link-container {
+            background: $background-color;
+            margin-right: 5px;
+            
+            button {
+                color: $main-text-color;
+            }
+        }
+    }
+}
+
+/* #endregion - cart drop-down */
+
+

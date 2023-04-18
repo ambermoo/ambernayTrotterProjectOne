@@ -25,10 +25,6 @@ nav {
 
         li {
             padding: 0 20px;
-
-            .cart-icon {
-                width: 1rem;
-            }
         }
     }
 }
@@ -47,19 +43,18 @@ nav {
     /* #region - hamburger menu */
     .hamburger-menu-icon {
         display: none;
-
-        .hamburgers {
-            width: 30px;
-            height: 4px;
-            background-image: linear-gradient($accent-color, $light-accent-color, $accent-color);
-            // background-color: $accent-color;
-            border-radius: 100px;
-            margin: 5px 0;
-        }
     }
-
-    /* #endregion - hamburger menu */
 }
+
+.lines {
+    width: 30px;
+    height: 4px;
+    background-image: linear-gradient($accent-color, $light-accent-color, $accent-color);
+    // background-color: $accent-color;
+    border-radius: 100px;
+    margin: 5px 0;
+}
+/* #endregion - hamburger menu */
 
 .main-header-container {
     display: flex;

@@ -1,0 +1,21 @@
+
+{"currencies" : [
+  {
+    "exchange": 1,
+    "symbol": "$",
+    "displayName": "USD",
+    "altText": "the US flag",
+    "flag": "images/USD-flag.png"
+  }
+]
+},
+
+{ "myData" : {
+    "currencies" : {
+
+    },
+    "inventory" : [
+
+    ]
+}
+}

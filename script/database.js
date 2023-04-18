@@ -100,6 +100,7 @@ console.log(cart);
 // Importing data from Firebase
 onValue(dbRef, function (snapshot) {
   const ourData = snapshot.val();
+  console.log(ourData);
   // storing the data in inventory variable
   const inventory = ourData.inventory;
   displayItems(inventory);

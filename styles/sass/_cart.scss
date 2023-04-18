@@ -3,7 +3,7 @@
 /* #region - cart items in nav */
 .cart-info-heading{
     display: flex;
-    column-gap: 5px;
+    column-gap: 25px;
 
     .cart-link {
         display: flex;
@@ -55,9 +55,44 @@
     z-index: 9; // one less than heading
 
     .empty-cart-message {
-        display: flex;
+        // display: flex;
+        display: none;
         justify-content: center;
         padding: 7%;
+    }
+    // only when items are in cart
+    .full-cart {
+        display: flex;
+        height: 100px;
+        border-top: $box-shadow solid 1px;
+        justify-content: space-around;
+        align-items: center;
+
+        .arrows {
+            display: flex;
+            height: 1rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-x {
+            display: flex;
+            align-self: center;
+        }
+
+        .product-image {
+            background: $box-shadow;
+            height:70px;
+            width: 70px;
+        }
+
+        .cart-dropdown-info-container{
+            display: flex;
+            height: 70px;
+            flex-direction: column;
+            justify-content: space-between;
+        }
     }
 
     .total-checkout {

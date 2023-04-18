@@ -89,7 +89,7 @@ export const totalInventory = [
   },
 ];
 
-const cart = ["cart is empty", 23, 66, 66git];
+const cart = ["cart is empty", 23, 66, 66];
 // adding the inventory to database
 // addToDatabase("inventory", totalInventory);
 

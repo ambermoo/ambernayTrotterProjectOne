@@ -9,6 +9,7 @@ import {
 
 const myDatabase = getDatabase(app);
 const dbRef = ref(myDatabase);
+// const cartRef = ref(myDatabase);
 
 // creating a function to add to database
 
@@ -24,7 +25,7 @@ const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 export const totalInventory = [
   {
     productName: "Tomatoes",
-    id: 1,
+    id: 0,
     qty: 1,
     src: "./organic-project/assets/product1.jpeg",
     price: cheapPrice(),
@@ -32,7 +33,7 @@ export const totalInventory = [
   },
   {
     productName: "Lime",
-    id: 2,
+    id: 1,
     qty: 1,
     src: "./organic-project/assets/product2.jpeg",
     price: cheapPrice(),
@@ -40,7 +41,7 @@ export const totalInventory = [
   },
   {
     productName: "Organic Eggplant",
-    id: 3,
+    id: 2,
     qty: 1,
     src: "./organic-project/assets/product3.jpeg",
     price: expPrice(),
@@ -48,7 +49,7 @@ export const totalInventory = [
   },
   {
     productName: "Cucumber",
-    id: 4,
+    id: 3,
     qty: 1,
     src: "./organic-project/assets/product4.jpeg",
     price: cheapPrice(),
@@ -56,7 +57,7 @@ export const totalInventory = [
   },
   {
     productName: "Organic Peas",
-    id: 5,
+    id: 4,
     qty: 1,
     src: "./organic-project/assets/product5.jpeg",
     price: expPrice(),
@@ -64,7 +65,7 @@ export const totalInventory = [
   },
   {
     productName: "Lettuce",
-    id: 6,
+    id: 5,
     qty: 1,
     src: "./organic-project/assets/product6.jpeg",
     price: cheapPrice(),
@@ -72,7 +73,7 @@ export const totalInventory = [
   },
   {
     productName: "Cabbage",
-    id: 7,
+    id: 6,
     qty: 1,
     src: "./organic-project/assets/product7.jpeg",
     price: cheapPrice(),
@@ -80,7 +81,7 @@ export const totalInventory = [
   },
   {
     productName: "Organic Lettuce",
-    id: 8,
+    id: 7,
     qty: 1,
     src: "./organic-project/assets/product8.jpeg",
     price: expPrice(),
@@ -88,8 +89,12 @@ export const totalInventory = [
   },
 ];
 
+const cart = ["cart is empty"];
 // adding the inventory to database
 // addToDatabase("inventory", totalInventory);
+
+// adding cart to data
+addToDatabase("cart", cart);
 
 // Importing data from Firebase
 onValue(dbRef, function (snapshot) {

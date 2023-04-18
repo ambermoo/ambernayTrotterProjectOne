@@ -1,4 +1,4 @@
-import { totalInventory } from "./javascript/database.js";
+import { totalInventory } from "./script/database.js";
 
 console.log(totalInventory);
 // Jquery $(window) allows the scroll listener to run only once

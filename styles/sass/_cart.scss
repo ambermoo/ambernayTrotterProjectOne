@@ -55,8 +55,7 @@
     z-index: 9; // one less than heading
 
     .empty-cart-message {
-        // display: flex;
-        display: none;
+        display: flex;
         justify-content: center;
         padding: 7%;
     }

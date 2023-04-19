@@ -153,14 +153,49 @@ productGallery.addEventListener('click', function(e) {
 
   if (e.target.tagName === "BUTTON") {
     // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
-    // cart.push(chosenProduct);
+    cart.push(chosenProduct);
     const chosenProductIndex = e.target.attributes.dataindex.value;
     const chosenProductObject = totalInventory[chosenProductIndex];
     console.log(chosenProductObject);
+    // add elements
+    addToCart(cart);
   }
-  
-}); 
+});
 
+const addToCart = (cart) => {
+  const cartDropdownList = document.querySelector('.cart-dropdown ul');
+  const emptyCartMessage = document.querySelector('.empty-cart-message');
+  const newCartItem = document.createElement('li');
+  newCartItem.classList.add('full-cart');
+
+  // cartDropdownList.innerHTML = "";
+
+  // removes empty cart message when cart contains items
+  if (cart.length > 0) {
+    emptyCartMessage.classList.add('make-invisible');
+  }
+
+  cart.forEach((item) => {
+
+    newCartItem.innerHTML = `
+      <div class="arrows">
+          <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
+          <p>1</p>
+          <img class=arrows src="./organic-project/assets/icons/chevron-down-outline.svg" alt="down arrow">
+      </div>
+      <div class="product-image"></div>
+      <div class="cart-dropdown-info-container">
+          <h4>Description</h4>
+          <p class="price">$3.00</p>
+      </div>
+      <div class="cart-x">
+          <div class="lines a"></div>
+          <div class="lines b"></div>
+      </div>
+    `;
+    cartDropdownList.append(newCartItem);
+  });
+}
 // forEach has built in parameters (element, index, array etc...)
 // productButtons.forEach((button, index) => {
 //   button.onclick = (e) => {
@@ -170,13 +205,4 @@ productGallery.addEventListener('click', function(e) {
 //     // console.log("You clicked button number " + index);
 //   };
 // });
-// figure out where to put this
-// if (cartCounter.textContent > 0) {
-
-//     const emptyCartMessage = document.querySelector('.empty-cart-message');
-
-//     console.log(emptyCartMessage);
-
-//     emptyCartMessage.classList.toggle('make-invisible');
-// }
 // #endregion - cart counter

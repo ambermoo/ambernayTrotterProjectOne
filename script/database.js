@@ -89,7 +89,7 @@ export const totalInventory = [
   },
 ];
 
-const cart = ["cart is empty"];
+const cart = [];
 // adding the inventory to database
 // addToDatabase("inventory", totalInventory);
 
@@ -106,36 +106,77 @@ onValue(dbRef, function (snapshot) {
 });
 
 // Function to Display the items on the page
+const productGallery = document.querySelector(".inventory");
 
 const displayItems = (stock) => {
-  const productGallery = document.querySelector(".inventory");
+  
   productGallery.innerHTML = "";
 
   stock.forEach((item) => {
     const newListItem = document.createElement("li");
     newListItem.innerHTML = `
     <img
-                  src= ${item.src}
-                  alt="Image of ${item.productName}"
-                />
-                <div class="text-container">
-                  <div class="info-container">
-                    <h4>${item.productName}</h4>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </p>
-                    <p class="price">$${item.price}</p>
-                    
-                  </div>
+        src= ${item.src}
+        alt="Image of ${item.productName}"
+      />
+      <div class="text-container">
+        <div class="info-container">
+          <h4>${item.productName}</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </p>
+          <p class="price">$${item.price}</p>
+          
+        </div>
 
-                  <!-- Cart Button -->
-                  <div class="link-container product-link">
-                    <button tabindex="0" data-index="${item.id}">Add To Cart</button>
-                  </div>
-                </div>
-
+        <!-- Cart Button -->
+        <div class="link-container product-link">
+          <button tabindex="0" dataindex="${item.id}">Add To Cart</button>
+        </div>
+      </div>
     `;
-    console.log(item);
+    // console.log(item);
     productGallery.appendChild(newListItem);
   });
 };
+
+// #region - cart counter
+const cartCounter = document.querySelector(".item-num > p");
+// get product buttons
+const productButtons = document.querySelectorAll(".product-link > button");
+let cartItemTotal = parseInt(cartCounter.textContent);
+
+
+productGallery.addEventListener('click', function(e) {
+  // get parent list item from child button
+  const chosenProduct = e.target.closest('li');
+
+  if (e.target.tagName === "BUTTON") {
+    // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
+    // cart.push(chosenProduct);
+    const chosenProductIndex = e.target.attributes.dataindex.value;
+    const chosenProductObject = totalInventory[chosenProductIndex];
+    console.log(chosenProductObject);
+  }
+  
+}); 
+
+// forEach has built in parameters (element, index, array etc...)
+// productButtons.forEach((button, index) => {
+//   button.onclick = (e) => {
+//     // add to cart item counter with each click
+//     cartItemTotal += 1;
+//     cartCounter.textContent = cartItemTotal;
+//     // console.log("You clicked button number " + index);
+//   };
+// });
+// figure out where to put this
+// if (cartCounter.textContent > 0) {
+
+//     const emptyCartMessage = document.querySelector('.empty-cart-message');
+
+//     console.log(emptyCartMessage);
+
+//     emptyCartMessage.classList.toggle('make-invisible');
+// }
+// #endregion - cart counter

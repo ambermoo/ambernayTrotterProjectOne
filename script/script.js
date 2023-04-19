@@ -63,7 +63,6 @@ hamburger.addEventListener("click", toggleHamburger);
 // #region - cart
 const cartIcon = document.querySelector(".cart-info-heading");
 const cartDropdown = document.querySelector(".cart-dropdown");
-const cartCounter = document.querySelector(".item-num > p");
 
 // #region - cart dropdown
 const showCart = () => {
@@ -71,29 +70,4 @@ const showCart = () => {
 };
 cartIcon.addEventListener("click", showCart);
 // #endregion - cart dropdown
-
-// #region - cart counter
-// get product buttons
-const productButtons = document.querySelectorAll(".product-link > button");
-let cartItemTotal = parseInt(cartCounter.textContent);
-
-// forEach has built in parameters (element, index, array etc...)
-productButtons.forEach((button, index) => {
-  button.onclick = (e) => {
-    // add to cart item counter with each click
-    cartItemTotal += 1;
-    cartCounter.textContent = cartItemTotal;
-    console.log("You clicked button number " + index);
-  };
-});
-// figure out where to put this
-// if (cartCounter.textContent > 0) {
-
-//     const emptyCartMessage = document.querySelector('.empty-cart-message');
-
-//     console.log(emptyCartMessage);
-
-//     emptyCartMessage.classList.toggle('make-invisible');
-// }
-// #endregion - cart counter
 // #endregion - cart

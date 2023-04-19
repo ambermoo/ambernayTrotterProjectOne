@@ -19,10 +19,11 @@ const addToDatabase = (key, value) => {
 };
 
 // DATA SECTION
-const cheapPrice = () => parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
+export const cheapPrice = () =>
+  parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
 const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 
-export const totalInventory = [
+const totalInventory = [
   {
     productName: "Tomatoes",
     id: 0,
@@ -98,10 +99,13 @@ const cart = [];
 // console.log(cart);
 
 // Importing data from Firebase
+
+// created a global variable to store inventory data from firebase
+let inventory;
 onValue(dbRef, function (snapshot) {
   const ourData = snapshot.val();
   // storing the data in inventory variable
-  const inventory = ourData.inventory;
+  inventory = ourData.inventory;
   displayItems(inventory);
 });
 

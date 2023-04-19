@@ -27,7 +27,7 @@ const totalInventory = [
   {
     productName: "Tomatoes",
     id: 0,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product1.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -35,7 +35,7 @@ const totalInventory = [
   {
     productName: "Lime",
     id: 1,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product2.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -43,7 +43,7 @@ const totalInventory = [
   {
     productName: "Organic Eggplant",
     id: 2,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product3.jpeg",
     price: expPrice(),
     type: "$$",
@@ -51,7 +51,7 @@ const totalInventory = [
   {
     productName: "Cucumber",
     id: 3,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product4.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -59,7 +59,7 @@ const totalInventory = [
   {
     productName: "Organic Peas",
     id: 4,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product5.jpeg",
     price: expPrice(),
     type: "$$",
@@ -67,7 +67,7 @@ const totalInventory = [
   {
     productName: "Lettuce",
     id: 5,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product6.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -75,7 +75,7 @@ const totalInventory = [
   {
     productName: "Cabbage",
     id: 6,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product7.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -83,7 +83,7 @@ const totalInventory = [
   {
     productName: "Organic Lettuce",
     id: 7,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product8.jpeg",
     price: expPrice(),
     type: "$$",

@@ -109,7 +109,6 @@ onValue(dbRef, function (snapshot) {
 const productGallery = document.querySelector(".inventory");
 
 const displayItems = (stock) => {
-  
   productGallery.innerHTML = "";
 
   stock.forEach((item) => {
@@ -146,10 +145,9 @@ const cartCounter = document.querySelector(".item-num > p");
 const productButtons = document.querySelectorAll(".product-link > button");
 let cartItemTotal = parseInt(cartCounter.textContent);
 
-
-productGallery.addEventListener('click', function(e) {
+productGallery.addEventListener("click", function (e) {
   // get parent list item from child button
-  const chosenProduct = e.target.closest('li');
+  const chosenProduct = e.target.closest("li");
 
   if (e.target.tagName === "BUTTON") {
     // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
@@ -163,20 +161,19 @@ productGallery.addEventListener('click', function(e) {
 });
 
 const addToCart = (cart) => {
-  const cartDropdownList = document.querySelector('.cart-dropdown ul');
-  const emptyCartMessage = document.querySelector('.empty-cart-message');
-  const newCartItem = document.createElement('li');
-  newCartItem.classList.add('full-cart');
+  const cartDropdownList = document.querySelector(".cart-dropdown ul");
+  const emptyCartMessage = document.querySelector(".empty-cart-message");
+  const newCartItem = document.createElement("li");
+  newCartItem.classList.add("full-cart");
 
   // cartDropdownList.innerHTML = "";
 
   // removes empty cart message when cart contains items
   if (cart.length > 0) {
-    emptyCartMessage.classList.add('make-invisible');
+    emptyCartMessage.classList.add("make-invisible");
   }
 
   cart.forEach((item) => {
-
     newCartItem.innerHTML = `
       <div class="arrows">
           <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
@@ -195,7 +192,7 @@ const addToCart = (cart) => {
     `;
     cartDropdownList.append(newCartItem);
   });
-}
+};
 // forEach has built in parameters (element, index, array etc...)
 // productButtons.forEach((button, index) => {
 //   button.onclick = (e) => {

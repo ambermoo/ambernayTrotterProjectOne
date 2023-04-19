@@ -1,6 +1,5 @@
-import { totalInventory } from "./database.js";
+import { cheapPrice } from "./database.js";
 
-console.log(totalInventory);
 // Jquery $(window) allows the scroll listener to run only once
 // https://stackoverflow.com/questions/32134451/call-function-on-scroll-only-once#:~:text=Try%20using%20.-,one,-()%3A
 

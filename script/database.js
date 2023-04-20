@@ -5,11 +5,15 @@ import {
   ref,
   set,
   onValue,
+  get,
+  push,
 } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 const myDatabase = getDatabase(app);
+// should not be called dbRef
 const dbRef = ref(myDatabase);
-// const cartRef = ref(myDatabase);
+const cartRef = ref(myDatabase, '/cart');
+const inventoryRef = ref(myDatabase, '/inventory');
 
 // creating a function to add to database
 
@@ -150,19 +154,37 @@ let cartItemTotal = parseInt(cartCounter.textContent);
 productGallery.addEventListener('click', function(e) {
   // get parent list item from child button
   const chosenProduct = e.target.closest('li');
+  const chosenProductIndex = e.target.attributes.dataindex.value;
 
-  if (e.target.tagName === "BUTTON") {
-    // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
-    cart.push(chosenProduct);
-    const chosenProductIndex = e.target.attributes.dataindex.value;
-    const chosenProductObject = totalInventory[chosenProductIndex];
-    console.log(chosenProductObject);
-    // add elements
-    addToCart(cart);
-  }
+  const selectedProductRef = ref(myDatabase, `/inventory/${chosenProductIndex}`); 
+
+  get(selectedProductRef)
+    .then ((snapshot) => {
+      const productSnapshot = snapshot.val();
+      console.log(productSnapshot);
+      productSnapshot.qty = 1;
+      push(cartRef, productSnapshot);
+
+    });
+
+  // if (e.target.tagName === "BUTTON") {
+  //   // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
+  //   cart.push(chosenProduct);
+    
+  //   const chosenProductObject = totalInventory[chosenProductIndex];
+  //   console.log(chosenProductObject);
+  //   // add elements
+  //   addToCart(cart);
+  // }
 });
 
-const addToCart = (cart) => {
+onValue(cartRef, function (snapshot) {
+  const cartData = snapshot.val();
+  
+  updateCart(cartData);
+});
+
+const displayToCart = (cartData) => {
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
   const emptyCartMessage = document.querySelector('.empty-cart-message');
   const newCartItem = document.createElement('li');
@@ -171,11 +193,11 @@ const addToCart = (cart) => {
   // cartDropdownList.innerHTML = "";
 
   // removes empty cart message when cart contains items
-  if (cart.length > 0) {
+  if (cartData.length > 0) {
     emptyCartMessage.classList.add('make-invisible');
   }
 
-  cart.forEach((item) => {
+  cartData.forEach((item) => {
 
     newCartItem.innerHTML = `
       <div class="arrows">

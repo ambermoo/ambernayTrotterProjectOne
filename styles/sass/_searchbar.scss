@@ -1,0 +1,36 @@
+@use "./variables" as *;
+
+.product__searchbox {
+  margin: 30px 0;
+  input {
+    font-size: 20px;
+    font-family: $barlow;
+    padding: 5px;
+  }
+
+  button {
+    font-family: $barlow;
+    font-weight: $barlow-semi-bold;
+    background: $accent-color;
+    color: $background-color;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    padding: 6px 15px;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: rgb(28, 98, 2);
+  }
+
+  select {
+    background-color: rgb(243, 243, 243);
+    font-family: $barlow;
+    margin-left: 40px;
+  }
+}
+
+.product__box {
+  width: 30%;
+}

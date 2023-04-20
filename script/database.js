@@ -155,28 +155,20 @@ let cartItemTotal = parseInt(cartCounter.textContent);
 
 productGallery.addEventListener("click", function (e) {
   // get parent list item from child button
-  const chosenProduct = e.target.closest('li');
-  const chosenProductIndex = e.target.attributes.dataindex.value;
+  
+  if (e.target.tagName === "BUTTON") {
+    const chosenProduct = e.target.closest('li');
+    const chosenProductIndex = e.target.attributes.dataindex.value;
+    const selectedProductRef = ref(myDatabase, `/inventory/${chosenProductIndex}`); 
 
-  const selectedProductRef = ref(myDatabase, `/inventory/${chosenProductIndex}`); 
-
-  get(selectedProductRef)
-    .then ((snapshot) => {
-      const productSnapshot = snapshot.val();
-      console.log(productSnapshot);
-      productSnapshot.qty = 1;
-      push(cartRef, productSnapshot);
-    });
-
-  // if (e.target.tagName === "BUTTON") {
-  //   // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
-  //   cart.push(chosenProduct);
-    
-  //   const chosenProductObject = totalInventory[chosenProductIndex];
-  //   console.log(chosenProductObject);
-  //   // add elements
-  //   addToCart(cart);
-  // }
+    get(selectedProductRef)
+      .then((snapshot) => {
+        const productSnapshot = snapshot.val();
+        console.log(productSnapshot);
+        productSnapshot.qty = 1;
+        push(cartRef, productSnapshot);
+      });
+  }
 });
 
 onValue(cartRef, function (snapshot) {
@@ -218,6 +210,12 @@ const updateCart = (cartData) => {
     cartDropdownList.append(newCartItem);
  }
 }
+
+/* #region - cart item removal */
+const removeCartItem = () => {
+  console.log()
+}
+/* #endregion - cart item removal */
 
 // forEach has built in parameters (element, index, array etc...)
 // productButtons.forEach((button, index) => {

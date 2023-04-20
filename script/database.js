@@ -5,11 +5,15 @@ import {
   ref,
   set,
   onValue,
+  get,
+  push,
 } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 const myDatabase = getDatabase(app);
+// should not be called dbRef
 const dbRef = ref(myDatabase);
-// const cartRef = ref(myDatabase);
+const cartRef = ref(myDatabase, '/cart');
+const inventoryRef = ref(myDatabase, '/inventory');
 
 // creating a function to add to database
 
@@ -151,43 +155,60 @@ let cartItemTotal = parseInt(cartCounter.textContent);
 
 productGallery.addEventListener("click", function (e) {
   // get parent list item from child button
-  const chosenProduct = e.target.closest("li");
+  const chosenProduct = e.target.closest('li');
+  const chosenProductIndex = e.target.attributes.dataindex.value;
 
-  if (e.target.tagName === "BUTTON") {
-    // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
-    cart.push(chosenProduct);
-    const chosenProductIndex = e.target.attributes.dataindex.value;
-    const chosenProductObject = totalInventory[chosenProductIndex];
-    console.log(chosenProductObject);
-    // add elements
-    addToCart(cart);
-  }
+  const selectedProductRef = ref(myDatabase, `/inventory/${chosenProductIndex}`); 
+
+  get(selectedProductRef)
+    .then ((snapshot) => {
+      const productSnapshot = snapshot.val();
+      console.log(productSnapshot);
+      productSnapshot.qty = 1;
+      push(cartRef, productSnapshot);
+    });
+
+  // if (e.target.tagName === "BUTTON") {
+  //   // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
+  //   cart.push(chosenProduct);
+    
+  //   const chosenProductObject = totalInventory[chosenProductIndex];
+  //   console.log(chosenProductObject);
+  //   // add elements
+  //   addToCart(cart);
+  // }
 });
 
-const addToCart = (cart) => {
-  const cartDropdownList = document.querySelector(".cart-dropdown ul");
-  const emptyCartMessage = document.querySelector(".empty-cart-message");
-  const newCartItem = document.createElement("li");
-  newCartItem.classList.add("full-cart");
+onValue(cartRef, function (snapshot) {
+  const cartData = snapshot.val();
+  
+  updateCart(cartData);
+});
 
-  // cartDropdownList.innerHTML = "";
-
+const updateCart = (cartData) => {
+  const cartDropdownList = document.querySelector('.cart-dropdown ul');
+  const emptyCartMessage = document.querySelector('.empty-cart-message');
+  cartDropdownList.innerHTML = "";
+  console.log(cartData)
   // removes empty cart message when cart contains items
-  if (cart.length > 0) {
-    emptyCartMessage.classList.add("make-invisible");
+  if (Object.keys(cartData).length > 0) {
+    emptyCartMessage.classList.add('make-invisible');
   }
 
-  cart.forEach((item) => {
+ for (let key in cartData) {
+    const newCartItem = document.createElement('li');
+    newCartItem.classList.add('full-cart');
+    const item = cartData[key];
     newCartItem.innerHTML = `
       <div class="arrows">
           <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
-          <p>1</p>
+          <p>${item.qty}</p>
           <img class=arrows src="./organic-project/assets/icons/chevron-down-outline.svg" alt="down arrow">
       </div>
-      <div class="product-image"></div>
+      <img class="product-image" src=${item.src} alt=${item.alt}/>
       <div class="cart-dropdown-info-container">
-          <h4>Description</h4>
-          <p class="price">$3.00</p>
+          <h4>${item.productName}</h4>
+          <p class="price">${item.price}</p>
       </div>
       <div class="cart-x">
           <div class="lines a"></div>
@@ -195,8 +216,9 @@ const addToCart = (cart) => {
       </div>
     `;
     cartDropdownList.append(newCartItem);
-  });
-};
+ }
+}
+
 // forEach has built in parameters (element, index, array etc...)
 // productButtons.forEach((button, index) => {
 //   button.onclick = (e) => {

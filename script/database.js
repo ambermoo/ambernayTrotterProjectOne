@@ -164,7 +164,6 @@ productGallery.addEventListener('click', function(e) {
       console.log(productSnapshot);
       productSnapshot.qty = 1;
       push(cartRef, productSnapshot);
-
     });
 
   // if (e.target.tagName === "BUTTON") {
@@ -184,31 +183,30 @@ onValue(cartRef, function (snapshot) {
   updateCart(cartData);
 });
 
-const displayToCart = (cartData) => {
+const updateCart = (cartData) => {
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
   const emptyCartMessage = document.querySelector('.empty-cart-message');
-  const newCartItem = document.createElement('li');
-  newCartItem.classList.add('full-cart');
-
-  // cartDropdownList.innerHTML = "";
-
+  cartDropdownList.innerHTML = "";
+  console.log(cartData)
   // removes empty cart message when cart contains items
-  if (cartData.length > 0) {
+  if (Object.keys(cartData).length > 0) {
     emptyCartMessage.classList.add('make-invisible');
   }
 
-  cartData.forEach((item) => {
-
+ for (let key in cartData) {
+    const newCartItem = document.createElement('li');
+    newCartItem.classList.add('full-cart');
+    const item = cartData[key];
     newCartItem.innerHTML = `
       <div class="arrows">
           <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
-          <p>1</p>
+          <p>${item.qty}</p>
           <img class=arrows src="./organic-project/assets/icons/chevron-down-outline.svg" alt="down arrow">
       </div>
-      <div class="product-image"></div>
+      <img class="product-image" src=${item.src} alt=${item.alt}/>
       <div class="cart-dropdown-info-container">
-          <h4>Description</h4>
-          <p class="price">$3.00</p>
+          <h4>${item.productName}</h4>
+          <p class="price">${item.price}</p>
       </div>
       <div class="cart-x">
           <div class="lines a"></div>
@@ -216,7 +214,7 @@ const displayToCart = (cartData) => {
       </div>
     `;
     cartDropdownList.append(newCartItem);
-  });
+ }
 }
 // forEach has built in parameters (element, index, array etc...)
 // productButtons.forEach((button, index) => {

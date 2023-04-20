@@ -11,16 +11,16 @@ const body = document.querySelector("body");
 const mainHeading = document.querySelector(".heading-image-container");
 
 // pop-up on scroll
-$(window).one("scroll", function () {
-  // checking window.ScrollY prevents popup glitch when returning from contact to blog section page
-  if (window.scrollY < 100) {
-    mainHeading.classList.toggle("make-invisible");
-    pointsPopup.classList.toggle("make-flex");
-    // lock screen (main styles.scss)
-    html.classList.toggle("stop-scrolling");
-    body.classList.toggle("stop-scrolling");
-  }
-});
+// $(window).one("scroll", function () {
+//   // checking window.ScrollY prevents popup glitch when returning from contact to blog section page
+//   if (window.scrollY < 100) {
+//     mainHeading.classList.toggle("make-invisible");
+//     pointsPopup.classList.toggle("make-flex");
+//     // lock screen (main styles.scss)
+//     html.classList.toggle("stop-scrolling");
+//     body.classList.toggle("stop-scrolling");
+//   }
+// });
 
 // close event
 const xDiv = document.querySelector(".x-div-container");

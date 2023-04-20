@@ -148,9 +148,7 @@ const displayItems = (stock) => {
   });
 };
 
-// #region - cart counter
-const cartCounter = document.querySelector(".item-num > p");
-let cartItemTotal = parseInt(cartCounter.textContent);
+const emptyCartMessage = document.querySelector('.empty-cart-message');
 
 productGallery.addEventListener("click", function (e) {
   // get parent list item from child button
@@ -162,7 +160,6 @@ productGallery.addEventListener("click", function (e) {
     get(selectedProductRef)
       .then((snapshot) => {
         const productData = snapshot.val();
-        console.log(productData);
         
         productData.qty = 1;
         push(cartRef, productData);
@@ -177,20 +174,27 @@ onValue(cartRef, function (snapshot) {
 });
 
 const updateCart = (cartData) => {
+ 
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
-  const emptyCartMessage = document.querySelector('.empty-cart-message');
+  
   cartDropdownList.innerHTML = "";
-  console.log(Object.keys(cartData));
-  // removes empty cart message when cart contains items
-  if (Object.keys(cartData).length > 0) {
+  
+  // removes empty cart message when cart exists and contains items
+  if (cartData && Object.keys(cartData).length > 0) {
     emptyCartMessage.classList.add('make-invisible');
+  }
+  // adds empty cart message back when when cart is empty
+  else{
+    emptyCartMessage.classList.remove('make-invisible');
   }
 
   let listItemIndex = 0;
+  // for cart totals
+  const qtyArray = [];
+  const costArray = [];
 
   for (let key in cartData) {
     const newCartItem = document.createElement('li');
-    // newCartItem.setAttribute('id', `${Object.keys(cartData)}`);
 
     newCartItem.classList.add('full-cart');
     const item = cartData[key];
@@ -215,7 +219,28 @@ const updateCart = (cartData) => {
       </div>
     `;
     cartDropdownList.append(newCartItem);
+
+    // for cart totals
+    const quantities = cartData[key].qty;
+    const prices = parseFloat((cartData[key].price));
+    qtyArray.push(quantities);
+    costArray.push(prices);
+    
  }
+  cartTotals(qtyArray, costArray);
+}
+
+const cartTotals = (qtyArray, costArray) => {
+  const cartCounter = document.querySelector(".item-num > p");
+  const totalCost = document.querySelector(".total-cost > p");
+  const subtotal = document.querySelector('.subtotal').lastElementChild;
+  console.log(subtotal);
+  const cartItemTotal = qtyArray.reduce((total, num) => { return total + num });
+  const cartCostTotal = costArray.reduce((total, num) => { return total + num });
+  cartCounter.textContent = cartItemTotal;
+  totalCost.textContent = "$" + cartCostTotal.toFixed(2);
+  subtotal.textContent = "$" + cartCostTotal.toFixed(2);
+
 }
 
 /* #region - cart item removal */
@@ -225,21 +250,16 @@ const cartDropdownList = document.querySelector('.cart-dropdown-list');
 
 const removeCartItem = (e) => {
   let clickedElement = e.target;
-  console.log(clickedElement);
- 
+  // runs only when X is clicked
   if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
-    // const productToDeleteRef = ref(myDatabase, `/cart/${clickedElement}`); 
-    // console.log(productToDeleteRef);
-  
+    // gets parent div IF child is clicked
     clickedElement = clickedElement.closest('.cart-x');
     const nodeToDelete = ref(myDatabase, `/cart/${clickedElement.id}`);
-    console.log(nodeToDelete);
+
     remove(nodeToDelete);
   }
-
 }
 cartDropdownList.addEventListener("click", removeCartItem);
 
-
 /* #endregion - cart item removal */
-// #endregion - cart counter
+

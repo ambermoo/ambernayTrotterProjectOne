@@ -7,6 +7,7 @@ import {
   onValue,
   get,
   push,
+  remove
 } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 const myDatabase = getDatabase(app);
@@ -149,24 +150,22 @@ const displayItems = (stock) => {
 
 // #region - cart counter
 const cartCounter = document.querySelector(".item-num > p");
-// get product buttons
-const productButtons = document.querySelectorAll(".product-link > button");
 let cartItemTotal = parseInt(cartCounter.textContent);
 
 productGallery.addEventListener("click", function (e) {
   // get parent list item from child button
   
   if (e.target.tagName === "BUTTON") {
-    const chosenProduct = e.target.closest('li');
     const chosenProductIndex = e.target.attributes.dataindex.value;
     const selectedProductRef = ref(myDatabase, `/inventory/${chosenProductIndex}`); 
 
     get(selectedProductRef)
       .then((snapshot) => {
-        const productSnapshot = snapshot.val();
-        console.log(productSnapshot);
-        productSnapshot.qty = 1;
-        push(cartRef, productSnapshot);
+        const productData = snapshot.val();
+        console.log(productData);
+        
+        productData.qty = 1;
+        push(cartRef, productData);
       });
   }
 });
@@ -181,16 +180,24 @@ const updateCart = (cartData) => {
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
   const emptyCartMessage = document.querySelector('.empty-cart-message');
   cartDropdownList.innerHTML = "";
-  console.log(cartData)
+  console.log(Object.keys(cartData));
   // removes empty cart message when cart contains items
   if (Object.keys(cartData).length > 0) {
     emptyCartMessage.classList.add('make-invisible');
   }
 
- for (let key in cartData) {
+  let listItemIndex = 0;
+
+  for (let key in cartData) {
     const newCartItem = document.createElement('li');
+    // newCartItem.setAttribute('id', `${Object.keys(cartData)}`);
+
     newCartItem.classList.add('full-cart');
     const item = cartData[key];
+    
+    const uniqueId = Object.keys(cartData)[listItemIndex];
+    listItemIndex += 1;
+
     newCartItem.innerHTML = `
       <div class="arrows">
           <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
@@ -202,7 +209,7 @@ const updateCart = (cartData) => {
           <h4>${item.productName}</h4>
           <p class="price">${item.price}</p>
       </div>
-      <div class="cart-x">
+      <div id=${uniqueId} class="cart-x">
           <div class="lines a"></div>
           <div class="lines b"></div>
       </div>
@@ -212,18 +219,27 @@ const updateCart = (cartData) => {
 }
 
 /* #region - cart item removal */
-const removeCartItem = () => {
-  console.log()
-}
-/* #endregion - cart item removal */
+const cartDropdownList = document.querySelector('.cart-dropdown-list');
 
-// forEach has built in parameters (element, index, array etc...)
-// productButtons.forEach((button, index) => {
-//   button.onclick = (e) => {
-//     // add to cart item counter with each click
-//     cartItemTotal += 1;
-//     cartCounter.textContent = cartItemTotal;
-//     // console.log("You clicked button number " + index);
-//   };
-// });
+// const deletedCartItem = cartRemoveButton.parentElement;
+
+const removeCartItem = (e) => {
+  let clickedElement = e.target;
+  console.log(clickedElement);
+ 
+  if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
+    // const productToDeleteRef = ref(myDatabase, `/cart/${clickedElement}`); 
+    // console.log(productToDeleteRef);
+  
+    clickedElement = clickedElement.closest('.cart-x');
+    const nodeToDelete = ref(myDatabase, `/cart/${clickedElement.id}`);
+    console.log(nodeToDelete);
+    remove(nodeToDelete);
+  }
+
+}
+cartDropdownList.addEventListener("click", removeCartItem);
+
+
+/* #endregion - cart item removal */
 // #endregion - cart counter

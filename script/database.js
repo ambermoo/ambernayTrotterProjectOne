@@ -19,14 +19,15 @@ const addToDatabase = (key, value) => {
 };
 
 // DATA SECTION
-const cheapPrice = () => parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
+export const cheapPrice = () =>
+  parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
 const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 
-export const totalInventory = [
+const totalInventory = [
   {
     productName: "Tomatoes",
     id: 0,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product1.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -34,7 +35,7 @@ export const totalInventory = [
   {
     productName: "Lime",
     id: 1,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product2.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -42,7 +43,7 @@ export const totalInventory = [
   {
     productName: "Organic Eggplant",
     id: 2,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product3.jpeg",
     price: expPrice(),
     type: "$$",
@@ -50,7 +51,7 @@ export const totalInventory = [
   {
     productName: "Cucumber",
     id: 3,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product4.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -58,7 +59,7 @@ export const totalInventory = [
   {
     productName: "Organic Peas",
     id: 4,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product5.jpeg",
     price: expPrice(),
     type: "$$",
@@ -66,7 +67,7 @@ export const totalInventory = [
   {
     productName: "Lettuce",
     id: 5,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product6.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -74,7 +75,7 @@ export const totalInventory = [
   {
     productName: "Cabbage",
     id: 6,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product7.jpeg",
     price: cheapPrice(),
     type: "$",
@@ -82,7 +83,7 @@ export const totalInventory = [
   {
     productName: "Organic Lettuce",
     id: 7,
-    qty: 1,
+    qty: 0,
     src: "./organic-project/assets/product8.jpeg",
     price: expPrice(),
     type: "$$",
@@ -98,10 +99,13 @@ const cart = [];
 // console.log(cart);
 
 // Importing data from Firebase
+
+// created a global variable to store inventory data from firebase
+let inventory;
 onValue(dbRef, function (snapshot) {
   const ourData = snapshot.val();
   // storing the data in inventory variable
-  const inventory = ourData.inventory;
+  inventory = ourData.inventory;
   displayItems(inventory);
 });
 
@@ -109,7 +113,6 @@ onValue(dbRef, function (snapshot) {
 const productGallery = document.querySelector(".inventory");
 
 const displayItems = (stock) => {
-  
   productGallery.innerHTML = "";
 
   stock.forEach((item) => {
@@ -146,10 +149,9 @@ const cartCounter = document.querySelector(".item-num > p");
 const productButtons = document.querySelectorAll(".product-link > button");
 let cartItemTotal = parseInt(cartCounter.textContent);
 
-
-productGallery.addEventListener('click', function(e) {
+productGallery.addEventListener("click", function (e) {
   // get parent list item from child button
-  const chosenProduct = e.target.closest('li');
+  const chosenProduct = e.target.closest("li");
 
   if (e.target.tagName === "BUTTON") {
     // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
@@ -163,20 +165,19 @@ productGallery.addEventListener('click', function(e) {
 });
 
 const addToCart = (cart) => {
-  const cartDropdownList = document.querySelector('.cart-dropdown ul');
-  const emptyCartMessage = document.querySelector('.empty-cart-message');
-  const newCartItem = document.createElement('li');
-  newCartItem.classList.add('full-cart');
+  const cartDropdownList = document.querySelector(".cart-dropdown ul");
+  const emptyCartMessage = document.querySelector(".empty-cart-message");
+  const newCartItem = document.createElement("li");
+  newCartItem.classList.add("full-cart");
 
   // cartDropdownList.innerHTML = "";
 
   // removes empty cart message when cart contains items
   if (cart.length > 0) {
-    emptyCartMessage.classList.add('make-invisible');
+    emptyCartMessage.classList.add("make-invisible");
   }
 
   cart.forEach((item) => {
-
     newCartItem.innerHTML = `
       <div class="arrows">
           <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
@@ -195,7 +196,7 @@ const addToCart = (cart) => {
     `;
     cartDropdownList.append(newCartItem);
   });
-}
+};
 // forEach has built in parameters (element, index, array etc...)
 // productButtons.forEach((button, index) => {
 //   button.onclick = (e) => {

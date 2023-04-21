@@ -7,6 +7,7 @@ import {
   onValue,
   get,
   push,
+  update,
   remove
 } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
@@ -95,13 +96,11 @@ const totalInventory = [
   },
 ];
 
-const cart = [];
 // adding the inventory to database
 // addToDatabase("inventory", totalInventory);
 
 // adding cart to data
 // addToDatabase("cart", cart);
-// console.log(cart);
 
 // Importing data from Firebase
 
@@ -203,10 +202,10 @@ const updateCart = (cartData) => {
     listItemIndex += 1;
 
     newCartItem.innerHTML = `
-      <div class="arrows">
-          <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
+      <div class="arrows" id=${uniqueId}>
+          <image class="arrows up" src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
           <p>${item.qty}</p>
-          <img class=arrows src="./organic-project/assets/icons/chevron-down-outline.svg" alt="down arrow">
+          <img class="arrows down" src="./organic-project/assets/icons/chevron-down-outline.svg" alt="down arrow">
       </div>
       <img class="product-image" src=${item.src} alt=${item.alt}/>
       <div class="cart-dropdown-info-container">
@@ -234,32 +233,70 @@ const cartTotals = (qtyArray, costArray) => {
   const cartCounter = document.querySelector(".item-num > p");
   const totalCost = document.querySelector(".total-cost > p");
   const subtotal = document.querySelector('.subtotal').lastElementChild;
-  console.log(subtotal);
+
   const cartItemTotal = qtyArray.reduce((total, num) => { return total + num });
   const cartCostTotal = costArray.reduce((total, num) => { return total + num });
   cartCounter.textContent = cartItemTotal;
   totalCost.textContent = "$" + cartCostTotal.toFixed(2);
   subtotal.textContent = "$" + cartCostTotal.toFixed(2);
-
 }
+
+/* #region - cart arrows */
+
+const cartArrows = (clickedElement) => {
+  const qtyToChangeId = clickedElement.parentElement.id;
+  const qtyToChangeRef = ref(myDatabase, `/cart/${qtyToChangeId}`); 
+
+  get(qtyToChangeRef)
+    .then((snapshot) => {
+      const cartItemData = snapshot.val();
+
+      if (clickedElement.classList[1] === 'up') {
+        const changeQty = {
+          qty: cartItemData.qty += 1
+        }
+        
+        return update(qtyToChangeRef, changeQty);
+      }
+      else if (clickedElement.classList[1] === 'down') {
+        const changeQty = {
+          qty: cartItemData.qty -= 1
+        }
+        return update(qtyToChangeRef, changeQty);
+      }
+    });
+}
+
+// arrows.addEventListener('click', cartArrows);
+/* #endregion - cart arrows */
 
 /* #region - cart item removal */
 const cartDropdownList = document.querySelector('.cart-dropdown-list');
 
-// const deletedCartItem = cartRemoveButton.parentElement;
-
-const removeCartItem = (e) => {
-  let clickedElement = e.target;
+const removeCartItem = (clickedElement) => {
+  // let clickedElement = e.target;
   // runs only when X is clicked
-  if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
+  // if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
     // gets parent div IF child is clicked
     clickedElement = clickedElement.closest('.cart-x');
     const nodeToDelete = ref(myDatabase, `/cart/${clickedElement.id}`);
 
     remove(nodeToDelete);
-  }
+  // }
 }
-cartDropdownList.addEventListener("click", removeCartItem);
+const manageCartButtons = (e) => {
+  let clickedElement = e.target;
+  // if element or child element is clicked
+  if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
+    removeCartItem(clickedElement);
+  }
+  // gets first className of element
+  else if (clickedElement.classList[0] === 'arrows') {
+    cartArrows(clickedElement);
+  }
+
+}
+cartDropdownList.addEventListener("click", manageCartButtons);
 
 /* #endregion - cart item removal */
 

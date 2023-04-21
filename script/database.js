@@ -12,7 +12,7 @@ import {
 
 const myDatabase = getDatabase(app);
 // should not be called dbRef
-const dbRef = ref(myDatabase);
+// const dbRef = ref(myDatabase);
 const cartRef = ref(myDatabase, '/cart');
 const inventoryRef = ref(myDatabase, '/inventory');
 
@@ -28,76 +28,73 @@ export const cheapPrice = () =>
   parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
 const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 
-const totalInventory = [
-  {
-    productName: 'Tomatoes',
-    id: 0,
-    qty: 0,
-    src: './organic-project/assets/product1.jpeg',
-    price: cheapPrice(),
-    type: '$',
-  },
-  {
-    productName: 'Lime',
-    id: 1,
-    qty: 0,
-    src: './organic-project/assets/product2.jpeg',
-    price: cheapPrice(),
-    type: '$',
-  },
-  {
-    productName: 'Organic Eggplant',
-    id: 2,
-    qty: 0,
-    src: './organic-project/assets/product3.jpeg',
-    price: expPrice(),
-    type: '$$',
-  },
-  {
-    productName: 'Cucumber',
-    id: 3,
-    qty: 0,
-    src: './organic-project/assets/product4.jpeg',
-    price: cheapPrice(),
-    type: '$',
-  },
-  {
-    productName: 'Organic Peas',
-    id: 4,
-    qty: 0,
-    src: './organic-project/assets/product5.jpeg',
-    price: expPrice(),
-    type: '$$',
-  },
-  {
-    productName: 'Lettuce',
-    id: 5,
-    qty: 0,
-    src: './organic-project/assets/product6.jpeg',
-    price: cheapPrice(),
-    type: '$',
-  },
-  {
-    productName: 'Cabbage',
-    id: 6,
-    qty: 0,
-    src: './organic-project/assets/product7.jpeg',
-    price: cheapPrice(),
-    type: '$',
-  },
-  {
-    productName: 'Organic Lettuce',
-    id: 7,
-    qty: 0,
-    src: './organic-project/assets/product8.jpeg',
-    price: expPrice(),
-    type: '$$',
-  },
-];
+// const totalInventory = [
+//   {
+//     productName: 'Tomatoes',
+//     id: 0,
+//     qty: 1,
+//     src: './organic-project/assets/product1.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Lime',
+//     id: 1,
+//     qty: 1,
+//     src: './organic-project/assets/product2.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Organic Eggplant',
+//     id: 2,
+//     qty: 1,
+//     src: './organic-project/assets/product3.jpeg',
+//     price: expPrice(),
+//   },
+//   {
+//     productName: 'Cucumber',
+//     id: 3,
+//     qty: 1,
+//     src: './organic-project/assets/product4.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Organic Peas',
+//     id: 4,
+//     qty: 1,
+//     src: './organic-project/assets/product5.jpeg',
+//     price: expPrice(),
+//   },
+//   {
+//     productName: 'Lettuce',
+//     id: 5,
+//     qty: 1,
+//     src: './organic-project/assets/product6.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Cabbage',
+//     id: 6,
+//     qty: 1,
+//     src: './organic-project/assets/product7.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Organic Lettuce',
+//     id: 7,
+//     qty: 1,
+//     src: './organic-project/assets/product8.jpeg',
+//     price: expPrice(),
+//   },
+// ];
 
+// for (let i = 0; i <= 7; i++) {
+//   totalInventory[i].base = totalInventory[i].price;
+// }
+
+console.log('booooooooooom');
 const cart = [];
 // adding the inventory to database
-// addToDatabase("inventory", totalInventory);
+// addToDatabase('inventory', totalInventory);
 
 // adding cart to data
 // addToDatabase("cart", cart);
@@ -105,12 +102,10 @@ const cart = [];
 
 // Importing data from Firebase
 
-// created a global variable to store inventory data from firebase
-
-onValue(dbRef, function (snapshot) {
+onValue(inventoryRef, function (snapshot) {
   const ourData = snapshot.val();
   // storing the data in inventory variable
-  const inventory = ourData.inventory;
+  const inventory = ourData;
   displayItems(inventory);
 });
 
@@ -149,38 +144,24 @@ const displayItems = (stock) => {
 };
 
 const emptyCartMessage = document.querySelector('.empty-cart-message');
-// #region - cart counter
-const cartCounter = document.querySelector('.item-num > p');
-// get product buttons
-const productButtons = document.querySelectorAll('.product-link > button');
-let cartItemTotal = parseInt(cartCounter.textContent);
 
 productGallery.addEventListener('click', function (e) {
   // get parent list item from child button
-  const chosenProduct = e.target.closest('li');
-  const chosenProductIndex = e.target.attributes.dataindex.value;
 
-  const selectedProductRef = ref(
-    myDatabase,
-    `/inventory/${chosenProductIndex}`
-  );
+  if (e.target.tagName === 'BUTTON') {
+    const chosenProductIndex = e.target.attributes.dataindex.value;
+    const selectedProductRef = ref(
+      myDatabase,
+      `/inventory/${chosenProductIndex}`
+    );
 
-  get(selectedProductRef).then((snapshot) => {
-    const productSnapshot = snapshot.val();
-    console.log(productSnapshot);
-    productSnapshot.qty = 1;
-    push(cartRef, productSnapshot);
-  });
+    get(selectedProductRef).then((snapshot) => {
+      const productData = snapshot.val();
 
-  // if (e.target.tagName === "BUTTON") {
-  //   // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
-  //   cart.push(chosenProduct);
-
-  //   const chosenProductObject = totalInventory[chosenProductIndex];
-  //   console.log(chosenProductObject);
-  //   // add elements
-  //   addToCart(cart);
-  // }
+      productData.qty = 1;
+      push(cartRef, productData);
+    });
+  }
 });
 
 onValue(cartRef, function (snapshot) {
@@ -191,22 +172,33 @@ onValue(cartRef, function (snapshot) {
 
 const updateCart = (cartData) => {
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
-  const emptyCartMessage = document.querySelector('.empty-cart-message');
-  cartDropdownList.innerHTML = '';
-  // console.log(cartData);
 
-  // removes empty cart message when cart contains items
-  if (Object.keys(cartData).length > 0) {
+  cartDropdownList.innerHTML = '';
+
+  // removes empty cart message when cart exists and contains items
+  if (cartData && Object.keys(cartData).length > 0) {
     emptyCartMessage.classList.add('make-invisible');
   }
+  // adds empty cart message back when when cart is empty
+  else {
+    emptyCartMessage.classList.remove('make-invisible');
+  }
+
+  let listItemIndex = 0;
+  // for cart totals
+  const qtyArray = [];
+  const costArray = [];
 
   for (let key in cartData) {
-    for (let key in cartData) {
-      const newCartItem = document.createElement('li');
+    const newCartItem = document.createElement('li');
 
-      newCartItem.classList.add('full-cart');
-      const item = cartData[key];
-      newCartItem.innerHTML = `
+    newCartItem.classList.add('full-cart');
+    const item = cartData[key];
+
+    const uniqueId = Object.keys(cartData)[listItemIndex];
+    listItemIndex += 1;
+
+    newCartItem.innerHTML = `
       <div class="arrows">
           <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
           <p>${item.qty}</p>
@@ -222,21 +214,55 @@ const updateCart = (cartData) => {
           <div class="lines b"></div>
       </div>
     `;
-      cartDropdownList.append(newCartItem);
-    }
+    cartDropdownList.append(newCartItem);
+
+    // for cart totals
+    const quantities = cartData[key].qty;
+    const prices = parseFloat(cartData[key].price);
+    qtyArray.push(quantities);
+    costArray.push(prices);
   }
+  cartTotals(qtyArray, costArray);
 };
 
-// forEach has built in parameters (element, index, array etc...)
-// productButtons.forEach((button, index) => {
-//   button.onclick = (e) => {
-//     // add to cart item counter with each click
-//     cartItemTotal += 1;
-//     cartCounter.textContent = cartItemTotal;
-//     // console.log("You clicked button number " + index);
-//   };
-// });
-// #endregion - cart counter
+const cartTotals = (qtyArray, costArray) => {
+  const cartCounter = document.querySelector('.item-num > p');
+  const totalCost = document.querySelector('.total-cost > p');
+  const subtotal = document.querySelector('.subtotal').lastElementChild;
+  // console.log(subtotal);
+  const cartItemTotal = qtyArray.reduce((total, num) => {
+    return total + num;
+  });
+  const cartCostTotal = costArray.reduce((total, num) => {
+    return total + num;
+  });
+  cartCounter.textContent = cartItemTotal;
+  totalCost.textContent = '$' + cartCostTotal.toFixed(2);
+  subtotal.textContent = '$' + cartCostTotal.toFixed(2);
+};
+
+/* #region - cart item removal */
+const cartDropdownList = document.querySelector('.cart-dropdown-list');
+
+// const deletedCartItem = cartRemoveButton.parentElement;
+
+const removeCartItem = (e) => {
+  let clickedElement = e.target;
+  // runs only when X is clicked
+  if (
+    clickedElement.className === 'cart-x' ||
+    clickedElement.parentElement.className === 'cart-x'
+  ) {
+    // gets parent div IF child is clicked
+    clickedElement = clickedElement.closest('.cart-x');
+    const nodeToDelete = ref(myDatabase, `/cart/${clickedElement.id}`);
+
+    remove(nodeToDelete);
+  }
+};
+cartDropdownList.addEventListener('click', removeCartItem);
+
+/* #endregion - cart item removal */
 
 // Search bar implementation
 
@@ -317,44 +343,39 @@ resetInput.addEventListener('click', function (e) {
   btnFilter.value = 'default';
 });
 
-// filter the
+// filter the Product Section
 const btnFilter = document.querySelector('#filter');
 // resetting the filter at every refresh
 btnFilter.value = 'default';
 
 // price up function
 const priceUp = (stock) => {
-  console.log(stock);
   stock.sort(function (a, b) {
     return b.price - a.price;
   });
-  console.log(stock);
   displayItems(stock);
 };
 
 // price up function
 const priceDown = (stock) => {
-  console.log(stock);
   stock.sort(function (a, b) {
     return a.price - b.price;
   });
-  console.log(stock);
   displayItems(stock);
 };
 
 // bestselling function
 const bestSelling = (stock) => {
-  console.log(stock);
   stock.sort(function (a, b) {
     return Math.random() - 0.5;
   });
-  console.log(stock);
+
   displayItems(stock);
 };
 
 btnFilter.addEventListener('change', function () {
   const value = this.value;
-  console.log(value);
+
   get(inventoryRef).then((snapshot) => {
     const stock = snapshot.val();
     // sending the stock and search value to the search function

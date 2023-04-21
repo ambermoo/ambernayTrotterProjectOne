@@ -304,6 +304,8 @@ const manageCartButtons = (e) => {
     // function to change item quantity
     cartArrows(clickedElement);
   }
+}
+
 cartDropdownList.addEventListener('click', manageCartButtons);
 
 /* #endregion - cart item removal */

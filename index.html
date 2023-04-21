@@ -218,6 +218,26 @@
               praesentium obcaecati nesciunt voluptas placeat fugit nam at.
             </p>
           </div>
+          <div class="product__searchbox">
+            <form>
+              <input
+                type="search"
+                id="search"
+                data-search
+                placeholder="Enter product here"
+                aria-label="Search through the product list"
+              />
+              <button class="product__search">Search</button>
+              <button class="product__reset">reset</button>
+
+              <select name="filter" id="filter">
+                <option value="default">Filter</option>
+                <option value="price-up">Price Up</option>
+                <option value="price-down">Price Down</option>
+                <option value="bestselling">Bestselling</option>
+              </select>
+            </form>
+          </div>
 
           <!-- #region - product gallery -->
           <div class="product-gallery-container">
@@ -548,7 +568,7 @@
       <!-- wrapper -->
     </footer>
 
-<!-- head -->
+    <!-- head -->
     <script src="./script/script.js" type="module"></script>
   </body>
 </html>

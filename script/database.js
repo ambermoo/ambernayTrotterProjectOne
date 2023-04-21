@@ -1,4 +1,4 @@
-import app from "./firebase-config.js";
+import app from './firebase-config.js';
 
 import {
   getDatabase,
@@ -7,12 +7,12 @@ import {
   onValue,
   get,
   push,
-  remove
-} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+  remove,
+} from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
 
 const myDatabase = getDatabase(app);
 // should not be called dbRef
-const dbRef = ref(myDatabase);
+// const dbRef = ref(myDatabase);
 const cartRef = ref(myDatabase, '/cart');
 const inventoryRef = ref(myDatabase, '/inventory');
 
@@ -28,76 +28,73 @@ export const cheapPrice = () =>
   parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
 const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 
-const totalInventory = [
-  {
-    productName: "Tomatoes",
-    id: 0,
-    qty: 0,
-    src: "./organic-project/assets/product1.jpeg",
-    price: cheapPrice(),
-    type: "$",
-  },
-  {
-    productName: "Lime",
-    id: 1,
-    qty: 0,
-    src: "./organic-project/assets/product2.jpeg",
-    price: cheapPrice(),
-    type: "$",
-  },
-  {
-    productName: "Organic Eggplant",
-    id: 2,
-    qty: 0,
-    src: "./organic-project/assets/product3.jpeg",
-    price: expPrice(),
-    type: "$$",
-  },
-  {
-    productName: "Cucumber",
-    id: 3,
-    qty: 0,
-    src: "./organic-project/assets/product4.jpeg",
-    price: cheapPrice(),
-    type: "$",
-  },
-  {
-    productName: "Organic Peas",
-    id: 4,
-    qty: 0,
-    src: "./organic-project/assets/product5.jpeg",
-    price: expPrice(),
-    type: "$$",
-  },
-  {
-    productName: "Lettuce",
-    id: 5,
-    qty: 0,
-    src: "./organic-project/assets/product6.jpeg",
-    price: cheapPrice(),
-    type: "$",
-  },
-  {
-    productName: "Cabbage",
-    id: 6,
-    qty: 0,
-    src: "./organic-project/assets/product7.jpeg",
-    price: cheapPrice(),
-    type: "$",
-  },
-  {
-    productName: "Organic Lettuce",
-    id: 7,
-    qty: 0,
-    src: "./organic-project/assets/product8.jpeg",
-    price: expPrice(),
-    type: "$$",
-  },
-];
+// const totalInventory = [
+//   {
+//     productName: 'Tomatoes',
+//     id: 0,
+//     qty: 1,
+//     src: './organic-project/assets/product1.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Lime',
+//     id: 1,
+//     qty: 1,
+//     src: './organic-project/assets/product2.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Organic Eggplant',
+//     id: 2,
+//     qty: 1,
+//     src: './organic-project/assets/product3.jpeg',
+//     price: expPrice(),
+//   },
+//   {
+//     productName: 'Cucumber',
+//     id: 3,
+//     qty: 1,
+//     src: './organic-project/assets/product4.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Organic Peas',
+//     id: 4,
+//     qty: 1,
+//     src: './organic-project/assets/product5.jpeg',
+//     price: expPrice(),
+//   },
+//   {
+//     productName: 'Lettuce',
+//     id: 5,
+//     qty: 1,
+//     src: './organic-project/assets/product6.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Cabbage',
+//     id: 6,
+//     qty: 1,
+//     src: './organic-project/assets/product7.jpeg',
+//     price: cheapPrice(),
+//   },
+//   {
+//     productName: 'Organic Lettuce',
+//     id: 7,
+//     qty: 1,
+//     src: './organic-project/assets/product8.jpeg',
+//     price: expPrice(),
+//   },
+// ];
 
+// for (let i = 0; i <= 7; i++) {
+//   totalInventory[i].base = totalInventory[i].price;
+// }
+
+console.log('booooooooooom');
 const cart = [];
 // adding the inventory to database
-// addToDatabase("inventory", totalInventory);
+// addToDatabase('inventory', totalInventory);
 
 // adding cart to data
 // addToDatabase("cart", cart);
@@ -105,23 +102,21 @@ const cart = [];
 
 // Importing data from Firebase
 
-// created a global variable to store inventory data from firebase
-let inventory;
-onValue(dbRef, function (snapshot) {
+onValue(inventoryRef, function (snapshot) {
   const ourData = snapshot.val();
   // storing the data in inventory variable
-  inventory = ourData.inventory;
+  const inventory = ourData;
   displayItems(inventory);
 });
 
 // Function to Display the items on the page
-const productGallery = document.querySelector(".inventory");
+const productGallery = document.querySelector('.inventory');
 
 const displayItems = (stock) => {
-  productGallery.innerHTML = "";
+  productGallery.innerHTML = '';
 
   stock.forEach((item) => {
-    const newListItem = document.createElement("li");
+    const newListItem = document.createElement('li');
     newListItem.innerHTML = `
     <img
         src= ${item.src}
@@ -150,41 +145,42 @@ const displayItems = (stock) => {
 
 const emptyCartMessage = document.querySelector('.empty-cart-message');
 
-productGallery.addEventListener("click", function (e) {
+productGallery.addEventListener('click', function (e) {
   // get parent list item from child button
-  
-  if (e.target.tagName === "BUTTON") {
-    const chosenProductIndex = e.target.attributes.dataindex.value;
-    const selectedProductRef = ref(myDatabase, `/inventory/${chosenProductIndex}`); 
 
-    get(selectedProductRef)
-      .then((snapshot) => {
-        const productData = snapshot.val();
-        
-        productData.qty = 1;
-        push(cartRef, productData);
-      });
+  if (e.target.tagName === 'BUTTON') {
+    const chosenProductIndex = e.target.attributes.dataindex.value;
+    const selectedProductRef = ref(
+      myDatabase,
+      `/inventory/${chosenProductIndex}`
+    );
+
+    get(selectedProductRef).then((snapshot) => {
+      const productData = snapshot.val();
+
+      productData.qty = 1;
+      push(cartRef, productData);
+    });
   }
 });
 
 onValue(cartRef, function (snapshot) {
   const cartData = snapshot.val();
-  
+
   updateCart(cartData);
 });
 
 const updateCart = (cartData) => {
- 
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
-  
-  cartDropdownList.innerHTML = "";
-  
+
+  cartDropdownList.innerHTML = '';
+
   // removes empty cart message when cart exists and contains items
   if (cartData && Object.keys(cartData).length > 0) {
     emptyCartMessage.classList.add('make-invisible');
   }
   // adds empty cart message back when when cart is empty
-  else{
+  else {
     emptyCartMessage.classList.remove('make-invisible');
   }
 
@@ -198,7 +194,7 @@ const updateCart = (cartData) => {
 
     newCartItem.classList.add('full-cart');
     const item = cartData[key];
-    
+
     const uniqueId = Object.keys(cartData)[listItemIndex];
     listItemIndex += 1;
 
@@ -222,26 +218,28 @@ const updateCart = (cartData) => {
 
     // for cart totals
     const quantities = cartData[key].qty;
-    const prices = parseFloat((cartData[key].price));
+    const prices = parseFloat(cartData[key].price);
     qtyArray.push(quantities);
     costArray.push(prices);
-    
- }
+  }
   cartTotals(qtyArray, costArray);
-}
+};
 
 const cartTotals = (qtyArray, costArray) => {
-  const cartCounter = document.querySelector(".item-num > p");
-  const totalCost = document.querySelector(".total-cost > p");
+  const cartCounter = document.querySelector('.item-num > p');
+  const totalCost = document.querySelector('.total-cost > p');
   const subtotal = document.querySelector('.subtotal').lastElementChild;
-  console.log(subtotal);
-  const cartItemTotal = qtyArray.reduce((total, num) => { return total + num });
-  const cartCostTotal = costArray.reduce((total, num) => { return total + num });
+  // console.log(subtotal);
+  const cartItemTotal = qtyArray.reduce((total, num) => {
+    return total + num;
+  });
+  const cartCostTotal = costArray.reduce((total, num) => {
+    return total + num;
+  });
   cartCounter.textContent = cartItemTotal;
-  totalCost.textContent = "$" + cartCostTotal.toFixed(2);
-  subtotal.textContent = "$" + cartCostTotal.toFixed(2);
-
-}
+  totalCost.textContent = '$' + cartCostTotal.toFixed(2);
+  subtotal.textContent = '$' + cartCostTotal.toFixed(2);
+};
 
 /* #region - cart item removal */
 const cartDropdownList = document.querySelector('.cart-dropdown-list');
@@ -251,15 +249,144 @@ const cartDropdownList = document.querySelector('.cart-dropdown-list');
 const removeCartItem = (e) => {
   let clickedElement = e.target;
   // runs only when X is clicked
-  if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
+  if (
+    clickedElement.className === 'cart-x' ||
+    clickedElement.parentElement.className === 'cart-x'
+  ) {
     // gets parent div IF child is clicked
     clickedElement = clickedElement.closest('.cart-x');
     const nodeToDelete = ref(myDatabase, `/cart/${clickedElement.id}`);
 
     remove(nodeToDelete);
   }
-}
-cartDropdownList.addEventListener("click", removeCartItem);
+};
+cartDropdownList.addEventListener('click', removeCartItem);
 
 /* #endregion - cart item removal */
 
+// Search bar implementation
+
+const btnSearch = document.querySelector('.product__search');
+const searchInput = document.querySelector('[data-search]');
+const resetInput = document.querySelector('.product__reset');
+
+// search function
+const searchFunction = (stock, value) => {
+  console.log(stock);
+  // console.log(value);
+  let counter = 0;
+  productGallery.innerHTML = '';
+  stock.forEach((item, i) => {
+    if (item.productName.toLowerCase().includes(value.trim().toLowerCase())) {
+      console.log('true', stock[i]);
+
+      const newListItem = document.createElement('li');
+      newListItem.innerHTML = `
+      <div class="product__box"> 
+      <img 
+          src= ${stock[i].src}
+          alt="Image of ${stock[i].productName}"
+        />
+        <div class="text-container">
+          <div class="info-container">
+            <h4>${stock[i].productName}</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <p class="price">$${stock[i].price}</p>
+
+          </div>
+
+          <!-- Cart Button -->
+          <div class="link-container product-link">
+            <button tabindex="0" dataindex="${stock[i].id}">Add To Cart</button>
+          </div>
+        </div>
+        </div>
+      `;
+      productGallery.appendChild(newListItem);
+      counter++;
+    }
+  });
+  if (counter === 0) {
+    const newListItem = document.createElement('li');
+    newListItem.innerHTML = `<h2>Sorry Product not found. Try again ! </h2>`;
+    productGallery.appendChild(newListItem);
+  }
+};
+
+// intitiates the event by getting the snapshot from firebase
+btnSearch.addEventListener('click', function (e) {
+  e.preventDefault();
+  // extracting search input value
+  const value = searchInput.value;
+
+  get(inventoryRef).then((snapshot) => {
+    const stock = snapshot.val();
+    // sending the stock and search value to the search function
+    searchFunction(stock, value);
+  });
+  // clearing the input field
+  searchInput.value = '';
+});
+
+resetInput.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  get(inventoryRef).then((snapshot) => {
+    const stock = snapshot.val();
+    // using displayItems function to reset
+    displayItems(stock);
+  });
+  // clearing the input field
+  searchInput.value = '';
+  btnFilter.value = 'default';
+});
+
+// filter the Product Section
+const btnFilter = document.querySelector('#filter');
+// resetting the filter at every refresh
+btnFilter.value = 'default';
+
+// price up function
+const priceUp = (stock) => {
+  stock.sort(function (a, b) {
+    return b.price - a.price;
+  });
+  displayItems(stock);
+};
+
+// price up function
+const priceDown = (stock) => {
+  stock.sort(function (a, b) {
+    return a.price - b.price;
+  });
+  displayItems(stock);
+};
+
+// bestselling function
+const bestSelling = (stock) => {
+  stock.sort(function (a, b) {
+    return Math.random() - 0.5;
+  });
+
+  displayItems(stock);
+};
+
+btnFilter.addEventListener('change', function () {
+  const value = this.value;
+
+  get(inventoryRef).then((snapshot) => {
+    const stock = snapshot.val();
+    // sending the stock and search value to the search function
+    if (value === 'price-up') {
+      priceUp(stock);
+    } else if (value === 'price-down') {
+      priceDown(stock);
+    } else if (value === 'bestselling') {
+      bestSelling(stock);
+    } else {
+      displayItems(stock);
+    }
+  });
+});

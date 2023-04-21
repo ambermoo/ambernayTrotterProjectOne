@@ -7,6 +7,7 @@ import {
   onValue,
   get,
   push,
+  remove,
 } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
 
 const myDatabase = getDatabase(app);
@@ -147,6 +148,7 @@ const displayItems = (stock) => {
   });
 };
 
+const emptyCartMessage = document.querySelector('.empty-cart-message');
 // #region - cart counter
 const cartCounter = document.querySelector('.item-num > p');
 // get product buttons
@@ -199,10 +201,12 @@ const updateCart = (cartData) => {
   }
 
   for (let key in cartData) {
-    const newCartItem = document.createElement('li');
-    newCartItem.classList.add('full-cart');
-    const item = cartData[key];
-    newCartItem.innerHTML = `
+    for (let key in cartData) {
+      const newCartItem = document.createElement('li');
+
+      newCartItem.classList.add('full-cart');
+      const item = cartData[key];
+      newCartItem.innerHTML = `
       <div class="arrows">
           <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
           <p>${item.qty}</p>
@@ -213,12 +217,13 @@ const updateCart = (cartData) => {
           <h4>${item.productName}</h4>
           <p class="price">${item.price}</p>
       </div>
-      <div class="cart-x">
+      <div id=${uniqueId} class="cart-x">
           <div class="lines a"></div>
           <div class="lines b"></div>
       </div>
     `;
-    cartDropdownList.append(newCartItem);
+      cartDropdownList.append(newCartItem);
+    }
   }
 };
 

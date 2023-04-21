@@ -7,6 +7,7 @@ import {
   onValue,
   get,
   push,
+  remove
 } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 const myDatabase = getDatabase(app);
@@ -147,36 +148,23 @@ const displayItems = (stock) => {
   });
 };
 
-// #region - cart counter
-const cartCounter = document.querySelector(".item-num > p");
-// get product buttons
-const productButtons = document.querySelectorAll(".product-link > button");
-let cartItemTotal = parseInt(cartCounter.textContent);
+const emptyCartMessage = document.querySelector('.empty-cart-message');
 
 productGallery.addEventListener("click", function (e) {
   // get parent list item from child button
-  const chosenProduct = e.target.closest('li');
-  const chosenProductIndex = e.target.attributes.dataindex.value;
+  
+  if (e.target.tagName === "BUTTON") {
+    const chosenProductIndex = e.target.attributes.dataindex.value;
+    const selectedProductRef = ref(myDatabase, `/inventory/${chosenProductIndex}`); 
 
-  const selectedProductRef = ref(myDatabase, `/inventory/${chosenProductIndex}`); 
-
-  get(selectedProductRef)
-    .then ((snapshot) => {
-      const productSnapshot = snapshot.val();
-      console.log(productSnapshot);
-      productSnapshot.qty = 1;
-      push(cartRef, productSnapshot);
-    });
-
-  // if (e.target.tagName === "BUTTON") {
-  //   // should only add item to array if item doesn't exist. If it does exist, change quantity > use update?
-  //   cart.push(chosenProduct);
-    
-  //   const chosenProductObject = totalInventory[chosenProductIndex];
-  //   console.log(chosenProductObject);
-  //   // add elements
-  //   addToCart(cart);
-  // }
+    get(selectedProductRef)
+      .then((snapshot) => {
+        const productData = snapshot.val();
+        
+        productData.qty = 1;
+        push(cartRef, productData);
+      });
+  }
 });
 
 onValue(cartRef, function (snapshot) {
@@ -186,19 +174,34 @@ onValue(cartRef, function (snapshot) {
 });
 
 const updateCart = (cartData) => {
+ 
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
-  const emptyCartMessage = document.querySelector('.empty-cart-message');
+  
   cartDropdownList.innerHTML = "";
-  console.log(cartData)
-  // removes empty cart message when cart contains items
-  if (Object.keys(cartData).length > 0) {
+  
+  // removes empty cart message when cart exists and contains items
+  if (cartData && Object.keys(cartData).length > 0) {
     emptyCartMessage.classList.add('make-invisible');
   }
+  // adds empty cart message back when when cart is empty
+  else{
+    emptyCartMessage.classList.remove('make-invisible');
+  }
 
- for (let key in cartData) {
+  let listItemIndex = 0;
+  // for cart totals
+  const qtyArray = [];
+  const costArray = [];
+
+  for (let key in cartData) {
     const newCartItem = document.createElement('li');
+
     newCartItem.classList.add('full-cart');
     const item = cartData[key];
+    
+    const uniqueId = Object.keys(cartData)[listItemIndex];
+    listItemIndex += 1;
+
     newCartItem.innerHTML = `
       <div class="arrows">
           <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
@@ -210,22 +213,53 @@ const updateCart = (cartData) => {
           <h4>${item.productName}</h4>
           <p class="price">${item.price}</p>
       </div>
-      <div class="cart-x">
+      <div id=${uniqueId} class="cart-x">
           <div class="lines a"></div>
           <div class="lines b"></div>
       </div>
     `;
     cartDropdownList.append(newCartItem);
+
+    // for cart totals
+    const quantities = cartData[key].qty;
+    const prices = parseFloat((cartData[key].price));
+    qtyArray.push(quantities);
+    costArray.push(prices);
+    
  }
+  cartTotals(qtyArray, costArray);
 }
 
-// forEach has built in parameters (element, index, array etc...)
-// productButtons.forEach((button, index) => {
-//   button.onclick = (e) => {
-//     // add to cart item counter with each click
-//     cartItemTotal += 1;
-//     cartCounter.textContent = cartItemTotal;
-//     // console.log("You clicked button number " + index);
-//   };
-// });
-// #endregion - cart counter
+const cartTotals = (qtyArray, costArray) => {
+  const cartCounter = document.querySelector(".item-num > p");
+  const totalCost = document.querySelector(".total-cost > p");
+  const subtotal = document.querySelector('.subtotal').lastElementChild;
+  console.log(subtotal);
+  const cartItemTotal = qtyArray.reduce((total, num) => { return total + num });
+  const cartCostTotal = costArray.reduce((total, num) => { return total + num });
+  cartCounter.textContent = cartItemTotal;
+  totalCost.textContent = "$" + cartCostTotal.toFixed(2);
+  subtotal.textContent = "$" + cartCostTotal.toFixed(2);
+
+}
+
+/* #region - cart item removal */
+const cartDropdownList = document.querySelector('.cart-dropdown-list');
+
+// const deletedCartItem = cartRemoveButton.parentElement;
+
+const removeCartItem = (e) => {
+  let clickedElement = e.target;
+  // runs only when X is clicked
+  if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
+    // gets parent div IF child is clicked
+    clickedElement = clickedElement.closest('.cart-x');
+    const nodeToDelete = ref(myDatabase, `/cart/${clickedElement.id}`);
+
+    remove(nodeToDelete);
+  }
+}
+cartDropdownList.addEventListener("click", removeCartItem);
+
+/* #endregion - cart item removal */
+

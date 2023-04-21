@@ -155,11 +155,10 @@ productGallery.addEventListener("click", function (e) {
   if (e.target.tagName === "BUTTON") {
     const chosenProductIndex = e.target.attributes.dataindex.value;
     const selectedProductRef = ref(myDatabase, `/inventory/${chosenProductIndex}`); 
-
+    
     get(selectedProductRef)
       .then((snapshot) => {
         const productData = snapshot.val();
-        
         productData.qty = 1;
         push(cartRef, productData);
       });
@@ -175,8 +174,11 @@ onValue(cartRef, function (snapshot) {
 const updateCart = (cartData) => {
  
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
-  
+
   cartDropdownList.innerHTML = "";
+  for (let key in cartData){
+    console.log(cartData[key].id);
+  }
   
   // removes empty cart message when cart exists and contains items
   if (cartData && Object.keys(cartData).length > 0) {
@@ -210,7 +212,7 @@ const updateCart = (cartData) => {
       <img class="product-image" src=${item.src} alt=${item.alt}/>
       <div class="cart-dropdown-info-container">
           <h4>${item.productName}</h4>
-          <p class="price">${item.price}</p>
+          <p class="price"><span>$</span>${item.price}</p>
       </div>
       <div id=${uniqueId} class="cart-x">
           <div class="lines a"></div>
@@ -222,6 +224,7 @@ const updateCart = (cartData) => {
     // for cart totals
     const quantities = cartData[key].qty;
     const prices = parseFloat((cartData[key].price));
+    // push to local arrays
     qtyArray.push(quantities);
     costArray.push(prices);
     
@@ -234,49 +237,53 @@ const cartTotals = (qtyArray, costArray) => {
   const totalCost = document.querySelector(".total-cost > p");
   const subtotal = document.querySelector('.subtotal').lastElementChild;
 
-  const cartItemTotal = qtyArray.reduce((total, num) => { return total + num });
-  const cartCostTotal = costArray.reduce((total, num) => { return total + num });
-  cartCounter.textContent = cartItemTotal;
-  totalCost.textContent = "$" + cartCostTotal.toFixed(2);
-  subtotal.textContent = "$" + cartCostTotal.toFixed(2);
+  if (qtyArray.length > 0){
+    const cartItemTotal = qtyArray.reduce((total, num) => { return total + num });
+    const cartCostTotal = costArray.reduce((total, num) => { return total + num });
+    cartCounter.textContent = cartItemTotal;
+ 
+    totalCost.textContent = "$" + (cartCostTotal).toFixed(2);
+    subtotal.textContent = "$" + (cartCostTotal).toFixed(2);
+  }
 }
 
 /* #region - cart arrows */
 
 const cartArrows = (clickedElement) => {
   const qtyToChangeId = clickedElement.parentElement.id;
-  const qtyToChangeRef = ref(myDatabase, `/cart/${qtyToChangeId}`); 
+  const qtyToChangeRef = ref(myDatabase, `/cart/${qtyToChangeId}`);
 
   get(qtyToChangeRef)
     .then((snapshot) => {
       const cartItemData = snapshot.val();
+      const itemBasePrice = parseFloat(cartItemData.base);
 
       if (clickedElement.classList[1] === 'up') {
         const changeQty = {
-          qty: cartItemData.qty += 1
+          qty: cartItemData.qty += 1,
+          // take base price from and multiply it by quantity
+          price: (itemBasePrice * cartItemData.qty).toFixed(2)
         }
         
-        return update(qtyToChangeRef, changeQty);
+        update(qtyToChangeRef, changeQty);
       }
       else if (clickedElement.classList[1] === 'down') {
+        console.log(itemBasePrice)
         const changeQty = {
-          qty: cartItemData.qty -= 1
+          qty: cartItemData.qty -= 1,
+          // take base price from and multiply it by quantity
+          price: (itemBasePrice * cartItemData.qty).toFixed(2)
         }
-        return update(qtyToChangeRef, changeQty);
+        update(qtyToChangeRef, changeQty);
       }
     });
 }
-
-// arrows.addEventListener('click', cartArrows);
 /* #endregion - cart arrows */
 
 /* #region - cart item removal */
 const cartDropdownList = document.querySelector('.cart-dropdown-list');
 
 const removeCartItem = (clickedElement) => {
-  // let clickedElement = e.target;
-  // runs only when X is clicked
-  // if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
     // gets parent div IF child is clicked
     clickedElement = clickedElement.closest('.cart-x');
     const nodeToDelete = ref(myDatabase, `/cart/${clickedElement.id}`);
@@ -286,12 +293,14 @@ const removeCartItem = (clickedElement) => {
 }
 const manageCartButtons = (e) => {
   let clickedElement = e.target;
-  // if element or child element is clicked
+  // if X button or child of X button is clicked
   if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
+    // function to remove item
     removeCartItem(clickedElement);
   }
-  // gets first className of element
+  // gets first className of arrow element
   else if (clickedElement.classList[0] === 'arrows') {
+    // function to change item quantity
     cartArrows(clickedElement);
   }
 

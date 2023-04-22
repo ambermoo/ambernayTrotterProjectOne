@@ -92,8 +92,6 @@ const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 //   totalInventory[i].base = totalInventory[i].price;
 // }
 
-console.log('booooooooooom');
-const cart = [];
 // adding the inventory to database
 // addToDatabase('inventory', totalInventory);
 
@@ -159,11 +157,29 @@ productGallery.addEventListener('click', function (e) {
     get(selectedProductRef).then((snapshot) => {
       const productData = snapshot.val();
 
-      productData.qty = 1;
-      push(cartRef, productData);
+      getCartItemByProductId(productData.id).then((cartItemKey) => {
+        if(cartItemKey) {
+          incrementOrDecrementCartItem(cartItemKey, 1);
+        } else {
+          push(cartRef, productData);
+        }
+      });
+
     });
-  }
+  }  
 });
+
+const getCartItemByProductId = (productId) => {
+  return get(cartRef).then((snapshot) => {
+    const cartData = snapshot.val();
+    for (let key in cartData) {
+      if (cartData[key].id === productId){
+        return key;
+      } 
+    }
+    return false;
+  });
+}
 
 onValue(cartRef, function (snapshot) {
   const cartData = snapshot.val();
@@ -248,34 +264,35 @@ const cartTotals = (qtyArray, costArray) => {
 
 /* #region - cart arrows */
 
-const cartArrows = (clickedElement) => {
-  const qtyToChangeId = clickedElement.parentElement.id;
-  const qtyToChangeRef = ref(myDatabase, `/cart/${qtyToChangeId}`);
+const incrementOrDecrementCartItem = (cartItemId, changeInQty) => {
+  const cartItemRef = ref(myDatabase, `/cart/${cartItemId}`);
 
-  get(qtyToChangeRef)
+  get(cartItemRef)
     .then((snapshot) => {
       const cartItemData = snapshot.val();
       const itemBasePrice = parseFloat(cartItemData.base);
 
-      if (clickedElement.classList[1] === 'up') {
-        const changeQty = {
-          qty: cartItemData.qty += 1,
-          // take base price from and multiply it by quantity
-          price: (itemBasePrice * cartItemData.qty).toFixed(2)
-        }
+      const changeQty = {
+        qty: cartItemData.qty += changeInQty,
+        // take base price from and multiply it by quantity
+        price: (itemBasePrice * cartItemData.qty).toFixed(2)
+      }
 
-        update(qtyToChangeRef, changeQty);
-      }
-      else if (clickedElement.classList[1] === 'down') {
-        console.log(itemBasePrice)
-        const changeQty = {
-          qty: cartItemData.qty -= 1,
-          // take base price from and multiply it by quantity
-          price: (itemBasePrice * cartItemData.qty).toFixed(2)
-        }
-        update(qtyToChangeRef, changeQty);
-      }
+      update(cartItemRef, changeQty);
     });
+}
+
+const cartArrows = (clickedElement) => {
+  const qtyToChangeId = clickedElement.parentElement.id;
+  
+  let changeInQty = 0;
+  if (clickedElement.classList[1] === 'up') {
+    changeInQty = 1;
+  } else if (clickedElement.classList[1] === 'down') {
+    changeInQty = -1;
+  }
+
+  incrementOrDecrementCartItem(qtyToChangeId, changeInQty);
 }
 /* #endregion - cart arrows */
 

@@ -211,22 +211,26 @@
           </div>
           <div class="product__searchbox">
             <form>
-              <input
-                type="search"
-                id="search"
-                data-search
-                placeholder="Enter product here"
-                aria-label="Search through the product list"
-              />
-              <button class="product__search">Search</button>
-              <button class="product__reset">reset</button>
-
-              <select name="filter" id="filter">
-                <option value="default">Filter</option>
-                <option value="price-up">Price Up</option>
-                <option value="price-down">Price Down</option>
-                <option value="bestselling">Bestselling</option>
-              </select>
+              <div class="input-filter-container">
+                <label for="email" class="sr-only">Search products</label>
+                <input
+                  type="search"
+                  id="search"
+                  data-search
+                  placeholder="Enter product here"
+                  aria-label="Search through the product list"
+                />
+                <select name="filter" id="filter">
+                  <option value="default">Filter</option>
+                  <option value="price-up">Price Up</option>
+                  <option value="price-down">Price Down</option>
+                  <option value="bestselling">Bestselling</option>
+                </select>
+              </div>
+              <div class="filter-buttons-container">
+                <button class="product__search">Search</button>
+                <button class="product__reset">reset</button>
+              </div>
             </form>
           </div>
 

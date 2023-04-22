@@ -128,7 +128,7 @@ const displayItems = (stock) => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
           <p class="price">$${item.price}</p>
-          
+
         </div>
 
         <!-- Cart Button -->
@@ -166,7 +166,7 @@ productGallery.addEventListener('click', function (e) {
       });
 
     });
-  }  
+  }
 });
 
 const getCartItemByProductId = (productId) => {
@@ -175,7 +175,7 @@ const getCartItemByProductId = (productId) => {
     for (let key in cartData) {
       if (cartData[key].id === productId){
         return key;
-      } 
+      }
     }
     return false;
   });
@@ -277,22 +277,27 @@ const incrementOrDecrementCartItem = (cartItemId, changeInQty) => {
         // take base price from and multiply it by quantity
         price: (itemBasePrice * cartItemData.qty).toFixed(2)
       }
-
-      update(cartItemRef, changeQty);
+      // removes item when reaches zero or else, updates
+      if(cartItemData.qty < 1){
+        remove(cartItemRef);
+      }
+      else{
+        update(cartItemRef, changeQty);
+      }
     });
 }
 
 const cartArrows = (clickedElement) => {
-  const qtyToChangeId = clickedElement.parentElement.id;
-  
+  const qtyToChangeUniqueKey = clickedElement.parentElement.id;
+  // set increase or decrease
   let changeInQty = 0;
   if (clickedElement.classList[1] === 'up') {
     changeInQty = 1;
   } else if (clickedElement.classList[1] === 'down') {
     changeInQty = -1;
   }
-
-  incrementOrDecrementCartItem(qtyToChangeId, changeInQty);
+  // send unique key of clicked element and change direction
+  incrementOrDecrementCartItem(qtyToChangeUniqueKey, changeInQty);
 }
 /* #endregion - cart arrows */
 
@@ -345,8 +350,8 @@ const searchFunction = (stock, value) => {
 
       const newListItem = document.createElement('li');
       newListItem.innerHTML = `
-      <div class="product__box"> 
-      <img 
+      <div class="product__box">
+      <img
           src= ${stock[i].src}
           alt="Image of ${stock[i].productName}"
         />

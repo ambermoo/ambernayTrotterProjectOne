@@ -89,8 +89,17 @@
         .cart-dropdown-info-container{
             display: flex;
             height: 70px;
+            width: 25%;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        .cart-x {
+            background: transparent;
+            border: none;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
         }
     }
 
@@ -115,7 +124,7 @@
         .link-container {
             background: $background-color;
             margin-right: 5px;
-            
+
             button {
                 color: $main-text-color;
             }

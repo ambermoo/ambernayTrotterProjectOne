@@ -226,10 +226,10 @@ const updateCart = (cartData) => {
           <h4>${item.productName}</h4>
           <p class="price">\$${item.price}</p>
       </div>
-      <div id=${uniqueId} class="cart-x">
+      <button id=${uniqueId} class="cart-x">
           <div class="lines a"></div>
           <div class="lines b"></div>
-      </div>
+      </button>
     `;
     cartDropdownList.append(newCartItem);
 

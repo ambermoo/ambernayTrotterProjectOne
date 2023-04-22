@@ -52,7 +52,20 @@
     min-width: 300px;
     height: fit-content;
     padding: 0;
+    margin-bottom: 85px;
     z-index: 9; // one less than heading
+
+    .cart-dropdown-list {
+        margin-bottom: $cart-list-item-height;
+    }
+
+    .cart-list-container {
+        min-height: 200px;
+        height: fit-content;
+        max-height: 80vh;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
 
     .empty-cart-message {
         display: flex;
@@ -62,7 +75,7 @@
     // only when items are in cart
     .full-cart {
         display: flex;
-        height: 100px;
+        height: $cart-list-item-height;
         border-top: $box-shadow solid 1px;
         justify-content: space-around;
         align-items: center;
@@ -77,6 +90,7 @@
 
         .cart-x {
             display: flex;
+            position: relative;
             align-self: center;
         }
 
@@ -89,18 +103,30 @@
         .cart-dropdown-info-container{
             display: flex;
             height: 70px;
+            width: 25%;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        .cart-x {
+            background: transparent;
+            border: none;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
         }
     }
 
     .total-checkout {
         display: flex;
+        position: absolute;
+        bottom: 0;
         background: $accent-color;
-        height: fit-content;
-        width: inherit;
+        height: $cart-list-item-height;
+        width: 100%;
         padding: 2px 10px;
         justify-content: space-between;
+        align-items: center;
 
         .subtotal {
             display: flex;
@@ -114,10 +140,12 @@
 
         .link-container {
             background: $background-color;
+            height: fit-content;
             margin-right: 5px;
-            
+
             button {
                 color: $main-text-color;
+                font-size: 0.8rem;
             }
         }
     }

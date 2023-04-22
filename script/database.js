@@ -11,9 +11,9 @@ import {
   update,
 } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
 
+const onInventoryPage = document.location.pathname === "/index.html";
+
 const myDatabase = getDatabase(app);
-// should not be called dbRef
-// const dbRef = ref(myDatabase);
 const cartRef = ref(myDatabase, '/cart');
 const inventoryRef = ref(myDatabase, '/inventory');
 
@@ -101,12 +101,14 @@ const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 
 // Importing data from Firebase
 
-onValue(inventoryRef, function (snapshot) {
-  const ourData = snapshot.val();
-  // storing the data in inventory variable
-  const inventory = ourData;
-  displayItems(inventory);
-});
+if (onInventoryPage) {
+  onValue(inventoryRef, function (snapshot) {
+    const ourData = snapshot.val();
+    // storing the data in inventory variable
+    const inventory = ourData;
+    displayItems(inventory);
+  });
+}
 
 // Function to Display the items on the page
 const productGallery = document.querySelector('.inventory');
@@ -128,7 +130,7 @@ const displayItems = (stock) => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
           <p class="price">$${item.price}</p>
-          
+
         </div>
 
         <!-- Cart Button -->
@@ -142,32 +144,32 @@ const displayItems = (stock) => {
   });
 };
 
-const emptyCartMessage = document.querySelector('.empty-cart-message');
+if(onInventoryPage) {
+  productGallery.addEventListener('click', function (e) {
+    // get parent list item from child button
 
-productGallery.addEventListener('click', function (e) {
-  // get parent list item from child button
+    if (e.target.tagName === 'BUTTON') {
+      const chosenProductIndex = e.target.attributes.dataindex.value;
+      const selectedProductRef = ref(
+        myDatabase,
+        `/inventory/${chosenProductIndex}`
+      );
 
-  if (e.target.tagName === 'BUTTON') {
-    const chosenProductIndex = e.target.attributes.dataindex.value;
-    const selectedProductRef = ref(
-      myDatabase,
-      `/inventory/${chosenProductIndex}`
-    );
+      get(selectedProductRef).then((snapshot) => {
+        const productData = snapshot.val();
 
-    get(selectedProductRef).then((snapshot) => {
-      const productData = snapshot.val();
+        getCartItemByProductId(productData.id).then((cartItemKey) => {
+          if(cartItemKey) {
+            incrementOrDecrementCartItem(cartItemKey, 1);
+          } else {
+            push(cartRef, productData);
+          }
+        });
 
-      getCartItemByProductId(productData.id).then((cartItemKey) => {
-        if(cartItemKey) {
-          incrementOrDecrementCartItem(cartItemKey, 1);
-        } else {
-          push(cartRef, productData);
-        }
       });
-
-    });
-  }  
-});
+    }
+  });
+}
 
 const getCartItemByProductId = (productId) => {
   return get(cartRef).then((snapshot) => {
@@ -175,7 +177,7 @@ const getCartItemByProductId = (productId) => {
     for (let key in cartData) {
       if (cartData[key].id === productId){
         return key;
-      } 
+      }
     }
     return false;
   });
@@ -189,9 +191,9 @@ onValue(cartRef, function (snapshot) {
 
 const updateCart = (cartData) => {
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
+  const emptyCartMessage = document.querySelector('.empty-cart-message');
 
   cartDropdownList.innerHTML = '';
-
 
   // removes empty cart message when cart exists and contains items
   if (cartData && Object.keys(cartData).length > 0) {
@@ -227,10 +229,10 @@ const updateCart = (cartData) => {
           <h4>${item.productName}</h4>
           <p class="price">\$${item.price}</p>
       </div>
-      <div id=${uniqueId} class="cart-x">
+      <button id=${uniqueId} class="cart-x">
           <div class="lines a"></div>
           <div class="lines b"></div>
-      </div>
+      </button>
     `;
     cartDropdownList.append(newCartItem);
 
@@ -248,7 +250,7 @@ const cartTotals = (qtyArray, costArray) => {
   const cartCounter = document.querySelector('.item-num > p');
   const totalCost = document.querySelector('.total-cost > p');
   const subtotal = document.querySelector('.subtotal').lastElementChild;
-
+  console.log(qtyArray.length > 0);
   if(qtyArray.length > 0) {
     const cartItemTotal = qtyArray.reduce((total, num) => {
       return total + num;
@@ -256,9 +258,15 @@ const cartTotals = (qtyArray, costArray) => {
     const cartCostTotal = costArray.reduce((total, num) => {
       return total + num;
     });
+    console.log(cartItemTotal, cartCostTotal);
     cartCounter.textContent = cartItemTotal;
     totalCost.textContent = '$' + cartCostTotal.toFixed(2);
     subtotal.textContent = '$' + cartCostTotal.toFixed(2);
+  }
+  else {
+    cartCounter.textContent = 0;
+    totalCost.textContent = '$0.00'
+    subtotal.textContent = '$0.00';
   }
 };
 
@@ -277,29 +285,32 @@ const incrementOrDecrementCartItem = (cartItemId, changeInQty) => {
         // take base price from and multiply it by quantity
         price: (itemBasePrice * cartItemData.qty).toFixed(2)
       }
-
-      update(cartItemRef, changeQty);
+      // removes item when reaches zero or else, updates
+      if(cartItemData.qty < 1){
+        remove(cartItemRef);
+      }
+      else{
+        update(cartItemRef, changeQty);
+      }
     });
 }
 
 const cartArrows = (clickedElement) => {
-  const qtyToChangeId = clickedElement.parentElement.id;
-  
+  const qtyToChangeUniqueKey = clickedElement.parentElement.id;
+  // set increase or decrease
   let changeInQty = 0;
   if (clickedElement.classList[1] === 'up') {
     changeInQty = 1;
   } else if (clickedElement.classList[1] === 'down') {
     changeInQty = -1;
   }
-
-  incrementOrDecrementCartItem(qtyToChangeId, changeInQty);
+  // send unique key of clicked element and change direction
+  incrementOrDecrementCartItem(qtyToChangeUniqueKey, changeInQty);
 }
 /* #endregion - cart arrows */
 
 /* #region - cart item removal */
 const cartDropdownList = document.querySelector('.cart-dropdown-list');
-
-// const deletedCartItem = cartRemoveButton.parentElement;
 
 const removeCartItem = (clickedElement) => {
   // gets parent div IF child is clicked
@@ -345,8 +356,8 @@ const searchFunction = (stock, value) => {
 
       const newListItem = document.createElement('li');
       newListItem.innerHTML = `
-      <div class="product__box"> 
-      <img 
+      <div class="product__box">
+      <img
           src= ${stock[i].src}
           alt="Image of ${stock[i].productName}"
         />
@@ -379,37 +390,43 @@ const searchFunction = (stock, value) => {
 };
 
 // intitiates the event by getting the snapshot from firebase
-btnSearch.addEventListener('click', function (e) {
-  e.preventDefault();
-  // extracting search input value
-  const value = searchInput.value;
+if(onInventoryPage) {
+  btnSearch.addEventListener('click', function (e) {
+    e.preventDefault();
+    // extracting search input value
+    const value = searchInput.value;
 
-  get(inventoryRef).then((snapshot) => {
-    const stock = snapshot.val();
-    // sending the stock and search value to the search function
-    searchFunction(stock, value);
+    get(inventoryRef).then((snapshot) => {
+      const stock = snapshot.val();
+      // sending the stock and search value to the search function
+      searchFunction(stock, value);
+    });
+    // clearing the input field
+    searchInput.value = '';
   });
-  // clearing the input field
-  searchInput.value = '';
-});
+}
 
-resetInput.addEventListener('click', function (e) {
-  e.preventDefault();
+if(onInventoryPage) {
+  resetInput.addEventListener('click', function (e) {
+    e.preventDefault();
 
-  get(inventoryRef).then((snapshot) => {
-    const stock = snapshot.val();
-    // using displayItems function to reset
-    displayItems(stock);
+    get(inventoryRef).then((snapshot) => {
+      const stock = snapshot.val();
+      // using displayItems function to reset
+      displayItems(stock);
+    });
+    // clearing the input field
+    searchInput.value = '';
+    btnFilter.value = 'default';
   });
-  // clearing the input field
-  searchInput.value = '';
-  btnFilter.value = 'default';
-});
+}
 
 // filter the Product Section
 const btnFilter = document.querySelector('#filter');
-// resetting the filter at every refresh
-btnFilter.value = 'default';
+if(onInventoryPage) {
+  // resetting the filter at every refresh
+  btnFilter.value = 'default';
+}
 
 // price up function
 const priceUp = (stock) => {
@@ -436,20 +453,22 @@ const bestSelling = (stock) => {
   displayItems(stock);
 };
 
-btnFilter.addEventListener('change', function () {
-  const value = this.value;
+if(onInventoryPage) {
+  btnFilter.addEventListener('change', function () {
+    const value = this.value;
 
-  get(inventoryRef).then((snapshot) => {
-    const stock = snapshot.val();
-    // sending the stock and search value to the search function
-    if (value === 'price-up') {
-      priceUp(stock);
-    } else if (value === 'price-down') {
-      priceDown(stock);
-    } else if (value === 'bestselling') {
-      bestSelling(stock);
-    } else {
-      displayItems(stock);
-    }
+    get(inventoryRef).then((snapshot) => {
+      const stock = snapshot.val();
+      // sending the stock and search value to the search function
+      if (value === 'price-up') {
+        priceUp(stock);
+      } else if (value === 'price-down') {
+        priceDown(stock);
+      } else if (value === 'bestselling') {
+        bestSelling(stock);
+      } else {
+        displayItems(stock);
+      }
+    });
   });
-});
+}

@@ -11,9 +11,9 @@ import {
   update,
 } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
 
+const onInventoryPage = document.location.pathname === "/index.html";
+
 const myDatabase = getDatabase(app);
-// should not be called dbRef
-// const dbRef = ref(myDatabase);
 const cartRef = ref(myDatabase, '/cart');
 const inventoryRef = ref(myDatabase, '/inventory');
 
@@ -101,12 +101,14 @@ const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 
 // Importing data from Firebase
 
-onValue(inventoryRef, function (snapshot) {
-  const ourData = snapshot.val();
-  // storing the data in inventory variable
-  const inventory = ourData;
-  displayItems(inventory);
-});
+if (onInventoryPage) {
+  onValue(inventoryRef, function (snapshot) {
+    const ourData = snapshot.val();
+    // storing the data in inventory variable
+    const inventory = ourData;
+    displayItems(inventory);
+  });
+}
 
 // Function to Display the items on the page
 const productGallery = document.querySelector('.inventory');
@@ -142,32 +144,32 @@ const displayItems = (stock) => {
   });
 };
 
-const emptyCartMessage = document.querySelector('.empty-cart-message');
+if(onInventoryPage) {
+  productGallery.addEventListener('click', function (e) {
+    // get parent list item from child button
 
-productGallery.addEventListener('click', function (e) {
-  // get parent list item from child button
+    if (e.target.tagName === 'BUTTON') {
+      const chosenProductIndex = e.target.attributes.dataindex.value;
+      const selectedProductRef = ref(
+        myDatabase,
+        `/inventory/${chosenProductIndex}`
+      );
 
-  if (e.target.tagName === 'BUTTON') {
-    const chosenProductIndex = e.target.attributes.dataindex.value;
-    const selectedProductRef = ref(
-      myDatabase,
-      `/inventory/${chosenProductIndex}`
-    );
+      get(selectedProductRef).then((snapshot) => {
+        const productData = snapshot.val();
 
-    get(selectedProductRef).then((snapshot) => {
-      const productData = snapshot.val();
+        getCartItemByProductId(productData.id).then((cartItemKey) => {
+          if(cartItemKey) {
+            incrementOrDecrementCartItem(cartItemKey, 1);
+          } else {
+            push(cartRef, productData);
+          }
+        });
 
-      getCartItemByProductId(productData.id).then((cartItemKey) => {
-        if(cartItemKey) {
-          incrementOrDecrementCartItem(cartItemKey, 1);
-        } else {
-          push(cartRef, productData);
-        }
       });
-
-    });
-  }
-});
+    }
+  });
+}
 
 const getCartItemByProductId = (productId) => {
   return get(cartRef).then((snapshot) => {
@@ -189,6 +191,7 @@ onValue(cartRef, function (snapshot) {
 
 const updateCart = (cartData) => {
   const cartDropdownList = document.querySelector('.cart-dropdown ul');
+  const emptyCartMessage = document.querySelector('.empty-cart-message');
 
   cartDropdownList.innerHTML = '';
 
@@ -387,37 +390,43 @@ const searchFunction = (stock, value) => {
 };
 
 // intitiates the event by getting the snapshot from firebase
-btnSearch.addEventListener('click', function (e) {
-  e.preventDefault();
-  // extracting search input value
-  const value = searchInput.value;
+if(onInventoryPage) {
+  btnSearch.addEventListener('click', function (e) {
+    e.preventDefault();
+    // extracting search input value
+    const value = searchInput.value;
 
-  get(inventoryRef).then((snapshot) => {
-    const stock = snapshot.val();
-    // sending the stock and search value to the search function
-    searchFunction(stock, value);
+    get(inventoryRef).then((snapshot) => {
+      const stock = snapshot.val();
+      // sending the stock and search value to the search function
+      searchFunction(stock, value);
+    });
+    // clearing the input field
+    searchInput.value = '';
   });
-  // clearing the input field
-  searchInput.value = '';
-});
+}
 
-resetInput.addEventListener('click', function (e) {
-  e.preventDefault();
+if(onInventoryPage) {
+  resetInput.addEventListener('click', function (e) {
+    e.preventDefault();
 
-  get(inventoryRef).then((snapshot) => {
-    const stock = snapshot.val();
-    // using displayItems function to reset
-    displayItems(stock);
+    get(inventoryRef).then((snapshot) => {
+      const stock = snapshot.val();
+      // using displayItems function to reset
+      displayItems(stock);
+    });
+    // clearing the input field
+    searchInput.value = '';
+    btnFilter.value = 'default';
   });
-  // clearing the input field
-  searchInput.value = '';
-  btnFilter.value = 'default';
-});
+}
 
 // filter the Product Section
 const btnFilter = document.querySelector('#filter');
-// resetting the filter at every refresh
-btnFilter.value = 'default';
+if(onInventoryPage) {
+  // resetting the filter at every refresh
+  btnFilter.value = 'default';
+}
 
 // price up function
 const priceUp = (stock) => {
@@ -444,20 +453,22 @@ const bestSelling = (stock) => {
   displayItems(stock);
 };
 
-btnFilter.addEventListener('change', function () {
-  const value = this.value;
+if(onInventoryPage) {
+  btnFilter.addEventListener('change', function () {
+    const value = this.value;
 
-  get(inventoryRef).then((snapshot) => {
-    const stock = snapshot.val();
-    // sending the stock and search value to the search function
-    if (value === 'price-up') {
-      priceUp(stock);
-    } else if (value === 'price-down') {
-      priceDown(stock);
-    } else if (value === 'bestselling') {
-      bestSelling(stock);
-    } else {
-      displayItems(stock);
-    }
+    get(inventoryRef).then((snapshot) => {
+      const stock = snapshot.val();
+      // sending the stock and search value to the search function
+      if (value === 'price-up') {
+        priceUp(stock);
+      } else if (value === 'price-down') {
+        priceDown(stock);
+      } else if (value === 'bestselling') {
+        bestSelling(stock);
+      } else {
+        displayItems(stock);
+      }
+    });
   });
-});
+}

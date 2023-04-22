@@ -11,12 +11,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Lora:wght@500;600;700&display=swap"
         rel="stylesheet">
     <!-- #endregion - fonts -->
-    
+
     <!-- styles -->
     <link rel="stylesheet" href="./styles/styles.css">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    
+
     <title>Organic Contact</title>
 </head>
 
@@ -27,7 +27,7 @@
                 <nav>
                     <div class="logo-hamburger-container">
                         <div class="logo-container">
-                            <img src="./organic-project/assets/logo.png" alt="organic logo">
+                            <img src="./organic-project/assets/logo.png" alt="organic logo" />
                         </div>
                         <!-- #region - hamburger menu -->
                         <div class="hamburger-menu-icon" tabindex="0">
@@ -37,27 +37,49 @@
                         </div>
                         <!-- #endregion - hamburger menu -->
                     </div>
-                
+
                     <ul>
                         <li><a href="./index.html" tabindex="0">Home</a></li>
                         <li><a href="./index.html#blog" tabindex="0">Blog</a></li>
                         <li><a href="./contact.html" tabindex="0">Contact</a></li>
-                        <li>
-                            <a href="#" tabindex="0">
-                                <object class="cart-icon" tabindex="-1" data="./organic-project/assets/icons/cart.svg" type="image/svg+xml">
-                                    <!-- screen reader description -->
-                                    <figcaption class="sr-only">shopping cart icon</figcaption>
-                                </object>
-                            </a>
-                        </li>
                     </ul>
+                    <div class="cart-info-heading">
+                        <a href="#" class="cart-link" tabindex="0">
+                            <img src="./organic-project/assets/icons/cart.svg" alt="cart icon" class="cart-icon">
+                            <div class="item-num">
+                                <p>0</p>
+                            </div>
+                        </a>
+                        <span class="cart-basic-info">
+                            <div class="total-cost">
+                                <p>$0.00</p>
+                            </div>
+                        </span>
+                    </div>
                 </nav>
-            </div><!-- wrapper -->
+            </div>
         </section>
+        <!-- cart -->
+        <section class="cart-dropdown">
+            <div class="cart-list-container">
+                <p class="empty-cart-message">Cart is empty</p>
+                <ul class="cart-dropdown-list"></ul>
+                <div class="total-checkout">
+                    <span class="subtotal">
+                        <p>Subtotal:</p>
+                        <p>$0.00</p>
+                    </span>
+                    <span class="link-container">
+                        <button>Checkout</button>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <!-- cart -->
         <section class="contact-header">
             <h1>Contact</h1>
         </section>
-        
+
     </header>
     <main>
         <section id="contact">
@@ -76,9 +98,9 @@
                             <h4>Email</h4>
                             <p>123@temporary-mail.net</p>
                         </li><!-- contact info -->
-                    
+
                     </ul>
-               
+
                     <div class="message-form">
                         <span>
                             <label class="sr-only" for="name">Your Name</label>
@@ -146,7 +168,7 @@
                         </li>
                     </ul>
                     <!-- #endregion - social logos -->
-    
+
                 </li><!-- social links -->
                 <!-- #region - quick-links -->
                 <li class="quick-links footer-sections">
@@ -161,10 +183,10 @@
                         <li><a href="#" tabindex="0">Case Studies</a></li>
                     </ul>
                     <!-- #endregion - quick links list -->
-    
+
                 </li>
                 <!-- #endregion - quick-links -->
-    
+
                 <!-- #region - recent products -->
                 <li class="recent-products footer-sections">
                     <h4>Recent Products</h4>
@@ -201,7 +223,7 @@
                     <!-- #endregion - image containers -->
                 </li>
                 <!-- #endregion - recent products -->
-    
+
                 <li class="subscribe footer-sections">
                     <h4>Subscribe</h4>
                     <!-- #region - subscribe info -->
@@ -220,7 +242,7 @@
         </div> <!-- wrapper -->
     </footer>
 
-    <script type="text/javascript" src="script.js"></script>
+    <script src="./script/script.js" type="module"></script>
 </body>
 
 </html>

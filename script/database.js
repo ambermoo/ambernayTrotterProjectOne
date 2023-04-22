@@ -192,7 +192,6 @@ const updateCart = (cartData) => {
 
   cartDropdownList.innerHTML = '';
 
-
   // removes empty cart message when cart exists and contains items
   if (cartData && Object.keys(cartData).length > 0) {
     emptyCartMessage.classList.add('make-invisible');
@@ -248,7 +247,7 @@ const cartTotals = (qtyArray, costArray) => {
   const cartCounter = document.querySelector('.item-num > p');
   const totalCost = document.querySelector('.total-cost > p');
   const subtotal = document.querySelector('.subtotal').lastElementChild;
-
+  console.log(qtyArray.length > 0);
   if(qtyArray.length > 0) {
     const cartItemTotal = qtyArray.reduce((total, num) => {
       return total + num;
@@ -256,9 +255,15 @@ const cartTotals = (qtyArray, costArray) => {
     const cartCostTotal = costArray.reduce((total, num) => {
       return total + num;
     });
+    console.log(cartItemTotal, cartCostTotal);
     cartCounter.textContent = cartItemTotal;
     totalCost.textContent = '$' + cartCostTotal.toFixed(2);
     subtotal.textContent = '$' + cartCostTotal.toFixed(2);
+  }
+  else {
+    cartCounter.textContent = 0;
+    totalCost.textContent = '$0.00'
+    subtotal.textContent = '$0.00';
   }
 };
 
@@ -303,8 +308,6 @@ const cartArrows = (clickedElement) => {
 
 /* #region - cart item removal */
 const cartDropdownList = document.querySelector('.cart-dropdown-list');
-
-// const deletedCartItem = cartRemoveButton.parentElement;
 
 const removeCartItem = (clickedElement) => {
   // gets parent div IF child is clicked

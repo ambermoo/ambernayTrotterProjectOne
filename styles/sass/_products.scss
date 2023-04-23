@@ -12,6 +12,7 @@
     }
 
     li {
+        position: relative;
         flex-direction: column;
         flex: 1 0 20%;
         border: 1px solid rgb(246, 246, 246);
@@ -21,12 +22,13 @@
         .text-container {
 
             .info-container {
-                padding: 8px 8px 25px 8px;
+                padding: 8px 10px 25px 10px;
             }
-            
+
             .link-container.product-link {// overrides .link-container
                 position: absolute;
-                margin: -13px 0;
+                bottom: -32px;
+                left: 10px;
             }
         }
     }

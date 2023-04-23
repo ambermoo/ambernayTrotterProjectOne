@@ -27,7 +27,7 @@ const addToDatabase = (key, value) => {
 // DATA SECTION
 export const cheapPrice = () =>
   parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
-const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
+  const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 
 // const totalInventory = [
 //   {
@@ -137,7 +137,7 @@ const displayItems = (stock) => {
         </div>
       </div>
     `;
-    // console.log(item);
+
     productGallery.appendChild(newListItem);
   });
 };
@@ -247,7 +247,7 @@ const cartTotals = (qtyArray, costArray) => {
   const cartCounter = document.querySelector('.item-num > p');
   const totalCost = document.querySelector('.total-cost > p');
   const subtotal = document.querySelector('.subtotal').lastElementChild;
-  console.log(qtyArray.length > 0);
+
   if (qtyArray.length > 0) {
     const cartItemTotal = qtyArray.reduce((total, num) => {
       return total + num;
@@ -255,7 +255,7 @@ const cartTotals = (qtyArray, costArray) => {
     const cartCostTotal = costArray.reduce((total, num) => {
       return total + num;
     });
-    console.log(cartItemTotal, cartCostTotal);
+
     cartCounter.textContent = cartItemTotal;
     totalCost.textContent = '$' + cartCostTotal.toFixed(2);
     subtotal.textContent = '$' + cartCostTotal.toFixed(2);
@@ -343,13 +343,11 @@ const resetInput = document.querySelector('.product__reset');
 
 // search function
 const searchFunction = (stock, value) => {
-  console.log(stock);
-  // console.log(value);
+
   let counter = 0;
   productGallery.innerHTML = '';
   stock.forEach((item, i) => {
     if (item.productName.toLowerCase().includes(value.trim().toLowerCase())) {
-      console.log('true', stock[i]);
 
       const newListItem = document.createElement('li');
       newListItem.innerHTML = `

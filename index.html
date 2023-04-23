@@ -48,16 +48,11 @@
             </ul>
             <div class="cart-info-heading">
               <a href="#" class="cart-link" tabindex="0">
-                <object
+                <img
+                  src="./organic-project/assets/icons/cart.svg"
+                  alt="cart icon"
                   class="cart-icon"
-                  tabindex="-1"
-                  data="./organic-project/assets/icons/cart.svg"
-                  type="image/svg+xml"
-                >
-                  <!-- screen reader description -->
-                  <figcaption class="sr-only">shopping cart icon</figcaption>
-                </object>
-
+                />
                 <div class="item-num">
                   <p>0</p>
                 </div>
@@ -73,7 +68,7 @@
       </section>
       <!-- cart -->
       <section class="cart-dropdown">
-        <div>
+        <div class="cart-list-container">
           <p class="empty-cart-message">Cart is empty</p>
           <ul class="cart-dropdown-list"></ul>
           <div class="total-checkout">
@@ -88,7 +83,7 @@
         </div>
       </section>
       <!-- cart -->
-      <section class="main-header-container">
+      <section class="main-header-container main--section">
         <!-- #region - splash images -->
         <div class="head-splashes b-1"></div>
         <div class="head-splashes b-2"></div>
@@ -160,7 +155,7 @@
       </section>
       <!-- main header container -->
     </header>
-    <main>
+    <main class="main--section">
       <section id="about" class="about">
         <div class="wrapper">
           <div class="text-image-container">
@@ -220,22 +215,26 @@
           </div>
           <div class="product__searchbox">
             <form>
-              <input
-                type="search"
-                id="search"
-                data-search
-                placeholder="Enter product here"
-                aria-label="Search through the product list"
-              />
-              <button class="product__search">Search</button>
-              <button class="product__reset">reset</button>
-
-              <select name="filter" id="filter">
-                <option value="default">Filter</option>
-                <option value="price-up">Price Up</option>
-                <option value="price-down">Price Down</option>
-                <option value="bestselling">Bestselling</option>
-              </select>
+              <div class="input-filter-container">
+                <label for="email" class="sr-only">Search products</label>
+                <input
+                  type="search"
+                  id="search"
+                  data-search
+                  placeholder="Enter product here"
+                  aria-label="Search through the product list"
+                />
+                <select name="filter" id="filter">
+                  <option value="default">Filter</option>
+                  <option value="price-up">Price Up</option>
+                  <option value="price-down">Price Down</option>
+                  <option value="bestselling">Bestselling</option>
+                </select>
+              </div>
+              <div class="filter-buttons-container">
+                <button class="product__search">Search</button>
+                <button class="product__reset">reset</button>
+              </div>
             </form>
           </div>
 

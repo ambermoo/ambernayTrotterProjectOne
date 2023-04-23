@@ -1,4 +1,5 @@
 import { cheapPrice } from './database.js';
+
 // Jquery $(window) allows the scroll listener to run only once
 // https://stackoverflow.com/questions/32134451/call-function-on-scroll-only-once#:~:text=Try%20using%20.-,one,-()%3A
 
@@ -23,7 +24,7 @@ const mainHeading = document.querySelector('.heading-image-container');
 // close event
 const xDiv = document.querySelector('.x-div-container');
 
-export const close = () => {
+const close = () => {
   mainHeading.classList.toggle('make-invisible');
   pointsPopup.classList.toggle('make-flex');
   // enable scroll (main styles.scss)
@@ -61,11 +62,21 @@ hamburger.addEventListener('click', toggleHamburger);
 // #region - cart
 const cartIcon = document.querySelector('.cart-info-heading');
 const cartDropdown = document.querySelector('.cart-dropdown');
+const main = document.querySelectorAll('.main--section');
 
 // #region - cart dropdown
-const showCart = () => {
+const showCart = (e) => {
+  // prevents the page scrolling to the top whenever cart is opened
+  e.preventDefault();
   cartDropdown.classList.toggle('make-block');
 };
-// cartIcon.addEventListener('click', showCart);
+cartIcon.addEventListener('click', showCart);
 // #endregion - cart dropdown
 // #endregion - cart
+
+// closes the cart when clicked anywhere other than the navbar area
+main.forEach((sectionWebsite) => {
+  sectionWebsite.addEventListener('click', function () {
+    cartDropdown.classList.remove('make-block');
+  });
+});

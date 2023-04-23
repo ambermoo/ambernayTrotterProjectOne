@@ -11,7 +11,7 @@ import {
   update,
 } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
 
-const onInventoryPage = document.location.pathname === '/index.html';
+const onInventoryPage = document.title === 'Organic Home';
 
 const myDatabase = getDatabase(app);
 const cartRef = ref(myDatabase, '/cart');

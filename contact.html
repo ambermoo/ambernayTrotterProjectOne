@@ -46,29 +46,49 @@
               <li><a href="./index.html" tabindex="0">Home</a></li>
               <li><a href="./index.html#blog" tabindex="0">Blog</a></li>
               <li><a href="./contact.html" tabindex="0">Contact</a></li>
-              <li>
-                <a href="#" tabindex="0">
-                  <object
-                    class="cart-icon"
-                    tabindex="-1"
-                    data="./organic-project/assets/icons/cart.svg"
-                    type="image/svg+xml"
-                  >
-                    <!-- screen reader description -->
-                    <figcaption class="sr-only">shopping cart icon</figcaption>
-                  </object>
-                </a>
-              </li>
             </ul>
+            <div class="cart-info-heading">
+              <a href="#" class="cart-link" tabindex="0">
+                <img
+                  src="./organic-project/assets/icons/cart.svg"
+                  alt="cart icon"
+                  class="cart-icon"
+                />
+                <div class="item-num">
+                  <p>0</p>
+                </div>
+              </a>
+              <span class="cart-basic-info">
+                <div class="total-cost">
+                  <p>$0.00</p>
+                </div>
+              </span>
+            </div>
           </nav>
         </div>
-        <!-- wrapper -->
       </section>
-      <section class="contact-header">
+      <!-- cart -->
+      <section class="cart-dropdown">
+        <div class="cart-list-container">
+          <p class="empty-cart-message">Cart is empty</p>
+          <ul class="cart-dropdown-list"></ul>
+          <div class="total-checkout">
+            <span class="subtotal">
+              <p>Subtotal:</p>
+              <p>$0.00</p>
+            </span>
+            <span class="link-container">
+              <button>Checkout</button>
+            </span>
+          </div>
+        </div>
+      </section>
+      <!-- cart -->
+      <section class="contact-header main--section">
         <h1>Contact</h1>
       </section>
     </header>
-    <main>
+    <main class="main--section">
       <section id="contact">
         <div class="wrapper">
           <form class="contact-info-container">

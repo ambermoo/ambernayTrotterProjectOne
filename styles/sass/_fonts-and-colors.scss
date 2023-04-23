@@ -80,10 +80,10 @@ a { // a overridden in button
 
 input,
 textarea,
-input::placeholder, 
+input::placeholder,
 textarea::placeholder {
     font-family: $lora;
     font-weight: $lora-medium;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: grey;
 }

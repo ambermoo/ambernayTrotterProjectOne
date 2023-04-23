@@ -61,7 +61,8 @@ cartIcon.addEventListener('click', showCart);
 
 // closes the cart when clicked anywhere other than the navbar area
 main.forEach((sectionWebsite) => {
-  sectionWebsite.addEventListener('click', function () {
-    cartDropdown.classList.remove('make-block');
+  sectionWebsite.addEventListener('click', function (e) {
+    const productButtons = (e.target.parentElement.classList[1] === "product-link");
+    if (!productButtons) { cartDropdown.classList.remove('make-block'); }
   });
 });

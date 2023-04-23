@@ -11,7 +11,7 @@ import {
   update,
 } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js';
 
-const onInventoryPage = document.location.pathname === "/index.html";
+const onInventoryPage = document.title === 'Organic Home';
 
 const myDatabase = getDatabase(app);
 const cartRef = ref(myDatabase, '/cart');
@@ -130,9 +130,7 @@ const displayItems = (stock) => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
           <p class="price">$${item.price}</p>
-
         </div>
-
         <!-- Cart Button -->
         <div class="link-container product-link">
           <button tabindex="0" dataindex="${item.id}">Add To Cart</button>
@@ -144,7 +142,7 @@ const displayItems = (stock) => {
   });
 };
 
-if(onInventoryPage) {
+if (onInventoryPage) {
   productGallery.addEventListener('click', function (e) {
     // get parent list item from child button
 
@@ -159,13 +157,12 @@ if(onInventoryPage) {
         const productData = snapshot.val();
 
         getCartItemByProductId(productData.id).then((cartItemKey) => {
-          if(cartItemKey) {
+          if (cartItemKey) {
             incrementOrDecrementCartItem(cartItemKey, 1);
           } else {
             push(cartRef, productData);
           }
         });
-
       });
     }
   });
@@ -175,13 +172,13 @@ const getCartItemByProductId = (productId) => {
   return get(cartRef).then((snapshot) => {
     const cartData = snapshot.val();
     for (let key in cartData) {
-      if (cartData[key].id === productId){
+      if (cartData[key].id === productId) {
         return key;
       }
     }
     return false;
   });
-}
+};
 
 onValue(cartRef, function (snapshot) {
   const cartData = snapshot.val();
@@ -251,7 +248,7 @@ const cartTotals = (qtyArray, costArray) => {
   const totalCost = document.querySelector('.total-cost > p');
   const subtotal = document.querySelector('.subtotal').lastElementChild;
   console.log(qtyArray.length > 0);
-  if(qtyArray.length > 0) {
+  if (qtyArray.length > 0) {
     const cartItemTotal = qtyArray.reduce((total, num) => {
       return total + num;
     });
@@ -262,10 +259,9 @@ const cartTotals = (qtyArray, costArray) => {
     cartCounter.textContent = cartItemTotal;
     totalCost.textContent = '$' + cartCostTotal.toFixed(2);
     subtotal.textContent = '$' + cartCostTotal.toFixed(2);
-  }
-  else {
+  } else {
     cartCounter.textContent = 0;
-    totalCost.textContent = '$0.00'
+    totalCost.textContent = '$0.00';
     subtotal.textContent = '$0.00';
   }
 };
@@ -275,25 +271,23 @@ const cartTotals = (qtyArray, costArray) => {
 const incrementOrDecrementCartItem = (cartItemId, changeInQty) => {
   const cartItemRef = ref(myDatabase, `/cart/${cartItemId}`);
 
-  get(cartItemRef)
-    .then((snapshot) => {
-      const cartItemData = snapshot.val();
-      const itemBasePrice = parseFloat(cartItemData.base);
+  get(cartItemRef).then((snapshot) => {
+    const cartItemData = snapshot.val();
+    const itemBasePrice = parseFloat(cartItemData.base);
 
-      const changeQty = {
-        qty: cartItemData.qty += changeInQty,
-        // take base price from and multiply it by quantity
-        price: (itemBasePrice * cartItemData.qty).toFixed(2)
-      }
-      // removes item when reaches zero or else, updates
-      if(cartItemData.qty < 1){
-        remove(cartItemRef);
-      }
-      else{
-        update(cartItemRef, changeQty);
-      }
-    });
-}
+    const changeQty = {
+      qty: (cartItemData.qty += changeInQty),
+      // take base price from and multiply it by quantity
+      price: (itemBasePrice * cartItemData.qty).toFixed(2),
+    };
+    // removes item when reaches zero or else, updates
+    if (cartItemData.qty < 1) {
+      remove(cartItemRef);
+    } else {
+      update(cartItemRef, changeQty);
+    }
+  });
+};
 
 const cartArrows = (clickedElement) => {
   const qtyToChangeUniqueKey = clickedElement.parentElement.id;
@@ -306,7 +300,7 @@ const cartArrows = (clickedElement) => {
   }
   // send unique key of clicked element and change direction
   incrementOrDecrementCartItem(qtyToChangeUniqueKey, changeInQty);
-}
+};
 /* #endregion - cart arrows */
 
 /* #region - cart item removal */
@@ -323,7 +317,10 @@ const removeCartItem = (clickedElement) => {
 const manageCartButtons = (e) => {
   let clickedElement = e.target;
   // if X button or child of X button is clicked
-  if (clickedElement.className === 'cart-x' || clickedElement.parentElement.className === 'cart-x') {
+  if (
+    clickedElement.className === 'cart-x' ||
+    clickedElement.parentElement.className === 'cart-x'
+  ) {
     // function to remove item
     removeCartItem(clickedElement);
   }
@@ -332,7 +329,7 @@ const manageCartButtons = (e) => {
     // function to change item quantity
     cartArrows(clickedElement);
   }
-}
+};
 
 cartDropdownList.addEventListener('click', manageCartButtons);
 
@@ -368,9 +365,7 @@ const searchFunction = (stock, value) => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
             <p class="price">$${stock[i].price}</p>
-
           </div>
-
           <!-- Cart Button -->
           <div class="link-container product-link">
             <button tabindex="0" dataindex="${stock[i].id}">Add To Cart</button>
@@ -390,7 +385,7 @@ const searchFunction = (stock, value) => {
 };
 
 // intitiates the event by getting the snapshot from firebase
-if(onInventoryPage) {
+if (onInventoryPage) {
   btnSearch.addEventListener('click', function (e) {
     e.preventDefault();
     // extracting search input value
@@ -406,7 +401,7 @@ if(onInventoryPage) {
   });
 }
 
-if(onInventoryPage) {
+if (onInventoryPage) {
   resetInput.addEventListener('click', function (e) {
     e.preventDefault();
 
@@ -423,7 +418,7 @@ if(onInventoryPage) {
 
 // filter the Product Section
 const btnFilter = document.querySelector('#filter');
-if(onInventoryPage) {
+if (onInventoryPage) {
   // resetting the filter at every refresh
   btnFilter.value = 'default';
 }
@@ -453,7 +448,7 @@ const bestSelling = (stock) => {
   displayItems(stock);
 };
 
-if(onInventoryPage) {
+if (onInventoryPage) {
   btnFilter.addEventListener('change', function () {
     const value = this.value;
 

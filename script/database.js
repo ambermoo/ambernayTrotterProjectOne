@@ -18,89 +18,12 @@ const cartRef = ref(myDatabase, '/cart');
 const inventoryRef = ref(myDatabase, '/inventory');
 
 // creating a function to add to database
-
 const addToDatabase = (key, value) => {
   const customRef = ref(myDatabase, key);
   set(customRef, value);
 };
 
-// DATA SECTION
-export const cheapPrice = () =>
-  parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
-const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
-
-// const totalInventory = [
-//   {
-//     productName: 'Tomatoes',
-//     id: 0,
-//     qty: 1,
-//     src: './organic-project/assets/product1.jpeg',
-//     price: cheapPrice(),
-//   },
-//   {
-//     productName: 'Lime',
-//     id: 1,
-//     qty: 1,
-//     src: './organic-project/assets/product2.jpeg',
-//     price: cheapPrice(),
-//   },
-//   {
-//     productName: 'Organic Eggplant',
-//     id: 2,
-//     qty: 1,
-//     src: './organic-project/assets/product3.jpeg',
-//     price: expPrice(),
-//   },
-//   {
-//     productName: 'Cucumber',
-//     id: 3,
-//     qty: 1,
-//     src: './organic-project/assets/product4.jpeg',
-//     price: cheapPrice(),
-//   },
-//   {
-//     productName: 'Organic Peas',
-//     id: 4,
-//     qty: 1,
-//     src: './organic-project/assets/product5.jpeg',
-//     price: expPrice(),
-//   },
-//   {
-//     productName: 'Lettuce',
-//     id: 5,
-//     qty: 1,
-//     src: './organic-project/assets/product6.jpeg',
-//     price: cheapPrice(),
-//   },
-//   {
-//     productName: 'Cabbage',
-//     id: 6,
-//     qty: 1,
-//     src: './organic-project/assets/product7.jpeg',
-//     price: cheapPrice(),
-//   },
-//   {
-//     productName: 'Organic Lettuce',
-//     id: 7,
-//     qty: 1,
-//     src: './organic-project/assets/product8.jpeg',
-//     price: expPrice(),
-//   },
-// ];
-
-// for (let i = 0; i <= 7; i++) {
-//   totalInventory[i].base = totalInventory[i].price;
-// }
-
-// adding the inventory to database
-// addToDatabase('inventory', totalInventory);
-
-// adding cart to data
-// addToDatabase("cart", cart);
-// console.log(cart);
-
 // Importing data from Firebase
-
 if (onInventoryPage) {
   onValue(inventoryRef, function (snapshot) {
     const ourData = snapshot.val();
@@ -113,7 +36,7 @@ if (onInventoryPage) {
 // Function to Display the items on the page
 const productGallery = document.querySelector('.inventory');
 
-const displayItems = (stock) => {
+export const displayItems = (stock) => {
   productGallery.innerHTML = '';
 
   stock.forEach((item) => {
@@ -137,7 +60,6 @@ const displayItems = (stock) => {
         </div>
       </div>
     `;
-    // console.log(item);
     productGallery.appendChild(newListItem);
   });
 };
@@ -145,7 +67,6 @@ const displayItems = (stock) => {
 if (onInventoryPage) {
   productGallery.addEventListener('click', function (e) {
     // get parent list item from child button
-
     if (e.target.tagName === 'BUTTON') {
       const chosenProductIndex = e.target.attributes.dataindex.value;
       const selectedProductRef = ref(
@@ -247,7 +168,7 @@ const cartTotals = (qtyArray, costArray) => {
   const cartCounter = document.querySelector('.item-num > p');
   const totalCost = document.querySelector('.total-cost > p');
   const subtotal = document.querySelector('.subtotal').lastElementChild;
-  console.log(qtyArray.length > 0);
+
   if (qtyArray.length > 0) {
     const cartItemTotal = qtyArray.reduce((total, num) => {
       return total + num;
@@ -255,7 +176,7 @@ const cartTotals = (qtyArray, costArray) => {
     const cartCostTotal = costArray.reduce((total, num) => {
       return total + num;
     });
-    console.log(cartItemTotal, cartCostTotal);
+
     cartCounter.textContent = cartItemTotal;
     totalCost.textContent = '$' + cartCostTotal.toFixed(2);
     subtotal.textContent = '$' + cartCostTotal.toFixed(2);
@@ -343,14 +264,10 @@ const resetInput = document.querySelector('.product__reset');
 
 // search function
 const searchFunction = (stock, value) => {
-  console.log(stock);
-  // console.log(value);
   let counter = 0;
   productGallery.innerHTML = '';
   stock.forEach((item, i) => {
     if (item.productName.toLowerCase().includes(value.trim().toLowerCase())) {
-      console.log('true', stock[i]);
-
       const newListItem = document.createElement('li');
       newListItem.innerHTML = `
       <div class="product__box">

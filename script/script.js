@@ -1,25 +1,10 @@
-import { cheapPrice } from './database.js';
-
-// Jquery $(window) allows the scroll listener to run only once
-// https://stackoverflow.com/questions/32134451/call-function-on-scroll-only-once#:~:text=Try%20using%20.-,one,-()%3A
+import { displayItems } from './database.js';
 
 // #region - points popup //
 const pointsPopup = document.querySelector('.points-popup');
 const html = document.querySelector('html');
 const body = document.querySelector('body');
 const mainHeading = document.querySelector('.heading-image-container');
-
-// pop-up on scroll
-// $(window).one("scroll", function () {
-//   // checking window.ScrollY prevents popup glitch when returning from contact to blog section page
-//   if (window.scrollY < 100) {
-//     mainHeading.classList.toggle("make-invisible");
-//     pointsPopup.classList.toggle("make-flex");
-//     // lock screen (main styles.scss)
-//     html.classList.toggle("stop-scrolling");
-//     body.classList.toggle("stop-scrolling");
-//   }
-// });
 
 // close event
 const xDiv = document.querySelector('.x-div-container');

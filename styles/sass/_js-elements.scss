@@ -18,7 +18,7 @@
     z-index: 10;
 
     .text-and-card {
-        display: flex;  
+        display: flex;
         justify-content: space-around;
     }
 
@@ -69,7 +69,7 @@
 
 /* #region - reward card */
 .reward-card-container {
-        
+
     display: grid;
     justify-content: end;
 
@@ -135,5 +135,4 @@
 // nav for hamburger
 .increase-height {
     height: $heading-nav-height*2;
-    background: linear-gradient($background-color, rgba(255, 255, 255, 0.7));
 }

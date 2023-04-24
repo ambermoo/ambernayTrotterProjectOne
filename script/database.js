@@ -124,6 +124,9 @@ const updateCart = (cartData) => {
     // passes 0 values to cart total qty and price
     updateCartTotals(0, 0);
   }
+  // for cart totals
+  const qtyArray = [];
+  const costArray = [];
 
   let listItemIndex = 0;
 
@@ -154,11 +157,11 @@ const updateCart = (cartData) => {
     `;
     cartDropdownList.append(newCartItem);
 
-    updateCartTotals(cartData, cartItem);
+    updateCartTotals(cartData, cartItem, qtyArray, costArray);
   }
 };
 
-const updateCartTotals = (cartData, cartItem) => {
+const updateCartTotals = (cartData, cartItem, qtyArray, costArray) => {
   const cartLength = (Object.keys(cartData).length);
 
   const cartCounter = document.querySelector('.item-num > p');
@@ -167,22 +170,21 @@ const updateCartTotals = (cartData, cartItem) => {
 
   // if cart exists
   if (cartData && cartLength > 0) {
-  // for cart totals
-  const qtyArray = [];
-  const costArray = [];
-  const quantities = cartItem.qty;
-  const prices = parseFloat(cartItem.price);
 
-  qtyArray.push(quantities);
-  costArray.push(prices);
+    const quantities = cartItem.qty;
+    const prices = parseFloat(cartItem.price);
 
-  // reduce the arrays of quantities and prices
-  const cartItemTotal = qtyArray.reduce((total, num) => {
-    return total + num;
-  });
-  const cartPriceTotal = costArray.reduce((total, num) => {
-    return total + num;
-  });
+    qtyArray.push(quantities);
+    costArray.push(prices);
+
+    // reduce the arrays of quantities and prices
+    const cartItemTotal = qtyArray.reduce((total, num) => {
+      return total + num;
+    });
+    const cartPriceTotal = costArray.reduce((total, num) => {
+      return total + num;
+    });
+
     cartCounter.textContent = cartItemTotal;
     totalCost.textContent = '$' + cartPriceTotal.toFixed(2);
     subtotal.textContent = '$' + cartPriceTotal.toFixed(2);

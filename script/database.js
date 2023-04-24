@@ -114,24 +114,24 @@ const updateCart = (cartData) => {
   cartDropdownList.innerHTML = '';
 
   // removes empty cart message when cart exists and contains items
+
   if (cartData && Object.keys(cartData).length > 0) {
     emptyCartMessage.classList.add('make-invisible');
   }
   // adds empty cart message back when when cart is empty
   else {
     emptyCartMessage.classList.remove('make-invisible');
+    // passes 0 values to cart total qty and price
+    updateCartTotals(0, 0);
   }
 
   let listItemIndex = 0;
-  // for cart totals
-  const qtyArray = [];
-  const costArray = [];
 
   for (let key in cartData) {
     const newCartItem = document.createElement('li');
 
     newCartItem.classList.add('full-cart');
-    const item = cartData[key];
+    const cartItem = cartData[key];
 
     const uniqueId = Object.keys(cartData)[listItemIndex];
     listItemIndex += 1;
@@ -139,13 +139,13 @@ const updateCart = (cartData) => {
     newCartItem.innerHTML = `
       <div class="arrows" id=${uniqueId}>
           <image class="arrows up" src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
-          <p>${item.qty}</p>
+          <p>${cartItem.qty}</p>
           <img class="arrows down" src="./organic-project/assets/icons/chevron-down-outline.svg" alt="down arrow">
       </div>
-      <img class="product-image" src=${item.src} alt=${item.alt}/>
+      <img class="product-image" src=${cartItem.src} alt=${cartItem.alt}/>
       <div class="cart-dropdown-info-container">
-          <h4>${item.productName}</h4>
-          <p class="price">\$${item.price}</p>
+          <h4>${cartItem.productName}</h4>
+          <p class="price">\$${cartItem.price}</p>
       </div>
       <button id=${uniqueId} class="cart-x">
           <div class="lines a"></div>
@@ -154,39 +154,46 @@ const updateCart = (cartData) => {
     `;
     cartDropdownList.append(newCartItem);
 
-    // for cart totals
-    const quantities = cartData[key].qty;
-    const prices = parseFloat(cartData[key].price);
-    // push to local arrays
-    qtyArray.push(quantities);
-    costArray.push(prices);
+    updateCartTotals(cartData, cartItem);
   }
-  cartTotals(qtyArray, costArray);
 };
 
-const cartTotals = (qtyArray, costArray) => {
+const updateCartTotals = (cartData, cartItem) => {
+  const cartLength = (Object.keys(cartData).length);
+
   const cartCounter = document.querySelector('.item-num > p');
   const totalCost = document.querySelector('.total-cost > p');
   const subtotal = document.querySelector('.subtotal').lastElementChild;
 
-  if (qtyArray.length > 0) {
-    const cartItemTotal = qtyArray.reduce((total, num) => {
-      return total + num;
-    });
-    const cartCostTotal = costArray.reduce((total, num) => {
-      return total + num;
-    });
+  // if cart exists
+  if (cartData && cartLength > 0) {
+  // for cart totals
+  const qtyArray = [];
+  const costArray = [];
+  const quantities = cartItem.qty;
+  const prices = parseFloat(cartItem.price);
 
+  qtyArray.push(quantities);
+  costArray.push(prices);
+
+  // reduce the arrays of quantities and prices
+  const cartItemTotal = qtyArray.reduce((total, num) => {
+    return total + num;
+  });
+  const cartPriceTotal = costArray.reduce((total, num) => {
+    return total + num;
+  });
     cartCounter.textContent = cartItemTotal;
-    totalCost.textContent = '$' + cartCostTotal.toFixed(2);
-    subtotal.textContent = '$' + cartCostTotal.toFixed(2);
-  } else {
+    totalCost.textContent = '$' + cartPriceTotal.toFixed(2);
+    subtotal.textContent = '$' + cartPriceTotal.toFixed(2);
+  }
+  else {
+    console.log(cartLength);
     cartCounter.textContent = 0;
     totalCost.textContent = '$0.00';
     subtotal.textContent = '$0.00';
   }
-};
-
+}
 /* #region - cart arrows */
 
 const incrementOrDecrementCartItem = (cartItemId, changeInQty) => {
